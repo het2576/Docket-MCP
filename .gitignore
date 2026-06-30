@@ -1,0 +1,11 @@
+.env
+.env.local
+.next
+node_modules
+__pycache__
+*.pyc
+.venv
+logs/*.json
+logs/*.log
+!.gitkeep
+prd.md

@@ -1,0 +1,31 @@
+{
+  "name": "docket-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "agent:demo": "python3 backend/agent.py samples/standup.txt",
+    "extract:test": "python3 backend/test_extraction.py",
+    "tracker:test": "python3 backend/test_tracker.py"
+  },
+  "dependencies": {
+    "@fontsource/bitter": "^5.2.10",
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@fontsource/ibm-plex-sans": "^5.2.8",
+    "lucide-react": "0.468.0",
+    "next": "^16.2.9",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.14.10",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.9",
+    "typescript": "5.5.3"
+  }
+}

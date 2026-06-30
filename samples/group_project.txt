@@ -1,0 +1,5 @@
+Arjun: I will clean the presentation outline by Monday.
+Maya: Priya, can you check the experiment screenshots before EOD?
+Priya: Yes, I can do that.
+Het: We need to compare the new task creation flow with the old notes workflow.
+Maya: Someone should verify that the negative transcript case does not create fake tasks.

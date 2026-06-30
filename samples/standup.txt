@@ -1,0 +1,5 @@
+Priya: Het, can you review duplicate detection thresholds before Friday?
+Het: Yes, I will tighten the scoring and add two examples.
+Maya: I will draft onboarding copy by tomorrow.
+Arjun: Someone should look into exporting the reasoning trace for the demo.
+Het: Action item: add a human approval step before creating tasks.

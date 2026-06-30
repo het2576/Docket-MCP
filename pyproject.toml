@@ -1,0 +1,12 @@
+[project]
+name = "meetingpilot-mcp"
+version = "0.1.0"
+description = "Meeting transcript to action-item agent with MCP tracker tools."
+requires-python = ">=3.11"
+dependencies = [
+  "mcp>=1.2.0"
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
