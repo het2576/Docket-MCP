@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "agent:demo": "python3 backend/agent.py samples/standup.txt",
     "extract:test": "python3 backend/test_extraction.py",
-    "tracker:test": "python3 backend/test_tracker.py"
+    "tracker:test": "python3 backend/test_tracker.py",
+    "semantic:test": "python3 backend/test_semantic_search.py",
+    "semantic:backfill": "python3 backend/backfill_embeddings.py"
   },
   "dependencies": {
     "@fontsource/bitter": "^5.2.10",

@@ -9,3 +9,4 @@ logs/*.json
 logs/*.log
 !.gitkeep
 prd.md
+backend/embedding_cache.json

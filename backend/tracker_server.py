@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import logging
+import math
 import os
 import re
 import sys
@@ -11,6 +13,8 @@ from datetime import date, timedelta
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
+
+logger = logging.getLogger(__name__)
 
 try:
     import certifi
@@ -177,6 +181,88 @@ def similarity_score(left: str, right: str) -> float:
     return max(token_score, ratio_score * 0.85)
 
 
+_EMBEDDING_MODEL = "gemini-embedding-001"
+
+# There's no SQL table backing tasks (storage is Notion, or MOCK_TASKS in
+# no-Notion mode), so this file stands in for the "embedding column" -
+# keyed by task id, written on create and lazily backfilled on first compare.
+_EMBEDDING_CACHE_PATH = Path(__file__).resolve().parent / "embedding_cache.json"
+_embedding_cache: dict[str, dict[str, Any]] | None = None
+
+
+def _load_embedding_cache() -> dict[str, dict[str, Any]]:
+    global _embedding_cache
+    if _embedding_cache is None:
+        try:
+            _embedding_cache = json.loads(_EMBEDDING_CACHE_PATH.read_text())
+        except (FileNotFoundError, json.JSONDecodeError):
+            _embedding_cache = {}
+    return _embedding_cache
+
+
+def _save_embedding_cache() -> None:
+    if _embedding_cache is not None:
+        _EMBEDDING_CACHE_PATH.write_text(json.dumps(_embedding_cache))
+
+
+def get_embedding(text: str) -> list[float]:
+    if not settings.has_gemini:
+        raise RuntimeError("Missing GEMINI_API_KEY.")
+
+    payload = {"content": {"parts": [{"text": text}]}}
+    url = (
+        "https://generativelanguage.googleapis.com/v1beta/models/"
+        f"{_EMBEDDING_MODEL}:embedContent?key={settings.gemini_api_key}"
+    )
+    request = urllib.request.Request(
+        url,
+        data=json.dumps(payload).encode("utf-8"),
+        method="POST",
+        headers={"Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=30, context=SSL_CONTEXT) as response:
+            data = json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        detail = exc.read().decode("utf-8")
+        raise RuntimeError(f"Gemini embedding API error {exc.code}: {detail}") from exc
+    return data["embedding"]["values"]
+
+
+def cosine_similarity(vec_a: list[float], vec_b: list[float]) -> float:
+    if not vec_a or not vec_b or len(vec_a) != len(vec_b):
+        return 0.0
+    dot = sum(a * b for a, b in zip(vec_a, vec_b))
+    norm_a = math.sqrt(sum(a * a for a in vec_a))
+    norm_b = math.sqrt(sum(b * b for b in vec_b))
+    if norm_a == 0 or norm_b == 0:
+        return 0.0
+    return dot / (norm_a * norm_b)
+
+
+def _get_task_embedding(task_id: str, title: str) -> list[float] | None:
+    """Return the stored embedding for a task, computing and caching it on first use.
+
+    Covers both a freshly created task (cache miss written immediately by
+    create_task) and an older, pre-upgrade task with no cache entry yet -
+    the latter gets backfilled here instead of needing a migration script.
+    """
+    cache = _load_embedding_cache()
+    entry = cache.get(task_id)
+    if entry and entry.get("title") == title:
+        return entry.get("embedding")
+
+    try:
+        embedding = get_embedding(title)
+    except Exception as exc:
+        logger.warning("Falling back to lexical-only scoring for task %s: %s", task_id, exc)
+        return None
+
+    cache[task_id] = {"title": title, "embedding": embedding}
+    _save_embedding_cache()
+    return embedding
+
+
 def list_open_tasks() -> list[dict]:
     if not settings.has_notion:
         return [task.to_dict() for task in MOCK_TASKS]
@@ -190,13 +276,35 @@ def list_open_tasks() -> list[dict]:
     return [_page_to_task(page).to_dict() for page in data.get("results", [])]
 
 
+_LEXICAL_THRESHOLD = 0.28
+
+# gemini-embedding-001 cosine similarities run high even between unrelated
+# titles (~0.45-0.6 baseline), unlike lexical scores which sit near 0 for
+# unrelated text. Reusing the lexical threshold here would surface nearly
+# every task on every query, so semantic matches need their own, higher bar.
+_SEMANTIC_THRESHOLD = 0.65
+
+
 def search_similar_tasks(query: str) -> list[dict]:
     tasks = [TrackerTask(**task) for task in list_open_tasks()]
-    ranked = [
-        (similarity_score(query, task.title), task)
-        for task in tasks
-        if similarity_score(query, task.title) >= 0.28
-    ]
+
+    try:
+        query_embedding = get_embedding(query)
+    except Exception as exc:
+        logger.warning("Semantic search unavailable, falling back to lexical-only: %s", exc)
+        query_embedding = None
+
+    ranked = []
+    for task in tasks:
+        lexical_score = similarity_score(query, task.title)
+        semantic_score = 0.0
+        if query_embedding is not None:
+            task_embedding = _get_task_embedding(task.id, task.title)
+            if task_embedding is not None:
+                semantic_score = cosine_similarity(query_embedding, task_embedding)
+        if lexical_score >= _LEXICAL_THRESHOLD or semantic_score >= _SEMANTIC_THRESHOLD:
+            ranked.append((max(lexical_score, semantic_score), task))
+
     ranked.sort(key=lambda item: item[0], reverse=True)
     return [task.to_dict() | {"similarity": round(score, 3)} for score, task in ranked[:5]]
 
@@ -210,7 +318,7 @@ def create_task(
     resolved_due_date = _resolve_due_date(due_date)
 
     if not settings.has_notion:
-        return {
+        result = {
             "id": f"mock-created-{abs(hash((title, owner, due_date))) % 100000}",
             "title": title,
             "owner": owner,
@@ -220,6 +328,8 @@ def create_task(
             "url": None,
             "mock": True,
         }
+        _get_task_embedding(result["id"], result["title"])
+        return result
 
     properties: dict[str, Any] = {
         settings.notion_title_property: {"title": [{"text": {"content": title}}]},
@@ -242,7 +352,9 @@ def create_task(
             "properties": properties,
         },
     )
-    return _page_to_task(data).to_dict()
+    result = _page_to_task(data).to_dict()
+    _get_task_embedding(result["id"], result["title"])
+    return result
 
 
 if FastMCP is not None:

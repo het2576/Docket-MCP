@@ -94,8 +94,8 @@ flowchart TD
 
 ```bash
 # 1. Clone and install Node dependencies
-git clone <repo-url>
-cd meet_mcp
+git clone https://github.com/your-username/Docket-MCP.git
+cd Docket-MCP
 npm install
 
 # 2. Create and activate a Python virtual environment
@@ -290,8 +290,8 @@ Add to your `claude_desktop_config.json` (`~/Library/Application Support/Claude/
 {
   "mcpServers": {
     "docket-tracker": {
-      "command": "/absolute/path/to/meet_mcp/.venv/bin/python",
-      "args": ["/absolute/path/to/meet_mcp/backend/tracker_server.py"],
+      "command": "~/Docket-MCP/.venv/bin/python",
+      "args": ["~/Docket-MCP/backend/tracker_server.py"],
       "env": {
         "NOTION_API_KEY": "your_notion_integration_secret_here",
         "NOTION_DATABASE_ID": "your_notion_database_id_here"
@@ -315,8 +315,8 @@ Add the server to your Claude Code MCP config:
 
 ```bash
 claude mcp add docket-tracker \
-  /absolute/path/to/meet_mcp/.venv/bin/python \
-  /absolute/path/to/meet_mcp/backend/tracker_server.py \
+  ~/Docket-MCP/.venv/bin/python \
+  ~/Docket-MCP/backend/tracker_server.py \
   --env NOTION_API_KEY=your_notion_integration_secret_here \
   --env NOTION_DATABASE_ID=your_notion_database_id_here
 ```
