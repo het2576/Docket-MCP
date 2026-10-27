@@ -2,7 +2,7 @@
 
 > Turn meeting transcripts into reviewed, tracker-ready action items — with a human sign-off before anything touches your database.
 
-Docket is a human-in-the-loop agent that reads a meeting transcript, extracts structured action items using Gemini 2.5 Flash, checks each one against your Notion tracker for likely duplicates, presents everything for review, and only creates tasks after you approve them. The tracker integration is exposed as an **MCP server** — a clean, tool-bounded interface that any MCP-compatible agent or host can use independently.
+Docket is a human-in-the-loop agent that reads a meeting transcript, extracts structured action items using Gemini (3.5 Flash by default), checks each one against your Notion tracker for likely duplicates, presents everything for review, and only creates tasks after you approve them. The tracker integration is exposed as an **MCP server** — a clean, tool-bounded interface that any MCP-compatible agent or host can use independently.
 
 ---
 
@@ -62,7 +62,7 @@ flowchart LR
   UI[Next.js review UI] --> API[Next.js API routes]
   API --> CLI[Python CLI bridge]
   CLI --> Agent[Agent loop]
-  Agent --> Gemini[Gemini 2.5 Flash\nextraction]
+  Agent --> Gemini[Gemini 3.5 Flash\nextraction]
   Agent --> MCP[MCP tracker tools]
   MCP --> Notion[Notion database]
   Agent --> Logs[Reasoning trace\nlogs/]
@@ -76,15 +76,20 @@ flowchart TD
   B --> C[list_open_tasks: fetch all open tracker tasks]
   C --> D[For each action item: search_similar_tasks]
   D --> E{Similarity score}
-  E -->|≥ 0.78| F[duplicate — skip by default]
-  E -->|0.52–0.77| G[needs_review — human decides]
-  E -->|< 0.52| H[new — checked by default]
+  E -->|wording ≥ 0.78 or meaning ≥ 0.84| F[duplicate — unchecked]
+  E -->|wording ≥ 0.52 or meaning ≥ 0.68| G[needs_review — unchecked, human decides]
+  E -->|below both| H[new — checked by default]
   F & G & H --> I[Review UI: approve / deselect items]
   I --> J[create_task for each approved item]
   J --> K[Filed receipt — title · owner · due date · tracker link]
 ```
 
-**Duplicate detection** uses a token-overlap + sequence-ratio similarity score with a domain stopword list (`review`, `update`, `fix`, `add`, `create`, etc.) so generic action verbs don't trigger false positives between unrelated tasks.
+**Duplicate detection** combines two signals:
+
+- **Wording**: a token-overlap + sequence-ratio score with a domain stopword list (`review`, `update`, `fix`, `add`, `create`, etc.) so generic action verbs don't trigger false positives between unrelated tasks.
+- **Meaning**: cosine similarity of `gemini-embedding-001` embeddings, so "Authentication is broken" still matches "Fix login bug". Embedding cosines run high even for unrelated titles (~0.54–0.56), related work lands ~0.71–0.76 and the same work ~0.85+, which is where the 0.68 / 0.84 bands come from.
+
+Open tasks are read from the tracker once per run, and all embeddings are fetched in a single batch request.
 
 ---
 
@@ -107,7 +112,8 @@ pip install -r requirements.txt
 
 # 4. Configure environment variables
 cp .env.example .env.local
-# Edit .env.local — add your Gemini API key and Notion credentials
+# Edit .env.local — add your Gemini API key and Notion credentials.
+# Keep real keys out of .env.example: that file is committed.
 
 # 5. Start the dev server
 npm run dev
@@ -125,8 +131,9 @@ Configure in `.env.local` (never committed — it is in `.gitignore`):
 
 | Variable | Required | Description |
 |---|---|---|
-| `GEMINI_API_KEY` | Recommended | Gemini 2.5 Flash API key. Without it, the heuristic fallback extractor is used. |
-| `GEMINI_MODEL` | No | Defaults to `gemini-2.5-flash`. Override to use another Gemini model. |
+| `GEMINI_API_KEY` | Recommended | Gemini API key (also used for meaning-based duplicate matching). Without it, the heuristic fallback extractor is used. |
+| `GEMINI_MODEL` | No | Defaults to `gemini-3.5-flash` (~4 s per transcript). Override to use another Gemini model. |
+| `GEMINI_THINKING_LEVEL` | No | Gemini 3 models only: `low` (default), `medium` or `high`. Higher levels can take minutes per transcript. |
 | `NOTION_API_KEY` | For real tasks | Your Notion internal integration secret (`ntn_...`). |
 | `NOTION_DATABASE_ID` | For real tasks | 32-character ID from the Notion database URL. |
 | `NOTION_TITLE_PROPERTY` | No | Defaults to `Name`. The name of the title column in your Notion database. |
@@ -135,15 +142,19 @@ Configure in `.env.local` (never committed — it is in `.gitignore`):
 | `NOTION_STATUS_PROPERTY` | No | Defaults to `Status`. Used to filter out completed tasks. |
 | `NOTION_STATUS_DONE_VALUES` | No | Comma-separated list of "done" status values to exclude. Defaults to `Done,Complete,Completed,Archived`. |
 | `NOTION_SOURCE_PROPERTY` | No | Defaults to `Source Meeting`. Text property tagging where the task came from. |
-| `PYTHON_BIN` | No | Python executable used by the Next.js API routes. Defaults to `python3`. Set this to `.venv/bin/python` if your virtual env Python isn't the system default. |
+| `PYTHON_BIN` | No | Python executable used by the Next.js API routes. Defaults to `.venv/bin/python` when that exists, otherwise `python3`. |
+
+The Python backend reads `.env.local` and `.env` itself, so the CLI and MCP server pick up the same settings as the web app. Real environment variables always take precedence.
+
+If your Notion columns use different types, Docket adapts: the status filter only uses "done" values that exist as options in your Status column, and Owner/Source values are written only when the column is text (or select). Otherwise the owner is appended to the title so it isn't lost.
 
 ---
 
 ## Using the App
 
-### 1. Paste a transcript
+### 1. Add a transcript
 
-Paste any meeting transcript — a Zoom/Meet export, a copy of your notes, or even a rough summary. Include the speaker names followed by a colon:
+Paste a transcript, open a file, or drop one onto the left pane. Plain text, Markdown and caption exports from Zoom, Meet and Teams (`.vtt`, `.srt`) are supported; captions are turned back into `Speaker: text` lines. The **Samples** menu loads the transcripts from `samples/`. Your draft is kept in the browser between visits.
 
 ```
 Priya: Het, can you review duplicate detection thresholds before Friday?
@@ -154,36 +165,26 @@ Arjun: Someone should look into exporting the reasoning trace for the demo.
 
 ### 2. Process
 
-Click **Process**. The agent runs the full extraction + duplicate-check loop and returns a docket of reviewed entries. Each entry shows:
+Click **Process transcript** (or press <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Enter</kbd>). The transcript turns into a marked-up view: every line that produced an action item gets a highlighter stroke colored by its decision (green = new, yellow = needs review, pink = duplicate) and a number linking it to its entry. Hover either side to see the pair; click a highlight to jump to its entry.
 
-- **Decision badge** — `new`, `duplicate`, or `needs review`
-- **Owner + Due date** — extracted from the transcript
-- **Confidence** — how explicit the assignment was (< 60% triggers `needs review`)
-- **Reasoning** — a plain-English explanation of the duplicate decision
-- **Verbatim quote** — the exact transcript line the task came from
-- **Cross-reference** — the closest existing tracker task (if any)
+Each entry shows:
 
-### 3. Review and approve
+- **Decision**: `New`, `Needs review` or `Duplicate`
+- **Owner and due date**: editable before filing
+- **Clarity**: how explicitly the transcript states the task (below 60% forces `Needs review`)
+- **Reasoning**: why the decision was made, with wording and meaning scores
+- **Source line**: the verbatim quote; click it to find it in the transcript
+- **Compare with tracker tasks**: the closest open tasks with owner, status and both scores, linked to Notion
 
-Items marked `new` are checked by default. Items marked `duplicate` are unchecked. Adjust as needed, then click **Create Approved Tasks**.
+If Gemini fails, Docket falls back to the rule-based extractor. If Notion can't be read, every item is marked `Needs review`. Either way a warning explains what happened.
 
-### 4. Receipt
+### 3. Review and file
 
-After creation you see a filed receipt:
+Only `New` items are checked by default. Fix any titles, owners or dates, check what you want, then click **File N tasks to Notion**. Filed entries lock with a link to the Notion page, so they can't be filed twice. If one task fails, the rest are still filed and the failure is shown on that entry so you can retry.
 
-```
-✓ 3 tasks filed to tracker
-─────────────────────────────
-✓  Tighten duplicate-detection scoring thresholds
-   Owner: Het  ·  Due: 2026-07-04
-   Open in tracker ↗
+**Copy list** puts a Markdown checklist on your clipboard; **Trace** downloads the full reasoning trace.
 
-✓  Draft onboarding copy
-   Owner: Maya  ·  Due: 2026-07-02
-
-✓  Export reasoning trace for demo
-   Owner: —
-```
+The sun / monitor / moon switch in the top bar picks a light, system-matched or dark theme; the choice is remembered in the browser.
 
 ---
 
@@ -504,7 +505,7 @@ The item appears in the review UI with a `duplicate` stamp and is unchecked by d
 
 ## Design Decisions
 
-**Human in the loop, always.** Nothing is written to the tracker without a checkbox review. This is both a safety practice and a more honest engineering story for a v1: the agent assists, the human decides.
+**Human in the loop, always.** Nothing is written to the tracker without a checkbox review, and anything ambiguous starts unchecked. This is both a safety practice and a more honest engineering story for a v1: the agent assists, the human decides.
 
 **MCP as a tool boundary.** The tracker tools are self-contained and testable independently of the extraction or agent logic. Swapping Notion for Linear means rewriting one file (`tracker_server.py`) without touching the agent, the UI, or the extraction pipeline.
 

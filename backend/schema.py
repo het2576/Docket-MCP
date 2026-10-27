@@ -49,12 +49,13 @@ class ReviewItem:
     action_item: ActionItem
     decision: Decision
     reasoning: str
-    similar_tasks: list[TrackerTask] = field(default_factory=list)
+    # TrackerTask dicts plus "similarity", "lexical" and "semantic" scores.
+    similar_tasks: list[dict] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {
             "action_item": self.action_item.to_dict(),
             "decision": self.decision,
             "reasoning": self.reasoning,
-            "similar_tasks": [task.to_dict() for task in self.similar_tasks],
+            "similar_tasks": self.similar_tasks,
         }

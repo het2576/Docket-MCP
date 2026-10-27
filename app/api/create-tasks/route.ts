@@ -2,15 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { runPython } from "@/lib/server/pythonRunner";
 
 export async function POST(request: NextRequest) {
-  const body = await request.json();
-  if (!Array.isArray(body.items)) {
-    return NextResponse.json({ error: "items must be an array." }, { status: 400 });
+  const body = await request.json().catch(() => null);
+  if (!Array.isArray(body?.items) || body.items.length === 0) {
+    return NextResponse.json({ error: "Select at least one item to file." }, { status: 400 });
+  }
+  if (body.items.length > 100) {
+    return NextResponse.json({ error: "File at most 100 tasks at a time." }, { status: 413 });
   }
 
   try {
     const result = await runPython("create", {
       items: body.items,
-      source_meeting: body.source_meeting
+      source_meeting: typeof body.source_meeting === "string" ? body.source_meeting.trim() : undefined
     });
     return NextResponse.json(result);
   } catch (error) {

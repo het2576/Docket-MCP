@@ -2,6 +2,32 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def _load_env_files() -> None:
+    """Read .env.local / .env so the CLI and MCP server see the same config as Next.js.
+
+    Real environment variables always win, matching Next.js precedence.
+    """
+    for name in (".env.local", ".env"):
+        path = ROOT / name
+        if not path.is_file():
+            continue
+        for raw in path.read_text(encoding="utf-8").splitlines():
+            line = raw.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            if key and not key.startswith("http"):
+                os.environ.setdefault(key, value)
+
+
+_load_env_files()
 
 
 def _csv(value: str | None, default: list[str]) -> list[str]:
@@ -13,7 +39,9 @@ def _csv(value: str | None, default: list[str]) -> list[str]:
 @dataclass(frozen=True)
 class Settings:
     gemini_api_key: str | None = os.getenv("GEMINI_API_KEY")
-    gemini_model: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    gemini_model: str = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
+    # Gemini 3 models think at "high" by default, which can take minutes for a transcript.
+    gemini_thinking_level: str = os.getenv("GEMINI_THINKING_LEVEL", "low")
     notion_api_key: str | None = os.getenv("NOTION_API_KEY")
     notion_database_id: str | None = os.getenv("NOTION_DATABASE_ID")
     notion_title_property: str = os.getenv("NOTION_TITLE_PROPERTY", "Name")

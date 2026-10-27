@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import sys
 from pathlib import Path
 
@@ -15,21 +16,27 @@ def main() -> None:
         print("Usage: python3 backend/cli.py process|create", file=sys.stderr)
         raise SystemExit(2)
 
-    command = sys.argv[1]
-    payload = json.loads(sys.stdin.read() or "{}")
+    # stdout carries the JSON response, so library warnings must stay on stderr.
+    logging.basicConfig(level=logging.WARNING, stream=sys.stderr)
 
-    if command == "process":
-        result = run_agent(
-            payload.get("transcript", ""),
-            source_meeting=payload.get("source_meeting") or "Manual transcript",
-        )
-    elif command == "create":
-        result = create_approved_tasks(
-            payload.get("items", []),
-            source_meeting=payload.get("source_meeting") or "Manual transcript",
-        )
-    else:
-        raise SystemExit(f"Unknown command: {command}")
+    command = sys.argv[1]
+    try:
+        payload = json.loads(sys.stdin.read() or "{}")
+        if command == "process":
+            result = run_agent(
+                payload.get("transcript", ""),
+                source_meeting=payload.get("source_meeting") or "Manual transcript",
+            )
+        elif command == "create":
+            result = create_approved_tasks(
+                payload.get("items", []),
+                source_meeting=payload.get("source_meeting") or "Manual transcript",
+            )
+        else:
+            raise ValueError(f"Unknown command: {command}")
+    except Exception as exc:  # surfaced to the UI as a readable message
+        print(json.dumps({"error": " ".join(str(exc).split()) or exc.__class__.__name__}))
+        raise SystemExit(1) from exc
 
     print(json.dumps(result, indent=2))
 

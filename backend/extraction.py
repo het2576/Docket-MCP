@@ -6,14 +6,15 @@ import sys
 import urllib.error
 import urllib.request
 import ssl
+import time
 from pathlib import Path
 from typing import Any
 
 try:
     import certifi
     SSL_CONTEXT = ssl.create_default_context(cafile=certifi.where())
-except ImportError:
-    SSL_CONTEXT = getattr(ssl, "_create_unverified_context", ssl.create_default_context)()
+except ImportError:  # system trust store; never skip verification
+    SSL_CONTEXT = ssl.create_default_context()
 
 if __package__ is None or __package__ == "":
     sys.path.append(str(Path(__file__).resolve().parents[1]))
@@ -86,28 +87,54 @@ Transcript:
             "response_mime_type": "application/json",
             "response_schema": EXTRACTION_SCHEMA,
             "temperature": 0.1,
+            **_thinking_config(),
         },
     }
-    url = (
-        "https://generativelanguage.googleapis.com/v1beta/models/"
-        f"{settings.gemini_model}:generateContent?key={settings.gemini_api_key}"
-    )
-    request = urllib.request.Request(
-        url,
-        data=json.dumps(payload).encode("utf-8"),
-        method="POST",
-        headers={"Content-Type": "application/json"},
-    )
-    try:
-        with urllib.request.urlopen(request, timeout=45, context=SSL_CONTEXT) as response:
-            data = json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as exc:
-        detail = exc.read().decode("utf-8")
-        raise RuntimeError(f"Gemini API error {exc.code}: {detail}") from exc
+    data = gemini_post(f"models/{settings.gemini_model}:generateContent", payload, timeout=90)
+    candidates = data.get("candidates") or []
+    parts = (candidates[0].get("content") or {}).get("parts") if candidates else None
+    if not parts:
+        reason = (candidates[0].get("finishReason") if candidates else None) or (
+            data.get("promptFeedback", {}).get("blockReason") or "empty response"
+        )
+        raise RuntimeError(f"Gemini returned no content ({reason}).")
+    text = "".join(part.get("text", "") for part in parts)
+    return _normalize_extraction(json.loads(text))
 
-    text = data["candidates"][0]["content"]["parts"][0]["text"]
-    parsed = json.loads(text)
-    return _normalize_extraction(parsed)
+
+def _thinking_config() -> dict[str, Any]:
+    model = settings.gemini_model
+    if model.startswith("gemini-3") and settings.gemini_thinking_level:
+        return {"thinkingConfig": {"thinkingLevel": settings.gemini_thinking_level}}
+    if model.startswith("gemini-2.5-flash"):
+        return {"thinkingConfig": {"thinkingBudget": 0}}
+    return {}
+
+
+def gemini_post(path: str, payload: dict[str, Any], timeout: int = 30) -> dict:
+    """POST to the Gemini API, retrying once on rate limits and transient server errors."""
+    request_body = json.dumps(payload).encode("utf-8")
+    for attempt in range(2):
+        request = urllib.request.Request(
+            f"https://generativelanguage.googleapis.com/v1beta/{path}",
+            data=request_body,
+            method="POST",
+            headers={"Content-Type": "application/json", "x-goog-api-key": settings.gemini_api_key or ""},
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=timeout, context=SSL_CONTEXT) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as exc:
+            detail = exc.read().decode("utf-8")
+            if attempt == 0 and exc.code in (429, 500, 503):
+                time.sleep(1.5)
+                continue
+            try:
+                detail = json.loads(detail)["error"]["message"]
+            except (ValueError, KeyError, TypeError):
+                pass
+            raise RuntimeError(f"Gemini API error {exc.code}: {detail}") from exc
+    raise RuntimeError("Gemini API request failed.")
 
 
 def _name_from_line(line: str) -> str | None:
@@ -127,16 +154,11 @@ def _owner_from_line(line: str) -> str | None:
 
 
 def _deadline_from_line(line: str) -> str | None:
-    patterns = [
-        r"\bby\s+([A-Z]?[a-z]+day|tomorrow|today|EOD|end of week|Friday|Monday|Tuesday|Wednesday|Thursday)\b",
-        r"\bdue\s+([A-Z]?[a-z]+day|tomorrow|today|EOD|end of week|Friday|Monday|Tuesday|Wednesday|Thursday)\b",
-        r"\bbefore\s+([A-Z]?[a-z]+day|tomorrow|today|EOD|end of week|Friday|Monday|Tuesday|Wednesday|Thursday)\b",
-    ]
-    for pattern in patterns:
-        match = re.search(pattern, line, re.IGNORECASE)
-        if match:
-            return match.group(1)
-    return None
+    when = r"((?:next|this)\s+[a-z]+day|[a-z]+day|tomorrow|today|EOD|end of (?:the )?(?:week|day|month)|next week)"
+    match = re.search(rf"\b(?:by|due|before|on)\s+{when}\b", line, re.IGNORECASE)
+    if not match:
+        return None
+    return match.group(1).replace("end of the ", "end of ")
 
 
 def _clean_task_text(body: str) -> str:
@@ -149,7 +171,7 @@ def _clean_task_text(body: str) -> str:
     text = re.sub(r"^(I will|I'll|I need to|I'm going to|I am going to)\s+", "", text, flags=re.IGNORECASE)
     # Strip a trailing deadline clause so the task reads as the work, not the schedule.
     text = re.sub(
-        r"\s*[,]?\s*(by|due|before)\s+([A-Z]?[a-z]+day|tomorrow|today|EOD|end of week)\b[.?!]*\s*$",
+        r"\s*[,]?\s*(by|due|before)\s+((next|this)\s+)?([A-Z]?[a-z]+day|tomorrow|today|EOD|end of (the )?(week|day|month)|next week)\b[.?!]*\s*$",
         "",
         text,
         flags=re.IGNORECASE,
@@ -160,7 +182,7 @@ def _clean_task_text(body: str) -> str:
     return text or body.strip()
 
 
-def _heuristic_extract(transcript: str) -> ExtractionResult:
+def heuristic_extract(transcript: str) -> ExtractionResult:
     action_items: list[ActionItem] = []
     action_markers = (
         "will ",
@@ -210,12 +232,19 @@ def _heuristic_extract(transcript: str) -> ExtractionResult:
 def _normalize_extraction(parsed: dict[str, Any]) -> ExtractionResult:
     items = []
     for item in parsed.get("action_items", []):
+        task = str(item.get("task") or "").strip()
+        if not task:
+            continue
+        try:
+            confidence = float(item.get("confidence", 0))
+        except (TypeError, ValueError):
+            confidence = 0.0
         items.append(
             ActionItem(
-                task=str(item.get("task", "")).strip(),
-                owner=item.get("owner") or None,
-                deadline=item.get("deadline") or None,
-                confidence=float(item.get("confidence", 0)),
+                task=task,
+                owner=(str(item.get("owner") or "").strip() or None),
+                deadline=(str(item.get("deadline") or "").strip() or None),
+                confidence=min(max(confidence, 0.0), 1.0),
                 source_quote=str(item.get("source_quote", "")).strip(),
             )
         )
@@ -225,7 +254,7 @@ def _normalize_extraction(parsed: dict[str, Any]) -> ExtractionResult:
 def extract_action_items(transcript: str) -> ExtractionResult:
     if settings.has_gemini:
         return _gemini_extract(transcript)
-    return _heuristic_extract(transcript)
+    return heuristic_extract(transcript)
 
 
 if __name__ == "__main__":

@@ -10,3 +10,8 @@ logs/*.log
 !.gitkeep
 prd.md
 backend/embedding_cache.json
+tsconfig.tsbuildinfo
+
+# Local agent skills (installed per machine)
+.claude/
+skills-lock.json

@@ -11,6 +11,7 @@ import urllib.request
 import ssl
 from datetime import date, timedelta
 from difflib import SequenceMatcher
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -19,18 +20,22 @@ logger = logging.getLogger(__name__)
 try:
     import certifi
     SSL_CONTEXT = ssl.create_default_context(cafile=certifi.where())
-except ImportError:
-    SSL_CONTEXT = getattr(ssl, "_create_unverified_context", ssl.create_default_context)()
+except ImportError:  # system trust store; never skip verification
+    SSL_CONTEXT = ssl.create_default_context()
 
-try:
-    from mcp.server.fastmcp import FastMCP
-except Exception:  # pragma: no cover - lets direct scripts run before mcp install.
-    FastMCP = None  # type: ignore[assignment]
+try:  # mcp 2.x renamed FastMCP to MCPServer; same tool()/run() API.
+    from mcp.server.mcpserver import MCPServer as FastMCP
+except ImportError:
+    try:
+        from mcp.server.fastmcp import FastMCP
+    except ImportError:  # pragma: no cover - lets direct scripts run before mcp install.
+        FastMCP = None  # type: ignore[assignment,misc]
 
 if __package__ is None or __package__ == "":
     sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from backend.config import settings
+from backend.extraction import gemini_post
 from backend.schema import TrackerTask
 
 MOCK_TASKS = [
@@ -71,6 +76,10 @@ def _notion_request(path: str, payload: dict[str, Any] | None = None, method: st
             return json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
         detail = exc.read().decode("utf-8")
+        try:
+            detail = json.loads(detail)["message"]
+        except (ValueError, KeyError, TypeError):
+            pass
         raise RuntimeError(f"Notion API error {exc.code}: {detail}") from exc
 
 
@@ -139,8 +148,17 @@ def _resolve_due_date(due_date: str | None, today: date | None = None) -> str | 
         return (today + timedelta(days=1)).isoformat()
     if lowered in ("end of week", "eow"):
         return (today + timedelta(days=(4 - today.weekday()) % 7)).isoformat()
-    if lowered in _WEEKDAYS:
-        days_ahead = (_WEEKDAYS[lowered] - today.weekday()) % 7
+    if lowered == "next week":
+        return (today + timedelta(days=7 - today.weekday())).isoformat()
+    if lowered in ("end of month", "eom"):
+        next_month = date(today.year + today.month // 12, today.month % 12 + 1, 1)
+        return (next_month - timedelta(days=1)).isoformat()
+
+    prefix, _, day = lowered.rpartition(" ")
+    if day in _WEEKDAYS and prefix in ("", "this", "on", "next"):
+        days_ahead = (_WEEKDAYS[day] - today.weekday()) % 7
+        if prefix == "next" and days_ahead == 0:
+            days_ahead = 7
         return (today + timedelta(days=days_ahead)).isoformat()
 
     return None
@@ -209,24 +227,38 @@ def get_embedding(text: str) -> list[float]:
     if not settings.has_gemini:
         raise RuntimeError("Missing GEMINI_API_KEY.")
 
-    payload = {"content": {"parts": [{"text": text}]}}
-    url = (
-        "https://generativelanguage.googleapis.com/v1beta/models/"
-        f"{_EMBEDDING_MODEL}:embedContent?key={settings.gemini_api_key}"
-    )
-    request = urllib.request.Request(
-        url,
-        data=json.dumps(payload).encode("utf-8"),
-        method="POST",
-        headers={"Content-Type": "application/json"},
-    )
-    try:
-        with urllib.request.urlopen(request, timeout=30, context=SSL_CONTEXT) as response:
-            data = json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as exc:
-        detail = exc.read().decode("utf-8")
-        raise RuntimeError(f"Gemini embedding API error {exc.code}: {detail}") from exc
+    data = gemini_post(f"models/{_EMBEDDING_MODEL}:embedContent", {"content": {"parts": [{"text": text}]}})
     return data["embedding"]["values"]
+
+
+def get_embeddings(texts: list[str]) -> list[list[float]]:
+    """Embed several texts in one round trip."""
+    if not texts:
+        return []
+    if not settings.has_gemini:
+        raise RuntimeError("Missing GEMINI_API_KEY.")
+    model = f"models/{_EMBEDDING_MODEL}"
+    data = gemini_post(
+        f"{model}:batchEmbedContents",
+        {"requests": [{"model": model, "content": {"parts": [{"text": text}]}} for text in texts]},
+    )
+    return [item["values"] for item in data["embeddings"]]
+
+
+def warm_task_embeddings(tasks: list[dict]) -> None:
+    """Fill the embedding cache for every task that's missing or renamed, in one batch."""
+    cache = _load_embedding_cache()
+    missing = [t for t in tasks if (cache.get(t["id"]) or {}).get("title") != t["title"]]
+    if not missing or not settings.has_gemini:
+        return
+    try:
+        vectors = get_embeddings([t["title"] for t in missing])
+    except Exception as exc:
+        logger.warning("Could not batch-embed tracker tasks: %s", exc)
+        return
+    for task, vector in zip(missing, vectors):
+        cache[task["id"]] = {"title": task["title"], "embedding": vector}
+    _save_embedding_cache()
 
 
 def cosine_similarity(vec_a: list[float], vec_b: list[float]) -> float:
@@ -263,17 +295,53 @@ def _get_task_embedding(task_id: str, title: str) -> list[float] | None:
     return embedding
 
 
+@lru_cache(maxsize=1)
+def _database_properties() -> dict[str, dict[str, Any]]:
+    """Fetch the Notion database schema once per process, keyed by property name."""
+    data = _notion_request(f"databases/{settings.notion_database_id}", method="GET")
+    return data.get("properties", {})
+
+
+def _property_types() -> dict[str, str]:
+    """Map each Notion database property name to its type ("status", "select", "people", ...)."""
+    return {name: prop.get("type", "") for name, prop in _database_properties().items()}
+
+
+def _status_filter() -> dict[str, Any] | None:
+    prop = _database_properties().get(settings.notion_status_property) or {}
+    prop_type = prop.get("type")
+    if prop_type not in ("status", "select"):
+        return None
+    # Notion rejects filters that name an option the column doesn't have.
+    options = {option.get("name", "").lower() for option in prop.get(prop_type, {}).get("options", [])}
+    done = [value for value in settings.notion_done_values if value.lower() in options]
+    if not done:
+        return None
+    return {
+        "and": [
+            {"property": settings.notion_status_property, prop_type: {"does_not_equal": value}}
+            for value in done
+        ]
+    }
+
+
 def list_open_tasks() -> list[dict]:
+    """Return every open task in the tracker, skipping ones whose status is a "done" value."""
     if not settings.has_notion:
         return [task.to_dict() for task in MOCK_TASKS]
 
-    done_filters = [
-        {"property": settings.notion_status_property, "status": {"does_not_equal": value}}
-        for value in settings.notion_done_values
-    ]
-    payload = {"filter": {"and": done_filters}, "page_size": 100}
-    data = _notion_request(f"databases/{settings.notion_database_id}/query", payload)
-    return [_page_to_task(page).to_dict() for page in data.get("results", [])]
+    payload: dict[str, Any] = {"page_size": 100}
+    status_filter = _status_filter()
+    if status_filter:
+        payload["filter"] = status_filter
+
+    tasks: list[dict] = []
+    while True:
+        data = _notion_request(f"databases/{settings.notion_database_id}/query", payload)
+        tasks.extend(_page_to_task(page).to_dict() for page in data.get("results", []))
+        if not data.get("has_more") or not data.get("next_cursor"):
+            return tasks
+        payload["start_cursor"] = data["next_cursor"]
 
 
 _LEXICAL_THRESHOLD = 0.28
@@ -284,18 +352,34 @@ _LEXICAL_THRESHOLD = 0.28
 # every task on every query, so semantic matches need their own, higher bar.
 _SEMANTIC_THRESHOLD = 0.65
 
+# Decision bands, calibrated on gemini-embedding-001: unrelated titles sit at
+# ~0.54-0.56 cosine, related-but-different work ~0.71-0.76, same work ~0.85+.
+LEXICAL_DUPLICATE = 0.78
+LEXICAL_REVIEW = 0.52
+SEMANTIC_DUPLICATE = 0.84
+SEMANTIC_REVIEW = 0.68
 
-def search_similar_tasks(query: str) -> list[dict]:
-    tasks = [TrackerTask(**task) for task in list_open_tasks()]
 
-    try:
-        query_embedding = get_embedding(query)
-    except Exception as exc:
-        logger.warning("Semantic search unavailable, falling back to lexical-only: %s", exc)
-        query_embedding = None
+_NO_EMBEDDING: Any = object()
+
+
+def rank_similar_tasks(
+    query: str, tasks: list[dict], limit: int = 5, query_embedding: list[float] | None = _NO_EMBEDDING
+) -> list[dict]:
+    """Score `query` against already-fetched tasks; lets the agent reuse one tracker read.
+
+    Pass `query_embedding` when it was computed in a batch (None means semantic search is off).
+    """
+    if query_embedding is _NO_EMBEDDING:
+        try:
+            query_embedding = get_embedding(query)
+        except Exception as exc:
+            logger.warning("Semantic search unavailable, falling back to lexical-only: %s", exc)
+            query_embedding = None
 
     ranked = []
-    for task in tasks:
+    for raw in tasks:
+        task = TrackerTask(**{k: v for k, v in raw.items() if k in TrackerTask.__annotations__})
         lexical_score = similarity_score(query, task.title)
         semantic_score = 0.0
         if query_embedding is not None:
@@ -303,10 +387,32 @@ def search_similar_tasks(query: str) -> list[dict]:
             if task_embedding is not None:
                 semantic_score = cosine_similarity(query_embedding, task_embedding)
         if lexical_score >= _LEXICAL_THRESHOLD or semantic_score >= _SEMANTIC_THRESHOLD:
-            ranked.append((max(lexical_score, semantic_score), task))
+            ranked.append((max(lexical_score, semantic_score), lexical_score, semantic_score, task))
 
     ranked.sort(key=lambda item: item[0], reverse=True)
-    return [task.to_dict() | {"similarity": round(score, 3)} for score, task in ranked[:5]]
+    return [
+        task.to_dict()
+        | {
+            "similarity": round(score, 3),
+            "lexical": round(lexical, 3),
+            "semantic": round(semantic, 3) if query_embedding is not None else None,
+        }
+        for score, lexical, semantic, task in ranked[:limit]
+    ]
+
+
+def search_similar_tasks(query: str) -> list[dict]:
+    """Find up to 5 open tasks that look like the same work as `query`, best match first."""
+    return rank_similar_tasks(query, list_open_tasks())
+
+
+def _text_property(prop_type: str | None, value: str) -> dict[str, Any] | None:
+    """Build a property value for free text, or None when the column can't hold it as text."""
+    if prop_type == "rich_text":
+        return {"rich_text": [{"text": {"content": value}}]}
+    if prop_type == "select":
+        return {"select": {"name": value[:100].replace(",", " ")}}
+    return None
 
 
 def create_task(
@@ -315,6 +421,7 @@ def create_task(
     due_date: str | None = None,
     source_meeting: str | None = None,
 ) -> dict:
+    """Create a task in the tracker. Relative deadlines ("Friday", "EOD") become ISO dates."""
     resolved_due_date = _resolve_due_date(due_date)
 
     if not settings.has_notion:
@@ -331,19 +438,24 @@ def create_task(
         _get_task_embedding(result["id"], result["title"])
         return result
 
-    properties: dict[str, Any] = {
-        settings.notion_title_property: {"title": [{"text": {"content": title}}]},
-    }
+    types = _property_types()
+    properties: dict[str, Any] = {}
     if owner:
-        properties[settings.notion_owner_property] = {"rich_text": [{"text": {"content": owner}}]}
+        owner_prop = _text_property(types.get(settings.notion_owner_property), owner)
+        if owner_prop:
+            properties[settings.notion_owner_property] = owner_prop
+        else:
+            title = f"{title} [{owner}]"
     if due_date:
-        if resolved_due_date:
+        if resolved_due_date and types.get(settings.notion_due_date_property) == "date":
             properties[settings.notion_due_date_property] = {"date": {"start": resolved_due_date}}
         else:
-            title = f"{title} (Due: {due_date})"
-            properties[settings.notion_title_property] = {"title": [{"text": {"content": title}}]}
+            title = f"{title} (Due: {resolved_due_date or due_date})"
     if source_meeting:
-        properties[settings.notion_source_property] = {"rich_text": [{"text": {"content": source_meeting}}]}
+        source_prop = _text_property(types.get(settings.notion_source_property), source_meeting)
+        if source_prop:
+            properties[settings.notion_source_property] = source_prop
+    properties[settings.notion_title_property] = {"title": [{"text": {"content": title}}]}
 
     data = _notion_request(
         "pages",
