@@ -7,11 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "agent:demo": "python3 backend/agent.py samples/standup.txt",
-    "extract:test": "python3 backend/test_extraction.py",
-    "tracker:test": "python3 backend/test_tracker.py",
-    "semantic:test": "python3 backend/test_semantic_search.py",
-    "semantic:backfill": "python3 backend/backfill_embeddings.py"
+    "agent:demo": ".venv/bin/python backend/agent.py samples/standup.txt",
+    "semantic:backfill": ".venv/bin/python backend/backfill_embeddings.py",
+    "test": ".venv/bin/python -m pytest",
+    "evals": ".venv/bin/python -m evals.run",
+    "evals:offline": ".venv/bin/python -m evals.run --engine heuristic --gate"
   },
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",

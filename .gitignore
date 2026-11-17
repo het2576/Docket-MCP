@@ -1,17 +1,44 @@
+# Secrets (only .env.example is committed)
 .env
 .env.local
-.next
-node_modules
-__pycache__
-*.pyc
-.venv
-logs/*.json
-logs/*.log
-!.gitkeep
-prd.md
-backend/embedding_cache.json
-tsconfig.tsbuildinfo
+.env.*.local
 
-# Local agent skills (installed per machine)
+# Node / Next.js
+node_modules/
+.next/
+out/
+next-env.d.ts.bak
+tsconfig.tsbuildinfo
+npm-debug.log*
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Runtime output (agent traces, feedback log)
+logs/*
+!logs/.gitkeep
+backend/embedding_cache.json
+
+# Evals: model-response cache and scratch runs stay local; evals/results/ is committed
+evals/.cache/
+evals/.runs/
+evals/data/candidates.jsonl
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Local agent skills and notes (per machine)
 .claude/
 skills-lock.json
+skills
+prd.md

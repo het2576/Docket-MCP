@@ -1,12 +1,13 @@
 "use client";
 
-import { AlertTriangle, Check, ClipboardCopy, Download, FileUp, Loader2, PencilLine, X } from "lucide-react";
+import { AlertTriangle, Check, ClipboardCopy, Download, FileUp, FlaskConical, Loader2, PencilLine, X } from "lucide-react";
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { EntryCard } from "@/app/components/EntryCard";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { TranscriptView } from "@/app/components/TranscriptView";
 import { decisionLabel, locateQuotes, normalizeTranscriptFile, splitLines, toMarkdown } from "@/lib/transcript";
-import type { ActionItem, AgentResult, CreatedTask, CreateResult, Decision, StatusResult } from "@/lib/types";
+import type { ActionItem, AgentResult, CreatedTask, CreateResult, Decision, FileMode, ReviewItem, RunUsage, StatusResult } from "@/lib/types";
 
 const DEFAULT_TRANSCRIPT = `Priya: Het, can you review duplicate detection thresholds before Friday?
 Het: Yes, I will tighten the scoring and add two examples.
@@ -29,7 +30,35 @@ function modelName(model: string) {
     .join(" ");
 }
 
-function readDraft(): { meeting: string; transcript: string } | null {
+/** Today as YYYY-MM-DD in the viewer's own timezone. */
+function localToday() {
+  const now = new Date();
+  return new Date(now.getTime() - now.getTimezoneOffset() * 60_000).toISOString().slice(0, 10);
+}
+
+/** A flagged item that's ticked should update the task it matched, not file a second copy. */
+function defaultMode(review: ReviewItem): FileMode {
+  return review.decision === "duplicate" && review.similar_tasks.length ? "update" : "create";
+}
+
+/** "3 model calls · 2.1 s · 4.2k tokens" */
+function usageLine(usage: RunUsage | undefined) {
+  if (!usage) return null;
+  const seconds = (usage.wall_ms / 1000).toFixed(1);
+  const tokens = usage.input_tokens + usage.output_tokens;
+  const tokenText = tokens >= 1000 ? `${(tokens / 1000).toFixed(1)}k tokens` : `${tokens} tokens`;
+  if (!usage.calls) return `No model calls · ${seconds} s`;
+  return `${usage.calls} model ${usage.calls === 1 ? "call" : "calls"} · ${seconds} s · ${tokenText}${usage.retries ? ` · ${usage.retries} retried` : ""}`;
+}
+
+function fileLabel(total: number, updates: number, tracker: string) {
+  const creates = total - updates;
+  if (!updates) return `File ${total} ${total === 1 ? "task" : "tasks"} to ${tracker}`;
+  if (!creates) return `Update ${updates} ${updates === 1 ? "task" : "tasks"} in ${tracker}`;
+  return `File ${creates}, update ${updates} in ${tracker}`;
+}
+
+function readDraft(): { meeting: string; transcript: string; meetingDate?: string } | null {
   try {
     const raw = window.localStorage.getItem(DRAFT_KEY);
     return raw ? JSON.parse(raw) : null;
@@ -41,6 +70,7 @@ function readDraft(): { meeting: string; transcript: string } | null {
 export default function HomePage() {
   const [meeting, setMeeting] = useState("Weekly product sync");
   const [transcript, setTranscript] = useState(DEFAULT_TRANSCRIPT);
+  const [meetingDate, setMeetingDate] = useState("");
   const [status, setStatus] = useState<StatusResult | null>(null);
   const [samples, setSamples] = useState<Sample[]>([]);
   const [phase, setPhase] = useState<Phase>("idle");
@@ -51,6 +81,7 @@ export default function HomePage() {
   const [processedTranscript, setProcessedTranscript] = useState("");
   const [items, setItems] = useState<ActionItem[]>([]);
   const [selected, setSelected] = useState<Record<number, boolean>>({});
+  const [modes, setModes] = useState<Record<number, FileMode>>({});
   const [filed, setFiled] = useState<Record<number, CreatedTask>>({});
   const [failed, setFailed] = useState<Record<number, string>>({});
   const [filter, setFilter] = useState<"all" | Decision>("all");
@@ -70,6 +101,8 @@ export default function HomePage() {
       setTranscript(draft.transcript);
       setMeeting(draft.meeting ?? "");
     }
+    // Set after hydration so server and client render the same markup.
+    setMeetingDate(draft?.meetingDate || localToday());
     fetch("/api/status")
       .then((response) => response.json())
       .then(setStatus)
@@ -82,11 +115,11 @@ export default function HomePage() {
 
   useEffect(() => {
     try {
-      window.localStorage.setItem(DRAFT_KEY, JSON.stringify({ meeting, transcript }));
+      window.localStorage.setItem(DRAFT_KEY, JSON.stringify({ meeting, transcript, meetingDate }));
     } catch {
       // Storage can be unavailable (private mode); the draft just won't persist.
     }
-  }, [meeting, transcript]);
+  }, [meeting, transcript, meetingDate]);
 
   const flash = useCallback((message: string) => {
     setNotice(message);
@@ -117,6 +150,7 @@ export default function HomePage() {
 
   const pending = reviewItems.map((_, index) => index).filter((index) => selected[index] && !filed[index]);
   const filedCount = Object.keys(filed).length;
+  const pendingUpdates = pending.filter((index) => modes[index] === "update").length;
   const trackerName = (result?.engine.tracker ?? (status?.notion ? "notion" : "demo")) === "notion" ? "Notion" : "the demo tracker";
   const visible = reviewItems.map((review, index) => ({ review, index })).filter(({ review }) => filter === "all" || review.decision === filter);
 
@@ -128,7 +162,7 @@ export default function HomePage() {
       const response = await fetch("/api/process", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ transcript, source_meeting: meeting })
+        body: JSON.stringify({ transcript, source_meeting: meeting, meeting_date: meetingDate || undefined })
       });
       const payload = await response.json().catch(() => ({ error: "The server returned an unreadable response." }));
       if (!response.ok) throw new Error(payload.error || "Processing failed.");
@@ -137,6 +171,7 @@ export default function HomePage() {
       setProcessedTranscript(transcript);
       setItems(next.review_items.map((review) => ({ ...review.action_item })));
       setSelected(Object.fromEntries(next.review_items.map((review, index) => [index, review.decision === "new"])));
+      setModes(Object.fromEntries(next.review_items.map((review, index) => [index, defaultMode(review)])));
       setFiled({});
       setFailed({});
       setFilter("all");
@@ -158,8 +193,30 @@ export default function HomePage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          items: indices.map((index) => ({ action_item: items[index], decision: reviewItems[index].decision })),
-          source_meeting: meeting
+          items: indices.map((index) => {
+            const mode = modes[index] ?? "create";
+            return {
+              action_item: items[index],
+              decision: reviewItems[index].decision,
+              mode,
+              task_id: mode === "update" ? reviewItems[index].similar_tasks[0]?.id : undefined,
+              review_index: index
+            };
+          }),
+          source_meeting: meeting,
+          meeting_date: result?.meeting_date ?? meetingDate,
+          engine: result?.engine,
+          trace_path: result?.log_path,
+          // Everything Docket proposed vs what was approved, so real use can be measured.
+          feedback: reviewItems.map((review, index) => ({
+            index,
+            decision: review.decision,
+            judge_verdict: review.judge?.verdict ?? null,
+            original: review.action_item,
+            final: items[index],
+            selected: indices.includes(index),
+            mode: modes[index] ?? "create"
+          }))
         })
       });
       const payload = await response.json().catch(() => ({ error: "The server returned an unreadable response." }));
@@ -177,12 +234,12 @@ export default function HomePage() {
         return merged;
       });
       const filedNow = outcome.created.length;
+      const updatedNow = outcome.created.filter((task) => task.mode === "update").length;
       const problems = outcome.failed.length + outcome.skipped.length;
-      flash(
-        problems
-          ? `Filed ${filedNow} of ${indices.length}. ${problems} need attention.`
-          : `Filed ${filedNow} ${filedNow === 1 ? "task" : "tasks"} to ${trackerName}.`
-      );
+      const what = updatedNow
+        ? `${filedNow - updatedNow} new, ${updatedNow} updated`
+        : `${filedNow} ${filedNow === 1 ? "task" : "tasks"}`;
+      flash(problems ? `Filed ${filedNow} of ${indices.length}. ${problems} need attention.` : `Filed ${what} in ${trackerName}.`);
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Filing failed.");
     } finally {
@@ -237,6 +294,7 @@ export default function HomePage() {
   const model = engine ? (engine.extraction === "gemini" ? engine.model : null) : status?.model;
   const extractionLabel = !engine && !status ? "Checking…" : model ? modelName(model) : "Rule-based extraction";
   const extractionOn = engine ? engine.extraction === "gemini" : Boolean(status?.gemini);
+  const fellBack = Boolean(engine?.fallback_reason);
   const trackerOn = engine ? engine.tracker === "notion" : Boolean(status?.notion);
 
   const scriptLines = phase === "processing" ? splitLines(transcript) : lines;
@@ -257,9 +315,12 @@ export default function HomePage() {
         </div>
         <div className="topbar-right">
           <div className="connections" aria-label="Connections">
-            <span className={`conn${extractionOn ? " on" : ""}`}>
+            <span
+              className={`conn${extractionOn ? " on" : ""}${fellBack ? " warn" : ""}`}
+              title={fellBack ? `Gemini failed: ${engine?.fallback_reason}` : undefined}
+            >
               <span className="dot" aria-hidden="true" />
-              {extractionLabel}
+              {fellBack ? "Rule-based · Gemini unavailable" : extractionLabel}
             </span>
             <span className={`conn${trackerOn ? " on" : ""}`}>
               <span className="dot" aria-hidden="true" />
@@ -267,6 +328,10 @@ export default function HomePage() {
               {result ? <span className="conn-sub">{result.open_task_count} open</span> : null}
             </span>
           </div>
+          <Link href="/evals" className="nav-link">
+            <FlaskConical size={15} aria-hidden="true" />
+            Evals
+          </Link>
           <ThemeToggle />
         </div>
       </header>
@@ -302,6 +367,10 @@ export default function HomePage() {
               autoComplete="off"
             />
             <p className="paper-meta">
+              <label className="meeting-date" title="Relative deadlines like “Friday” are counted from this day">
+                <span className="visually-hidden">Meeting date</span>
+                <input type="date" value={meetingDate} onChange={(event) => setMeetingDate(event.target.value)} />
+              </label>
               {lineCount ? `${lineCount} ${lineCount === 1 ? "line" : "lines"}, ${speakerCount} ${speakerCount === 1 ? "speaker" : "speakers"}` : "Empty transcript"}
               {isStale ? <span className="stale"> Edited since processing</span> : null}
             </p>
@@ -498,6 +567,7 @@ export default function HomePage() {
                       {reviewItems.length === 1 ? "action item" : "action items"}
                     </h1>
                     {result.summary ? <p className="board-sub">{result.summary}</p> : null}
+                    {result.usage ? <p className="board-usage">{usageLine(result.usage)}</p> : null}
                   </div>
                 </div>
                 <div className="board-tools">
@@ -569,6 +639,8 @@ export default function HomePage() {
                     item={items[index]}
                     trackerName={trackerName === "Notion" ? "Notion" : "the tracker"}
                     selected={Boolean(selected[index])}
+                    mode={modes[index] ?? "create"}
+                    onModeChange={(mode) => setModes((current) => ({ ...current, [index]: mode }))}
                     filed={filed[index]}
                     failure={failed[index]}
                     active={activeEntry === index}
@@ -615,7 +687,7 @@ export default function HomePage() {
                     {phase === "filing"
                       ? "Filing…"
                       : pending.length
-                        ? `File ${pending.length} ${pending.length === 1 ? "task" : "tasks"} to ${trackerName}`
+                        ? fileLabel(pending.length, pendingUpdates, trackerName)
                         : `File to ${trackerName}`}
                   </button>
                 </div>

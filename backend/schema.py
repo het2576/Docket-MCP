@@ -51,6 +51,8 @@ class ReviewItem:
     reasoning: str
     # TrackerTask dicts plus "similarity", "lexical" and "semantic" scores.
     similar_tasks: list[dict] = field(default_factory=list)
+    # The LLM duplicate check's verdict ("same" / "related" / "different"), when it ran.
+    judge: dict | None = None
 
     def to_dict(self) -> dict:
         return {
@@ -58,4 +60,5 @@ class ReviewItem:
             "decision": self.decision,
             "reasoning": self.reasoning,
             "similar_tasks": self.similar_tasks,
+            "judge": self.judge,
         }

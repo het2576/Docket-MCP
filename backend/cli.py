@@ -9,6 +9,8 @@ if __package__ is None or __package__ == "":
     sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from backend.agent import create_approved_tasks, run_agent
+from backend.dates import parse_iso_date
+from backend.feedback import record_feedback
 
 
 def main() -> None:
@@ -26,12 +28,16 @@ def main() -> None:
             result = run_agent(
                 payload.get("transcript", ""),
                 source_meeting=payload.get("source_meeting") or "Manual transcript",
+                meeting_date=parse_iso_date(payload.get("meeting_date")),
             )
         elif command == "create":
             result = create_approved_tasks(
                 payload.get("items", []),
                 source_meeting=payload.get("source_meeting") or "Manual transcript",
+                meeting_date=payload.get("meeting_date"),
             )
+            if payload.get("feedback"):
+                record_feedback(payload, result)
         else:
             raise ValueError(f"Unknown command: {command}")
     except Exception as exc:  # surfaced to the UI as a readable message

@@ -23,7 +23,11 @@ export function runPython<T = unknown>(command: string, payload: unknown): Promi
 
     const timer = setTimeout(() => {
       child.kill("SIGKILL");
-      reject(new PythonError("The agent took longer than 150 seconds and was stopped. Try a shorter transcript."));
+      reject(
+        new PythonError(
+          "The agent took longer than 150 seconds and was stopped. The Gemini model is likely slow right now; GEMINI_MODEL=gemini-3.5-flash-lite is the fast, evaluated default."
+        )
+      );
     }, TIMEOUT_MS);
 
     child.stdout.on("data", (chunk) => {

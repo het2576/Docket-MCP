@@ -8,20 +8,12 @@ import re
 import sys
 import urllib.error
 import urllib.request
-import ssl
-from datetime import date, timedelta
 from difflib import SequenceMatcher
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
 logger = logging.getLogger(__name__)
-
-try:
-    import certifi
-    SSL_CONTEXT = ssl.create_default_context(cafile=certifi.where())
-except ImportError:  # system trust store; never skip verification
-    SSL_CONTEXT = ssl.create_default_context()
 
 try:  # mcp 2.x renamed FastMCP to MCPServer; same tool()/run() API.
     from mcp.server.mcpserver import MCPServer as FastMCP
@@ -35,7 +27,9 @@ if __package__ is None or __package__ == "":
     sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from backend.config import settings
-from backend.extraction import gemini_post
+from backend import llm
+from backend.dates import resolve_due_date
+from backend.llm import SSL_CONTEXT
 from backend.schema import TrackerTask
 
 MOCK_TASKS = [
@@ -115,55 +109,6 @@ def _status_text(prop: dict[str, Any] | None) -> str | None:
     return _plain_text(prop)
 
 
-_WEEKDAYS = {
-    "monday": 0,
-    "tuesday": 1,
-    "wednesday": 2,
-    "thursday": 3,
-    "friday": 4,
-    "saturday": 5,
-    "sunday": 6,
-}
-
-
-def _resolve_due_date(due_date: str | None, today: date | None = None) -> str | None:
-    """Normalize a deadline to an ISO-8601 date so it lands in Notion's actual date property.
-
-    Gemini extraction already resolves relative deadlines to ISO dates, but the
-    no-API-key heuristic extractor only returns the matched word ("Friday",
-    "tomorrow", "EOD"), so this catches whatever extraction didn't normalize.
-    """
-    if not due_date:
-        return None
-    text = due_date.strip()
-    if re.match(r"^\d{4}-\d{2}-\d{2}", text):
-        return text[:10]
-
-    today = today or date.today()
-    lowered = text.lower()
-
-    if lowered in ("today", "eod", "end of day"):
-        return today.isoformat()
-    if lowered == "tomorrow":
-        return (today + timedelta(days=1)).isoformat()
-    if lowered in ("end of week", "eow"):
-        return (today + timedelta(days=(4 - today.weekday()) % 7)).isoformat()
-    if lowered == "next week":
-        return (today + timedelta(days=7 - today.weekday())).isoformat()
-    if lowered in ("end of month", "eom"):
-        next_month = date(today.year + today.month // 12, today.month % 12 + 1, 1)
-        return (next_month - timedelta(days=1)).isoformat()
-
-    prefix, _, day = lowered.rpartition(" ")
-    if day in _WEEKDAYS and prefix in ("", "this", "on", "next"):
-        days_ahead = (_WEEKDAYS[day] - today.weekday()) % 7
-        if prefix == "next" and days_ahead == 0:
-            days_ahead = 7
-        return (today + timedelta(days=days_ahead)).isoformat()
-
-    return None
-
-
 def _page_to_task(page: dict[str, Any]) -> TrackerTask:
     props = page.get("properties", {})
     return TrackerTask(
@@ -227,22 +172,29 @@ def get_embedding(text: str) -> list[float]:
     if not settings.has_gemini:
         raise RuntimeError("Missing GEMINI_API_KEY.")
 
-    data = gemini_post(f"models/{_EMBEDDING_MODEL}:embedContent", {"content": {"parts": [{"text": text}]}})
+    data = llm.gemini_post(f"models/{_EMBEDDING_MODEL}:embedContent", {"content": {"parts": [{"text": text}]}})
     return data["embedding"]["values"]
 
 
+_EMBED_BATCH = 100  # the API rejects batchEmbedContents requests with more than 100 items
+
+
 def get_embeddings(texts: list[str]) -> list[list[float]]:
-    """Embed several texts in one round trip."""
+    """Embed many texts in as few round trips as the API allows."""
     if not texts:
         return []
     if not settings.has_gemini:
         raise RuntimeError("Missing GEMINI_API_KEY.")
     model = f"models/{_EMBEDDING_MODEL}"
-    data = gemini_post(
-        f"{model}:batchEmbedContents",
-        {"requests": [{"model": model, "content": {"parts": [{"text": text}]}} for text in texts]},
-    )
-    return [item["values"] for item in data["embeddings"]]
+    vectors: list[list[float]] = []
+    for start in range(0, len(texts), _EMBED_BATCH):
+        chunk = texts[start : start + _EMBED_BATCH]
+        data = llm.gemini_post(
+            f"{model}:batchEmbedContents",
+            {"requests": [{"model": model, "content": {"parts": [{"text": text}]}} for text in chunk]},
+        )
+        vectors += [item["values"] for item in data["embeddings"]]
+    return vectors
 
 
 def warm_task_embeddings(tasks: list[dict]) -> None:
@@ -422,7 +374,7 @@ def create_task(
     source_meeting: str | None = None,
 ) -> dict:
     """Create a task in the tracker. Relative deadlines ("Friday", "EOD") become ISO dates."""
-    resolved_due_date = _resolve_due_date(due_date)
+    resolved_due_date = resolve_due_date(due_date)
 
     if not settings.has_notion:
         result = {
@@ -469,11 +421,50 @@ def create_task(
     return result
 
 
+def update_task(task_id: str, note: str | None = None, due_date: str | None = None) -> dict:
+    """Add a meeting note to an existing tracker task and, optionally, move its due date.
+
+    Used when a meeting mentions work that is already tracked: rather than filing a duplicate,
+    the existing task gets the new context. Relative deadlines ("Friday") become ISO dates.
+    """
+    resolved_due_date = resolve_due_date(due_date)
+    if not settings.has_notion:
+        known = next((task for task in MOCK_TASKS if task.id == task_id), None)
+        return {
+            "id": task_id,
+            "title": known.title if known else task_id,
+            "owner": known.owner if known else None,
+            "due_date": resolved_due_date or (known.due_date if known else None),
+            "status": known.status if known else None,
+            "url": None,
+            "note": note,
+            "mock": True,
+        }
+
+    if resolved_due_date and _property_types().get(settings.notion_due_date_property) == "date":
+        _notion_request(
+            f"pages/{task_id}",
+            {"properties": {settings.notion_due_date_property: {"date": {"start": resolved_due_date}}}},
+            method="PATCH",
+        )
+    if note:
+        # Appended as a page block: works with the default integration capabilities (comments need extra scope).
+        _notion_request(
+            f"blocks/{task_id}/children",
+            {"children": [{"object": "block", "type": "paragraph",
+                           "paragraph": {"rich_text": [{"type": "text", "text": {"content": note[:1900]}}]}}]},
+            method="PATCH",
+        )
+    page = _notion_request(f"pages/{task_id}", method="GET")
+    return _page_to_task(page).to_dict() | {"note": note}
+
+
 if FastMCP is not None:
     mcp = FastMCP("docket-tracker")
     mcp.tool()(list_open_tasks)
     mcp.tool()(search_similar_tasks)
     mcp.tool()(create_task)
+    mcp.tool()(update_task)
 else:
     mcp = None
 

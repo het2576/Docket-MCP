@@ -1,0 +1,828 @@
+[
+ {
+  "id": "dd-001",
+  "split": "dev",
+  "query": "Write the onboarding copy for signup",
+  "label": "duplicate",
+  "match": "T1"
+ },
+ {
+  "id": "dd-002",
+  "split": "dev",
+  "query": "Finalize signup flow onboarding text",
+  "label": "duplicate",
+  "match": "T1"
+ },
+ {
+  "id": "dd-003",
+  "split": "test",
+  "query": "Tune the duplicate detection thresholds",
+  "label": "duplicate",
+  "match": "T2"
+ },
+ {
+  "id": "dd-004",
+  "split": "dev",
+  "query": "Reserve a location for the Q2 team offsite",
+  "label": "duplicate",
+  "match": "T3"
+ },
+ {
+  "id": "dd-005",
+  "split": "dev",
+  "query": "Move our CI from Jenkins to GitHub Actions",
+  "label": "duplicate",
+  "match": "T4"
+ },
+ {
+  "id": "dd-006",
+  "split": "test",
+  "query": "Put together the March investor update",
+  "label": "duplicate",
+  "match": "T5"
+ },
+ {
+  "id": "dd-007",
+  "split": "dev",
+  "query": "Safari users get logged out too early, fix it",
+  "label": "duplicate",
+  "match": "T6"
+ },
+ {
+  "id": "dd-008",
+  "split": "dev",
+  "query": "Resolve Safari session timeout bug",
+  "label": "duplicate",
+  "match": "T6"
+ },
+ {
+  "id": "dd-009",
+  "split": "test",
+  "query": "Write copy for the pricing page",
+  "label": "duplicate",
+  "match": "T7"
+ },
+ {
+  "id": "dd-010",
+  "split": "dev",
+  "query": "Enable single sign-on for enterprise accounts",
+  "label": "duplicate",
+  "match": "T8"
+ },
+ {
+  "id": "dd-011",
+  "split": "dev",
+  "query": "Renew Figma subscription",
+  "label": "duplicate",
+  "match": "T9"
+ },
+ {
+  "id": "dd-012",
+  "split": "test",
+  "query": "Postmortem for the February 28 incident",
+  "label": "duplicate",
+  "match": "T10"
+ },
+ {
+  "id": "dd-013",
+  "split": "dev",
+  "query": "Document the new API rate limits",
+  "label": "duplicate",
+  "match": "T11"
+ },
+ {
+  "id": "dd-014",
+  "split": "dev",
+  "query": "Find a freelance illustrator for launch artwork",
+  "label": "duplicate",
+  "match": "T12"
+ },
+ {
+  "id": "dd-015",
+  "split": "test",
+  "query": "Ship dark theme in the iOS and Android apps",
+  "label": "duplicate",
+  "match": "T13"
+ },
+ {
+  "id": "dd-016",
+  "split": "dev",
+  "query": "Speed up search API response times",
+  "label": "duplicate",
+  "match": "T14"
+ },
+ {
+  "id": "dd-017",
+  "split": "dev",
+  "query": "Send out the Q1 CSAT survey",
+  "label": "duplicate",
+  "match": "T15"
+ },
+ {
+  "id": "dd-018",
+  "split": "test",
+  "query": "Upgrade the database to Postgres 16",
+  "label": "duplicate",
+  "match": "T16"
+ },
+ {
+  "id": "dd-019",
+  "split": "dev",
+  "query": "Localize help center articles in Spanish",
+  "label": "duplicate",
+  "match": "T17"
+ },
+ {
+  "id": "dd-020",
+  "split": "dev",
+  "query": "Remove old feature flags",
+  "label": "duplicate",
+  "match": "T18"
+ },
+ {
+  "id": "dd-021",
+  "split": "test",
+  "query": "Create an on-call schedule for platform engineers",
+  "label": "duplicate",
+  "match": "T19"
+ },
+ {
+  "id": "dd-022",
+  "split": "dev",
+  "query": "Draft marketing OKRs for Q2",
+  "label": "duplicate",
+  "match": "T20"
+ },
+ {
+  "id": "dd-023",
+  "split": "dev",
+  "query": "CSV export from reports is broken",
+  "label": "duplicate",
+  "match": "T21"
+ },
+ {
+  "id": "dd-024",
+  "split": "test",
+  "query": "Renegotiate our AWS contract renewal",
+  "label": "duplicate",
+  "match": "T22"
+ },
+ {
+  "id": "dd-025",
+  "split": "dev",
+  "query": "Announce the v2 launch on the blog",
+  "label": "duplicate",
+  "match": "T23"
+ },
+ {
+  "id": "dd-026",
+  "split": "dev",
+  "query": "GDPR review of third-party cookies",
+  "label": "duplicate",
+  "match": "T24"
+ },
+ {
+  "id": "dd-027",
+  "split": "test",
+  "query": "Fix Safari login timeout",
+  "label": "duplicate",
+  "match": "T6"
+ },
+ {
+  "id": "dd-028",
+  "split": "dev",
+  "query": "Book the Q2 offsite venue",
+  "label": "duplicate",
+  "match": "T3"
+ },
+ {
+  "id": "dd-029",
+  "split": "dev",
+  "query": "Investor update, March edition",
+  "label": "duplicate",
+  "match": "T5"
+ },
+ {
+  "id": "dd-030",
+  "split": "test",
+  "query": "Set up SAML SSO for the enterprise tier",
+  "label": "duplicate",
+  "match": "T8"
+ },
+ {
+  "id": "dd-031",
+  "split": "dev",
+  "query": "Write onboarding emails for new signups",
+  "label": "related",
+  "match": "T1"
+ },
+ {
+  "id": "dd-032",
+  "split": "dev",
+  "query": "Add examples to the duplicate detection test suite",
+  "label": "related",
+  "match": "T2"
+ },
+ {
+  "id": "dd-033",
+  "split": "test",
+  "query": "Plan the agenda for the Q2 offsite",
+  "label": "related",
+  "match": "T3"
+ },
+ {
+  "id": "dd-034",
+  "split": "dev",
+  "query": "Speed up GitHub Actions build times",
+  "label": "related",
+  "match": "T4"
+ },
+ {
+  "id": "dd-035",
+  "split": "dev",
+  "query": "Prepare the board deck for the March meeting",
+  "label": "related",
+  "match": "T5"
+ },
+ {
+  "id": "dd-036",
+  "split": "test",
+  "query": "Fix login timeout on Firefox",
+  "label": "related",
+  "match": "T6"
+ },
+ {
+  "id": "dd-037",
+  "split": "dev",
+  "query": "A/B test the pricing page headline",
+  "label": "related",
+  "match": "T7"
+ },
+ {
+  "id": "dd-038",
+  "split": "dev",
+  "query": "Write an SSO setup guide for customers",
+  "label": "related",
+  "match": "T8"
+ },
+ {
+  "id": "dd-039",
+  "split": "test",
+  "query": "Cancel unused Figma seats",
+  "label": "related",
+  "match": "T9"
+ },
+ {
+  "id": "dd-040",
+  "split": "dev",
+  "query": "Share learnings from the Feb 28 outage at all-hands",
+  "label": "related",
+  "match": "T10"
+ },
+ {
+  "id": "dd-041",
+  "split": "dev",
+  "query": "Raise API rate limits for the enterprise plan",
+  "label": "related",
+  "match": "T11"
+ },
+ {
+  "id": "dd-042",
+  "split": "test",
+  "query": "Brief the illustrator on launch art direction",
+  "label": "related",
+  "match": "T12"
+ },
+ {
+  "id": "dd-043",
+  "split": "dev",
+  "query": "Add dark mode to the web dashboard",
+  "label": "related",
+  "match": "T13"
+ },
+ {
+  "id": "dd-044",
+  "split": "dev",
+  "query": "Add caching to the search endpoint",
+  "label": "related",
+  "match": "T14"
+ },
+ {
+  "id": "dd-045",
+  "split": "test",
+  "query": "Analyze the Q1 CSAT survey results",
+  "label": "related",
+  "match": "T15"
+ },
+ {
+  "id": "dd-046",
+  "split": "dev",
+  "query": "Translate help center into French",
+  "label": "related",
+  "match": "T17"
+ },
+ {
+  "id": "dd-047",
+  "split": "dev",
+  "query": "Write an on-call runbook for the platform team",
+  "label": "related",
+  "match": "T19"
+ },
+ {
+  "id": "dd-048",
+  "split": "test",
+  "query": "Review the sales team's Q2 OKRs",
+  "label": "related",
+  "match": "T20"
+ },
+ {
+  "id": "dd-049",
+  "split": "dev",
+  "query": "Add PDF export to reports",
+  "label": "related",
+  "match": "T21"
+ },
+ {
+  "id": "dd-050",
+  "split": "dev",
+  "query": "Design the hero image for the v2 launch blog post",
+  "label": "related",
+  "match": "T23"
+ },
+ {
+  "id": "dd-051",
+  "split": "test",
+  "query": "Update the cookie banner copy",
+  "label": "related",
+  "match": "T24"
+ },
+ {
+  "id": "dd-052",
+  "split": "dev",
+  "query": "Draft the pricing FAQ for sales",
+  "label": "related",
+  "match": "T7"
+ },
+ {
+  "id": "dd-053",
+  "split": "dev",
+  "query": "Write a postmortem template",
+  "label": "related",
+  "match": "T10"
+ },
+ {
+  "id": "dd-054",
+  "split": "test",
+  "query": "Reduce AWS spend on idle instances",
+  "label": "related",
+  "match": "T22"
+ },
+ {
+  "id": "dd-055",
+  "split": "dev",
+  "query": "Order new office chairs",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-056",
+  "split": "dev",
+  "query": "Fix the leaky faucet in the kitchen",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-057",
+  "split": "test",
+  "query": "Review Q3 marketing budget",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-058",
+  "split": "dev",
+  "query": "Update the employee handbook PTO section",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-059",
+  "split": "dev",
+  "query": "Create a referral program landing page",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-060",
+  "split": "test",
+  "query": "Hire a senior data engineer",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-061",
+  "split": "dev",
+  "query": "Set up Slack integration for alerts",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-062",
+  "split": "dev",
+  "query": "Draft the holiday party invitation",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-063",
+  "split": "test",
+  "query": "Migrate user avatars to S3",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-064",
+  "split": "dev",
+  "query": "Write unit tests for the billing service",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-065",
+  "split": "dev",
+  "query": "Book flights for the Berlin conference",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-066",
+  "split": "test",
+  "query": "Renew the company domain name",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-067",
+  "split": "dev",
+  "query": "Fix typos in the README",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-068",
+  "split": "dev",
+  "query": "Run security training for new hires",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-069",
+  "split": "test",
+  "query": "Prepare a demo for the Acme sales call",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-070",
+  "split": "dev",
+  "query": "Clean up the shared Google Drive",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-071",
+  "split": "dev",
+  "query": "Upgrade laptops for the design team",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-072",
+  "split": "test",
+  "query": "Write the Q1 retrospective doc",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-073",
+  "split": "dev",
+  "query": "Interview candidates for the support lead role",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-074",
+  "split": "dev",
+  "query": "Negotiate the office lease extension",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-075",
+  "split": "test",
+  "query": "Fix the login page logo alignment",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-076",
+  "split": "dev",
+  "query": "Set up a weekly metrics review",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-077",
+  "split": "dev",
+  "query": "Plan team lunch for Friday",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-078",
+  "split": "test",
+  "query": "Send the contract to Acme legal",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-079",
+  "split": "dev",
+  "query": "Migrate the docs site to Docusaurus",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-080",
+  "split": "dev",
+  "query": "Upgrade Redis to version 7",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-081",
+  "split": "test",
+  "query": "Add a feature flag for the new checkout",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "dd-082",
+  "split": "dev",
+  "query": "Review GCP pricing for the migration",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "hd-001",
+  "split": "holdout",
+  "query": "Polish the signup onboarding copy",
+  "label": "duplicate",
+  "match": "T1"
+ },
+ {
+  "id": "hd-002",
+  "split": "holdout",
+  "query": "Revisit the dedup thresholds",
+  "label": "duplicate",
+  "match": "T2"
+ },
+ {
+  "id": "hd-003",
+  "split": "holdout",
+  "query": "Find an offsite venue for Q2",
+  "label": "duplicate",
+  "match": "T3"
+ },
+ {
+  "id": "hd-004",
+  "split": "holdout",
+  "query": "Finish the GitHub Actions migration for CI",
+  "label": "duplicate",
+  "match": "T4"
+ },
+ {
+  "id": "hd-005",
+  "split": "holdout",
+  "query": "Write the March update for investors",
+  "label": "duplicate",
+  "match": "T5"
+ },
+ {
+  "id": "hd-006",
+  "split": "holdout",
+  "query": "Safari login session expires too soon",
+  "label": "duplicate",
+  "match": "T6"
+ },
+ {
+  "id": "hd-007",
+  "split": "holdout",
+  "query": "Pricing page wording draft",
+  "label": "duplicate",
+  "match": "T7"
+ },
+ {
+  "id": "hd-008",
+  "split": "holdout",
+  "query": "Enterprise SSO setup",
+  "label": "duplicate",
+  "match": "T8"
+ },
+ {
+  "id": "hd-009",
+  "split": "holdout",
+  "query": "Figma license renewal",
+  "label": "duplicate",
+  "match": "T9"
+ },
+ {
+  "id": "hd-010",
+  "split": "holdout",
+  "query": "Feb 28 outage write-up",
+  "label": "duplicate",
+  "match": "T10"
+ },
+ {
+  "id": "hd-011",
+  "split": "holdout",
+  "query": "Refresh the docs on API rate limiting",
+  "label": "duplicate",
+  "match": "T11"
+ },
+ {
+  "id": "hd-012",
+  "split": "holdout",
+  "query": "Contract an illustrator for the launch",
+  "label": "duplicate",
+  "match": "T12"
+ },
+ {
+  "id": "hd-013",
+  "split": "holdout",
+  "query": "Dark mode for the mobile app",
+  "label": "duplicate",
+  "match": "T13"
+ },
+ {
+  "id": "hd-014",
+  "split": "holdout",
+  "query": "Make the search endpoint faster at p95",
+  "label": "duplicate",
+  "match": "T14"
+ },
+ {
+  "id": "hd-015",
+  "split": "holdout",
+  "query": "Write the packing list for the Q2 offsite",
+  "label": "related",
+  "match": "T3"
+ },
+ {
+  "id": "hd-016",
+  "split": "holdout",
+  "query": "Add a dark mode toggle to the web settings page",
+  "label": "related",
+  "match": "T13"
+ },
+ {
+  "id": "hd-017",
+  "split": "holdout",
+  "query": "Document the Postgres 16 upgrade steps",
+  "label": "related",
+  "match": "T16"
+ },
+ {
+  "id": "hd-018",
+  "split": "holdout",
+  "query": "Hire a translator to review the Spanish help center",
+  "label": "related",
+  "match": "T17"
+ },
+ {
+  "id": "hd-019",
+  "split": "holdout",
+  "query": "Post the v2 launch announcement on LinkedIn",
+  "label": "related",
+  "match": "T23"
+ },
+ {
+  "id": "hd-020",
+  "split": "holdout",
+  "query": "Build a cookie consent banner for EU visitors",
+  "label": "related",
+  "match": "T24"
+ },
+ {
+  "id": "hd-021",
+  "split": "holdout",
+  "query": "Run a security review of the SSO integration",
+  "label": "related",
+  "match": "T8"
+ },
+ {
+  "id": "hd-022",
+  "split": "holdout",
+  "query": "Share the Q1 customer satisfaction results with the team",
+  "label": "related",
+  "match": "T15"
+ },
+ {
+  "id": "hd-023",
+  "split": "holdout",
+  "query": "Present the investor update at the board meeting",
+  "label": "related",
+  "match": "T5"
+ },
+ {
+  "id": "hd-024",
+  "split": "holdout",
+  "query": "Add more CI runners to GitHub Actions",
+  "label": "related",
+  "match": "T4"
+ },
+ {
+  "id": "hd-025",
+  "split": "holdout",
+  "query": "Renew the office internet contract",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "hd-026",
+  "split": "holdout",
+  "query": "Upgrade the support ticketing system",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "hd-027",
+  "split": "holdout",
+  "query": "Book a photographer for the launch event",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "hd-028",
+  "split": "holdout",
+  "query": "Fix the broken link in the footer",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "hd-029",
+  "split": "holdout",
+  "query": "Draft the Q3 hiring plan",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "hd-030",
+  "split": "holdout",
+  "query": "Set up the team's Notion workspace",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "hd-031",
+  "split": "holdout",
+  "query": "Write the employee referral FAQ",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "hd-032",
+  "split": "holdout",
+  "query": "Run a load test on the payments API",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "hd-033",
+  "split": "holdout",
+  "query": "Translate the app store listing into Japanese",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "hd-034",
+  "split": "holdout",
+  "query": "Clean up the shared calendar",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "hd-035",
+  "split": "holdout",
+  "query": "Order swag for the conference booth",
+  "label": "new",
+  "match": null
+ },
+ {
+  "id": "hd-036",
+  "split": "holdout",
+  "query": "Migrate email marketing to a new provider",
+  "label": "new",
+  "match": null
+ }
+]

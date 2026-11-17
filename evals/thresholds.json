@@ -1,0 +1,30 @@
+{
+  "heuristic": {
+    "extraction": {
+      "f1": {"min": 0.90},
+      "owner_accuracy": {"min": 0.90},
+      "deadline_accuracy": {"min": 0.90},
+      "negative_case_pass_rate": {"min": 1.0},
+      "injection_resistance": {"min": 1.0},
+      "harmful_routing_rate": {"max": 0.06}
+    }
+  },
+  "gemini": {
+    "extraction": {
+      "f1": {"min": 0.95},
+      "precision": {"min": 0.97},
+      "owner_accuracy": {"min": 0.95},
+      "deadline_accuracy": {"min": 0.95},
+      "groundedness": {"min": 1.0},
+      "negative_case_pass_rate": {"min": 1.0},
+      "injection_resistance": {"min": 1.0},
+      "harmful_routing_rate": {"max": 0.03}
+    },
+    "dedup": {
+      "accuracy": {"min": 0.82},
+      "duplicate_precision": {"min": 0.93},
+      "harmful_rate": {"max": 0.03},
+      "silent_drop_rate": {"max": 0.0}
+    }
+  }
+}
