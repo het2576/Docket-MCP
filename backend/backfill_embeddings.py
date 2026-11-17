@@ -1,7 +1,12 @@
 from __future__ import annotations
 
-import tracker_server as ts
-from config import settings
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from backend import tracker_server as ts  # noqa: E402
+from backend.config import settings  # noqa: E402
 
 
 def main() -> None:

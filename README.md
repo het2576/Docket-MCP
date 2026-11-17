@@ -4,6 +4,32 @@
 
 Docket is a human-in-the-loop agent that reads a meeting transcript, extracts structured action items using Gemini (3.5 Flash by default), checks each one against your Notion tracker for likely duplicates, presents everything for review, and only creates tasks after you approve them. The tracker integration is exposed as an **MCP server** — a clean, tool-bounded interface that any MCP-compatible agent or host can use independently.
 
+## Measured accuracy
+
+Hand-labelled eval set: 51 meetings (89 action items) and 118 duplicate-detection pairs, in three splits. **Dev** drives every change, **test** is reported separately, and a **blind holdout** was written after v2 shipped and scored once per version. Every change carries a paired-bootstrap 95% interval. Methodology: [evals/README.md](evals/README.md). Live dashboard: `/evals` in the app.
+
+| `gemini-3.5-flash-lite` | v1 (baseline) | v2 | v3 (current, mean of 3 runs) |
+|---|---:|---:|---:|
+| Routing accuracy, all meetings (new / review / duplicate) | 0.782 ¹ | 0.864 | **0.974** (runs 0.955–0.989; single-run Δ CI [+4.5, +20.8] pts) |
+| One-click approval, blind holdout (meeting filed with no edits) | – | 0.917 | **1.000** (all 3 runs) |
+| Extraction precision / F1, all meetings | 1.000 / 0.973 ¹ | 1.000 / 0.994 | 1.000 / 0.994 |
+| Owner / deadline accuracy, all meetings | 1.000 / 0.982 ¹ | 1.000 / 1.000 | 1.000 / 1.000 |
+| Duplicate detection accuracy, test split | 0.667 | 0.778 | 0.778 |
+| Harmful routing in full meetings (double-filed or dropped), all runs | 1.8% ¹ | 0% | **0%** |
+| Harmful errors on adversarial duplicate pairs, blind holdout | – | 0% ² | 0–2.8% (1 of 36 pairs in 2 of 3 runs) |
+| Prompt-injection resistance | 100% | 100% | 100% |
+
+¹ v1 scored on the 34 meetings it completed before hitting the free-tier rate limit; comparisons in [REPORT.md](evals/results/REPORT.md) use identical case sets only.
+² Single run. Repeated runs show the judge flips borderline pairs even at temperature 0, so one run can't establish a 0% harm rate; next step is requiring two agreeing verdicts before work can be marked a duplicate.
+
+**The rule-based fallback (no API key) overfits.** On the blind holdout its strict item recall falls to 0.70 (0.91 on test) and one-click approval to 0.50, while the Gemini pipeline stays at 1.00. Tuning a rule system on the cases you can see is the classic trap; the holdout caught it.
+
+```bash
+python -m pytest                              # 59 unit tests, offline
+python -m evals.run --engine heuristic --gate # offline eval gate (runs in CI)
+python -m evals.run                           # full Gemini suite
+```
+
 ---
 
 ## Table of Contents
@@ -21,6 +47,7 @@ Docket is a human-in-the-loop agent that reads a meeting transcript, extracts st
 - [Sample Transcripts](#sample-transcripts)
 - [Reasoning Trace Example](#reasoning-trace-example)
 - [Design Decisions](#design-decisions)
+- [Evals](evals/README.md)
 
 ---
 
@@ -41,13 +68,18 @@ With MCP:
 
 ## How Docket Uses MCP
 
-The MCP tracker server (`backend/tracker_server.py`) exposes three tools:
+Docket ships two MCP servers:
+
+- `backend/tracker_server.py` (`docket-tracker`): the tracker tools only.
+- `backend/docket_server.py` (`docket`): the tracker tools **plus `review_transcript`**, the whole agent as one read-only tool, so an assistant like Claude can review a meeting and then ask you before filing anything.
 
 | Tool | Signature | What it does |
 |---|---|---|
+| `review_transcript` | `(transcript, meeting_date?, source_meeting?) → review` | Runs extraction + duplicate check and returns each item with a decision (`new` / `needs_review` / `duplicate`) and the matching task id. **Writes nothing.** (`docket` server only) |
 | `list_open_tasks` | `() → list[Task]` | Returns all open/incomplete tasks from Notion |
-| `search_similar_tasks` | `(query: str) → list[Task]` | Fuzzy-matches `query` against open task titles; returns up to 5 ranked by similarity |
+| `search_similar_tasks` | `(query: str) → list[Task]` | Ranks open tasks by wording + meaning similarity; returns up to 5 |
 | `create_task` | `(title, owner?, due_date?, source_meeting?) → Task` | Creates a new task in Notion, resolving relative dates ("Friday" → ISO date) |
+| `update_task` | `(task_id, note?, due_date?) → Task` | Adds a meeting note to an existing task and optionally moves its due date. Used instead of filing a duplicate. |
 
 The agent in `backend/agent.py` calls these tools directly as Python functions. Because the server is also a proper `FastMCP` server, the same tools are available to any MCP host that registers the server — see [MCP Server — Usage Examples](#mcp-server--usage-examples).
 
@@ -72,13 +104,14 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-  A[Paste transcript] --> B[Gemini: extract structured action items\ntask · owner · deadline · confidence · source_quote]
-  B --> C[list_open_tasks: fetch all open tracker tasks]
-  C --> D[For each action item: search_similar_tasks]
-  D --> E{Similarity score}
-  E -->|wording ≥ 0.78 or meaning ≥ 0.84| F[duplicate — unchecked]
-  E -->|wording ≥ 0.52 or meaning ≥ 0.68| G[needs_review — unchecked, human decides]
-  E -->|below both| H[new — checked by default]
+  A[Paste transcript + meeting date] --> B[Gemini: extract structured action items\ntask · owner · deadline phrase · confidence · source_quote]
+  B --> B2[Resolve deadline phrases deterministically\nagainst the meeting date]
+  B2 --> C[list_open_tasks: fetch all open tracker tasks]
+  C --> D[Retrieve candidates: wording + embeddings]
+  D --> E{LLM judge: same / related / different}
+  E -->|same, and retrieval agrees| F[duplicate — unchecked]
+  E -->|related, or vague owner| G[needs_review — unchecked, human decides]
+  E -->|different| H[new — checked by default]
   F & G & H --> I[Review UI: approve / deselect items]
   I --> J[create_task for each approved item]
   J --> K[Filed receipt — title · owner · due date · tracker link]
@@ -88,6 +121,8 @@ flowchart TD
 
 - **Wording**: a token-overlap + sequence-ratio score with a domain stopword list (`review`, `update`, `fix`, `add`, `create`, etc.) so generic action verbs don't trigger false positives between unrelated tasks.
 - **Meaning**: cosine similarity of `gemini-embedding-001` embeddings, so "Authentication is broken" still matches "Fix login bug". Embedding cosines run high even for unrelated titles (~0.54–0.56), related work lands ~0.71–0.76 and the same work ~0.85+, which is where the 0.68 / 0.84 bands come from.
+
+Retrieval proposes up to three candidates per item; a **second-stage LLM judge** then reads each item next to its candidates and decides same / related / different, in one batched call per meeting. In evals, retuning the similarity thresholds left held-out accuracy unchanged (66.7%), because cosine scores between any two task-shaped sentences run high; the judge raised it to 77.8% and removed every harmful error. The judge can't drop work on its own: a "same" verdict on a weak retrieval match (cosine < 0.75) is downgraded to "needs review". If the judge call fails, the thresholds above are the fallback.
 
 Open tasks are read from the tracker once per run, and all embeddings are fetched in a single batch request.
 
@@ -142,6 +177,7 @@ Configure in `.env.local` (never committed — it is in `.gitignore`):
 | `NOTION_STATUS_PROPERTY` | No | Defaults to `Status`. Used to filter out completed tasks. |
 | `NOTION_STATUS_DONE_VALUES` | No | Comma-separated list of "done" status values to exclude. Defaults to `Done,Complete,Completed,Archived`. |
 | `NOTION_SOURCE_PROPERTY` | No | Defaults to `Source Meeting`. Text property tagging where the task came from. |
+| `DOCKET_DEDUP_JUDGE` | No | `1` (default) runs the LLM duplicate check; `0` uses similarity thresholds only. |
 | `PYTHON_BIN` | No | Python executable used by the Next.js API routes. Defaults to `.venv/bin/python` when that exists, otherwise `python3`. |
 
 The Python backend reads `.env.local` and `.env` itself, so the CLI and MCP server pick up the same settings as the web app. Real environment variables always take precedence.
@@ -302,6 +338,8 @@ Add to your `claude_desktop_config.json` (`~/Library/Application Support/Claude/
 }
 ```
 
+To give Claude the full agent, point `args` at `backend/docket_server.py` instead (and add `GEMINI_API_KEY`). Then: *"Review this transcript and file the new items after I confirm."*
+
 Restart Claude Desktop. You can now ask Claude things like:
 
 > "What are my open tasks?"
@@ -408,11 +446,10 @@ npm run dev
 npm run agent:demo
 # equivalent to: python3 backend/agent.py samples/standup.txt
 
-# Run the Gemini extraction test
-npm run extract:test
-
-# Smoke-test the tracker tools (list, search, create in mock mode)
-npm run tracker:test
+# Unit tests (offline) and evals
+npm test
+npm run evals             # full Gemini suite
+npm run evals:offline     # rule-based suite + regression gate, no API key
 
 # Lint and build
 npm run lint
@@ -505,11 +542,19 @@ The item appears in the review UI with a `duplicate` stamp and is unchecked by d
 
 ## Design Decisions
 
+**Duplicates update, they don't vanish.** When a meeting mentions work that's already tracked, ticking it adds a dated note (with the quoted line) to the existing task and can move its due date, via `update_task`. Before V2, ticking a duplicate filed it a second time.
+
+**Every run reports its own cost.** Each model call is metered by stage (extraction, embeddings, duplicate judge): latency, tokens, retries. The totals come back with every review and show under the item count, and each trace in `logs/` keeps the per-stage breakdown.
+
+**Production feeds the evals.** Filing appends what Docket proposed vs what the user approved to `logs/feedback.jsonl` (local only, no transcripts). `python -m evals.feedback` reports online metrics (acceptance rate, edit rate per field, one-click meetings) and `--harvest` turns every disagreement into a candidate eval case for labelling.
+
 **Human in the loop, always.** Nothing is written to the tracker without a checkbox review, and anything ambiguous starts unchecked. This is both a safety practice and a more honest engineering story for a v1: the agent assists, the human decides.
 
 **MCP as a tool boundary.** The tracker tools are self-contained and testable independently of the extraction or agent logic. Swapping Notion for Linear means rewriting one file (`tracker_server.py`) without touching the agent, the UI, or the extraction pipeline.
 
-**Relative date resolution at the tracker layer.** Deadlines like "Friday" or "EOD" are resolved to ISO-8601 dates inside `create_task()`, not during extraction. This means the resolution is correct regardless of whether Gemini or the heuristic extractor produced the deadline string, and it happens immediately before the Notion write — no date can be silently dropped.
+**Deadlines resolve against the meeting date, in code.** The model returns the deadline phrase it heard ("end of month", "the 24th", "Tuesday"), and `backend/dates.py` resolves it against the day the meeting happened, not the day you file. LLMs are unreliable at calendar arithmetic (in evals, "this week" from a Wednesday came back as a Sunday), and anchoring on "today" made every older transcript's deadlines wrong. The model's own ISO date is only a fallback for phrases the resolver doesn't know.
+
+**Measure before changing anything.** Every change in v2 was driven by a failing eval case on the dev split and checked on a held-out test split. Prompt examples are kept free of eval data, and a unit test enforces that.
 
 **Stopword-filtered similarity for duplicate detection.** Generic action verbs (`review`, `update`, `fix`, `add`, `create`) are treated as stopwords in the similarity score. Two tasks that share only a common verb but operate on completely different subjects (e.g. "Update the onboarding copy" vs "Update the API rate-limit logic") score near zero and are correctly classified as distinct work.
 

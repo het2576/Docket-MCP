@@ -1,10 +1,10 @@
 "use client";
 
-import { AlertCircle, CalendarDays, Check, ChevronDown, ExternalLink, Quote } from "lucide-react";
+import { AlertCircle, CalendarDays, Check, ChevronDown, ExternalLink, NotebookPen, Plus, Quote, ShieldCheck } from "lucide-react";
 import { forwardRef, useState } from "react";
 import { initials } from "@/app/components/TranscriptView";
 import { decisionLabel, formatDue } from "@/lib/transcript";
-import type { ActionItem, CreatedTask, ReviewItem } from "@/lib/types";
+import type { ActionItem, CreatedTask, FileMode, ReviewItem } from "@/lib/types";
 
 type Props = {
   index: number;
@@ -12,6 +12,8 @@ type Props = {
   item: ActionItem;
   trackerName: string;
   selected: boolean;
+  mode: FileMode;
+  onModeChange: (mode: FileMode) => void;
   filed: CreatedTask | undefined;
   failure: string | undefined;
   active: boolean;
@@ -29,9 +31,17 @@ function percent(value: number | null | undefined) {
 /** One plain-language line that says why the item got its decision. */
 function verdict(review: ReviewItem, tracker: string) {
   const best = review.similar_tasks[0];
-  if (review.action_item.confidence < 0.6) return "The transcript is vague about what this is or who owns it.";
+  if (review.action_item.confidence < 0.6 && review.decision !== "duplicate") {
+    return "The transcript is vague about what this is or who owns it.";
+  }
+  if (review.judge && best && review.judge.verdict !== "different") {
+    const reason = review.judge.reason.replace(/\.$/, "");
+    if (review.decision === "duplicate") return `Already in ${tracker} as “${best.title}”. ${reason}.`;
+    return `Close to “${best.title}” in ${tracker}. ${reason}.`;
+  }
   if (!best) return `Nothing like this in ${tracker} yet.`;
   const score = Math.round(Math.max(best.lexical, best.semantic ?? 0) * 100);
+  if (review.judge) return `Nothing in ${tracker} covers this. Nearest was “${best.title}”.`;
   if (review.decision === "duplicate") return `Already in ${tracker} as “${best.title}” (${score}% match).`;
   if (review.decision === "needs_review") return `Close to “${best.title}” in ${tracker} (${score}% match).`;
   return `Nothing close in ${tracker}. Nearest is “${best.title}” at ${score}%.`;
@@ -57,10 +67,11 @@ function DueChip({ value, locked, onChange }: { value: string | null; locked: bo
 }
 
 export const EntryCard = forwardRef<HTMLElement, Props>(function EntryCard(
-  { index, review, item, trackerName, selected, filed, failure, active, hasSource, onToggle, onChange, onHover, onLocate },
+  { index, review, item, trackerName, selected, mode, onModeChange, filed, failure, active, hasSource, onToggle, onChange, onHover, onLocate },
   ref
 ) {
   const [open, setOpen] = useState(false);
+  const match = review.similar_tasks[0];
   const locked = Boolean(filed);
   const titleId = `entry-${index}-title`;
   const detailsId = `entry-${index}-details`;
@@ -141,7 +152,15 @@ export const EntryCard = forwardRef<HTMLElement, Props>(function EntryCard(
           </div>
 
           <div className="slip-verdict">
-            <p>{verdict(review, trackerName)}</p>
+            <p>
+              {verdict(review, trackerName)}
+              {review.judge ? (
+                <span className="checked-tag" title="Matched by meaning, then double-checked by the model">
+                  <ShieldCheck size={12} aria-hidden="true" />
+                  double-checked
+                </span>
+              ) : null}
+            </p>
             <button
               type="button"
               className="why"
@@ -154,9 +173,26 @@ export const EntryCard = forwardRef<HTMLElement, Props>(function EntryCard(
             </button>
           </div>
 
+          {selected && !locked && review.decision !== "new" && match ? (
+            <div className="file-mode" role="radiogroup" aria-label="When filing this item">
+              <button type="button" role="radio" aria-checked={mode === "update"} className={mode === "update" ? "is-on" : ""} onClick={() => onModeChange("update")}>
+                <NotebookPen size={13} aria-hidden="true" />
+                Add note to “{match.title}”
+              </button>
+              <button type="button" role="radio" aria-checked={mode === "create"} className={mode === "create" ? "is-on" : ""} onClick={() => onModeChange("create")}>
+                <Plus size={13} aria-hidden="true" />
+                Create new task
+              </button>
+            </div>
+          ) : null}
+
           {filed ? (
             <p className="filed-note">
-              {filed.mock ? "Filed to the demo tracker" : "Filed to Notion"}
+              {filed.mode === "update"
+                ? `Added a note to “${filed.title}”${filed.mock ? " in the demo tracker" : " in Notion"}`
+                : filed.mock
+                  ? "Filed to the demo tracker"
+                  : "Filed to Notion"}
               {filed.due_date ? `, due ${formatDue(filed.due_date)}` : ""}
               {filed.url ? (
                 <a href={filed.url} target="_blank" rel="noopener noreferrer">

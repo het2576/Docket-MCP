@@ -1,0 +1,10346 @@
+{
+ "extraction": {
+  "summary": {
+   "all": {
+    "cases": 25,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "tp": 44,
+    "fp": 0,
+    "fn": 0,
+    "owner_accuracy": 1.0,
+    "deadline_accuracy": 1.0,
+    "strict_item_recall": 1.0,
+    "task_keyword_coverage": 1.0,
+    "task_clean_rate": 0.9555555555555556,
+    "groundedness": 1.0,
+    "negative_case_pass_rate": 1.0,
+    "injection_resistance": 1.0,
+    "forbidden_violations": 0,
+    "forbidden_cases": [],
+    "routing_accuracy": 0.9772727272727273,
+    "harmful_routing_rate": 0.0,
+    "existing_task_identified": 1.0,
+    "routing_outcomes": {
+     "correct": 43,
+     "friction": 1
+    },
+    "zero_touch_rate": 0.96,
+    "confidence_auroc": null,
+    "false_positives_below_0_6": null,
+    "latency_p50_s": 6.183,
+    "latency_p95_s": 26.738,
+    "by_tag": {
+     "asr_noise": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "brainstorm": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "buried_commitment": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "conditional": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "deadline": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 13,
+      "zero_touch": 1.0
+     },
+     "deadline_correction": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "declined": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "direct_request": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 4,
+      "zero_touch": 1.0
+     },
+     "existing": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 5,
+      "zero_touch": 0.8
+     },
+     "explicit": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 4,
+      "zero_touch": 1.0
+     },
+     "long": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "meeting_date_friday": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "minutes_format": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "mixed": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "multi_task_line": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "negative": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 3,
+      "zero_touch": 1.0
+     },
+     "no_speakers": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "owner_negotiation": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "past_tense": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "prompt_injection": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "question": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "reassignment": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 2,
+      "zero_touch": 0.5
+     },
+     "retraction": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "team_owner": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "third_person_assignment": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "unicode": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     },
+     "vague": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 3,
+      "zero_touch": 1.0
+     },
+     "we_owner": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "cases": 1,
+      "zero_touch": 1.0
+     }
+    }
+   }
+  },
+  "cases": [
+   {
+    "id": "ext-001",
+    "split": "dev",
+    "tags": [
+     "explicit",
+     "direct_request",
+     "deadline"
+    ],
+    "tp": 3,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Clean up the presentation outline",
+      "pred_task": "Clean up the presentation outline",
+      "owner": "Arjun",
+      "gold_owner": "Arjun",
+      "owner_ok": true,
+      "deadline": "2026-03-16",
+      "gold_deadline": [
+       "2026-03-16"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     },
+     {
+      "gold": 1,
+      "pred": 1,
+      "optional": false,
+      "gold_task": "Check the experiment screenshots",
+      "pred_task": "Check the experiment screenshots",
+      "owner": "Priya",
+      "gold_owner": "Priya",
+      "owner_ok": true,
+      "deadline": "2026-03-11",
+      "gold_deadline": [
+       "2026-03-11"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     },
+     {
+      "gold": 2,
+      "pred": 2,
+      "optional": false,
+      "gold_task": "Draft the launch email sequence",
+      "pred_task": "Draft the launch email sequence",
+      "owner": "Maya",
+      "gold_owner": "Maya",
+      "owner_ok": true,
+      "deadline": "2026-03-12",
+      "gold_deadline": [
+       "2026-03-12"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true,
+     true,
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 14.455,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-002",
+    "split": "dev",
+    "tags": [
+     "negative"
+    ],
+    "tp": 0,
+    "fp": 0,
+    "fn": 0,
+    "items": [],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [],
+    "confidences": [],
+    "zero_touch": true,
+    "seconds": 0.025,
+    "live_calls": 0,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-003",
+    "split": "dev",
+    "tags": [
+     "vague",
+     "explicit"
+    ],
+    "tp": 2,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Look into exporting the reasoning trace for the demo",
+      "pred_task": "Look into exporting the reasoning trace for the demo",
+      "owner": null,
+      "gold_owner": null,
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "needs_review",
+      "expected_decision": "needs_review",
+      "outcome": "correct",
+      "existing_match_ok": null
+     },
+     {
+      "gold": 1,
+      "pred": 1,
+      "optional": false,
+      "gold_task": "Add a human approval step before task creation",
+      "pred_task": "Add a human approval step before tasks get created",
+      "owner": "Het",
+      "gold_owner": "Het",
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true,
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.5,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 5.418,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-004",
+    "split": "dev",
+    "tags": [
+     "declined",
+     "reassignment",
+     "deadline"
+    ],
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Complete the vendor security questionnaire",
+      "pred_task": "Complete the vendor security questionnaire",
+      "owner": "Sofia",
+      "gold_owner": "Sofia",
+      "owner_ok": true,
+      "deadline": "2026-03-13",
+      "gold_deadline": [
+       "2026-03-13"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 2.918,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-005",
+    "split": "dev",
+    "tags": [
+     "retraction",
+     "deadline"
+    ],
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Ask legal for approval on the checkout copy",
+      "pred_task": "Ping legal to get an answer on the copy",
+      "owner": "Priya",
+      "gold_owner": "Priya",
+      "owner_ok": true,
+      "deadline": "2026-03-11",
+      "gold_deadline": [
+       "2026-03-11"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 18.394,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-006",
+    "split": "dev",
+    "tags": [
+     "past_tense",
+     "explicit"
+    ],
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Update the changelog for the export hotfix",
+      "pred_task": "Update the changelog",
+      "owner": "Omar",
+      "gold_owner": "Omar",
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       "2026-03-11",
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 2.557,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-007",
+    "split": "dev",
+    "tags": [
+     "multi_task_line"
+    ],
+    "tp": 3,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Send the deck to the client",
+      "pred_task": "Send the deck to the client",
+      "owner": "Grace",
+      "gold_owner": "Grace",
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null,
+       "2026-03-12"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     },
+     {
+      "gold": 1,
+      "pred": 1,
+      "optional": false,
+      "gold_task": "Book the conference room for Thursday's review",
+      "pred_task": "Book the conference room for Thursday's review",
+      "owner": "Grace",
+      "gold_owner": "Grace",
+      "owner_ok": true,
+      "deadline": "2026-03-12",
+      "gold_deadline": [
+       null,
+       "2026-03-12"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     },
+     {
+      "gold": 2,
+      "pred": 2,
+      "optional": false,
+      "gold_task": "Handle the catering order",
+      "pred_task": "Handle the catering order",
+      "owner": "Tom",
+      "gold_owner": "Tom",
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null,
+       "2026-03-12"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true,
+     true,
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 26.738,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-008",
+    "split": "dev",
+    "tags": [
+     "deadline",
+     "direct_request"
+    ],
+    "tp": 3,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Complete the pricing analysis",
+      "pred_task": "Complete the pricing analysis",
+      "owner": "Ben",
+      "gold_owner": "Ben",
+      "owner_ok": true,
+      "deadline": "2026-03-31",
+      "gold_deadline": [
+       "2026-03-31"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     },
+     {
+      "gold": 1,
+      "pred": 1,
+      "optional": false,
+      "gold_task": "Prepare the hiring plan",
+      "pred_task": "Prepare the hiring plan",
+      "owner": "Chloe",
+      "gold_owner": "Chloe",
+      "owner_ok": true,
+      "deadline": "2026-03-25",
+      "gold_deadline": [
+       "2026-03-25"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     },
+     {
+      "gold": 2,
+      "pred": 2,
+      "optional": false,
+      "gold_task": "Circulate the board memo",
+      "pred_task": "Circulate the board memo",
+      "owner": "Leah",
+      "gold_owner": "Leah",
+      "owner_ok": true,
+      "deadline": "2026-03-20",
+      "gold_deadline": [
+       "2026-03-20"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true,
+     true,
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 15.812,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-009",
+    "split": "dev",
+    "tags": [
+     "third_person_assignment",
+     "existing",
+     "deadline"
+    ],
+    "tp": 2,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Write the postmortem for the Feb 28 outage",
+      "pred_task": "Complete the incident postmortem for the Feb 28 outage",
+      "owner": "Omar",
+      "gold_owner": "Omar",
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "duplicate",
+      "expected_decision": "duplicate",
+      "outcome": "correct",
+      "existing_match_ok": true
+     },
+     {
+      "gold": 1,
+      "pred": 1,
+      "optional": false,
+      "gold_task": "Finish migrating CI to GitHub Actions",
+      "pred_task": "Finish moving CI over to GitHub Actions",
+      "owner": "Arjun",
+      "gold_owner": "Arjun",
+      "owner_ok": true,
+      "deadline": "2026-03-20",
+      "gold_deadline": [
+       "2026-03-13",
+       "2026-03-20"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "duplicate",
+      "expected_decision": "duplicate",
+      "outcome": "correct",
+      "existing_match_ok": true
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true,
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 1.0,
+      "correct": true
+     },
+     {
+      "confidence": 1.0,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 13.064,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-010",
+    "split": "dev",
+    "tags": [
+     "prompt_injection",
+     "explicit"
+    ],
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Finalize the Q2 roadmap slides",
+      "pred_task": "Finalize the Q2 roadmap slides",
+      "owner": "Het",
+      "gold_owner": "Het",
+      "owner_ok": true,
+      "deadline": "2026-03-13",
+      "gold_deadline": [
+       "2026-03-13"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 1.752,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-011",
+    "split": "dev",
+    "tags": [
+     "asr_noise"
+    ],
+    "tp": 2,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 1,
+      "pred": 1,
+      "optional": false,
+      "gold_task": "Look at the webhook retry logic",
+      "pred_task": "Look at the retry logic",
+      "owner": "Ravi",
+      "gold_owner": "Ravi",
+      "owner_ok": true,
+      "deadline": "2026-03-12",
+      "gold_deadline": [
+       "2026-03-12"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     },
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Contact Stripe about the webhook failures",
+      "pred_task": "Reach out to the Stripe folks about the webhook failures",
+      "owner": "Sam",
+      "gold_owner": "Sam",
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true,
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 8.491,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-012",
+    "split": "dev",
+    "tags": [
+     "negative",
+     "question"
+    ],
+    "tp": 0,
+    "fp": 0,
+    "fn": 0,
+    "items": [],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [],
+    "confidences": [],
+    "zero_touch": true,
+    "seconds": 0.002,
+    "live_calls": 0,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-013",
+    "split": "dev",
+    "tags": [
+     "deadline_correction",
+     "direct_request"
+    ],
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Send the security audit report to Leah",
+      "pred_task": "Deliver the security audit report",
+      "owner": "Tom",
+      "gold_owner": "Tom",
+      "owner_ok": true,
+      "deadline": "2026-03-17",
+      "gold_deadline": [
+       "2026-03-17"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 16.98,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-014",
+    "split": "dev",
+    "tags": [
+     "team_owner",
+     "deadline"
+    ],
+    "tp": 2,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Deliver the final launch illustrations",
+      "pred_task": "Deliver the final launch illustrations",
+      "owner": "The design team",
+      "gold_owner": [
+       "design team",
+       "design"
+      ],
+      "owner_ok": true,
+      "deadline": "2026-04-02",
+      "gold_deadline": [
+       "2026-04-02"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     },
+     {
+      "gold": 1,
+      "pred": 1,
+      "optional": false,
+      "gold_task": "Write the press release",
+      "pred_task": "Own the press release",
+      "owner": "Marketing",
+      "gold_owner": [
+       "marketing",
+       "marketing team"
+      ],
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true,
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.85,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 18.58,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-015",
+    "split": "dev",
+    "tags": [
+     "no_speakers",
+     "deadline"
+    ],
+    "tp": 2,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Send the revised contract to Acme",
+      "pred_task": "Send the revised contract to Acme",
+      "owner": "Jordan",
+      "gold_owner": "Jordan",
+      "owner_ok": true,
+      "deadline": "2026-03-12",
+      "gold_deadline": [
+       "2026-03-12"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     },
+     {
+      "gold": 1,
+      "pred": 1,
+      "optional": false,
+      "gold_task": "Schedule a follow-up with Acme's legal team",
+      "pred_task": "Schedule a follow-up with their legal team",
+      "owner": "Priya",
+      "gold_owner": "Priya",
+      "owner_ok": true,
+      "deadline": "2026-03-20",
+      "gold_deadline": [
+       null,
+       "2026-03-16",
+       "2026-03-17",
+       "2026-03-18",
+       "2026-03-19",
+       "2026-03-20"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true,
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 1.881,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-016",
+    "split": "dev",
+    "tags": [
+     "existing",
+     "deadline"
+    ],
+    "tp": 3,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Fix the Safari login timeout",
+      "pred_task": "Fix the Safari login timeout",
+      "owner": "Omar",
+      "gold_owner": "Omar",
+      "owner_ok": true,
+      "deadline": "2026-03-13",
+      "gold_deadline": [
+       "2026-03-13"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "duplicate",
+      "expected_decision": "duplicate",
+      "outcome": "correct",
+      "existing_match_ok": true
+     },
+     {
+      "gold": 1,
+      "pred": 1,
+      "optional": false,
+      "gold_task": "Finish the onboarding copy for the signup flow",
+      "pred_task": "Finish the onboarding copy for the signup flow",
+      "owner": "Maya",
+      "gold_owner": "Maya",
+      "owner_ok": true,
+      "deadline": "2026-03-12",
+      "gold_deadline": [
+       "2026-03-12"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "duplicate",
+      "expected_decision": "duplicate",
+      "outcome": "correct",
+      "existing_match_ok": true
+     },
+     {
+      "gold": 2,
+      "pred": 2,
+      "optional": false,
+      "gold_task": "Renew the Figma license",
+      "pred_task": "Renew the Figma license",
+      "owner": "Het",
+      "gold_owner": "Het",
+      "owner_ok": true,
+      "deadline": "2026-03-15",
+      "gold_deadline": [
+       null,
+       "2026-03-14",
+       "2026-03-15"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "duplicate",
+      "expected_decision": "duplicate",
+      "outcome": "correct",
+      "existing_match_ok": true
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true,
+     true,
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 3.955,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-017",
+    "split": "dev",
+    "tags": [
+     "conditional",
+     "deadline"
+    ],
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 1,
+      "pred": 1,
+      "optional": false,
+      "gold_task": "Send the QA test plan to Leah",
+      "pred_task": "Send the QA test plan to Leah",
+      "owner": "Ben",
+      "gold_owner": "Ben",
+      "owner_ok": true,
+      "deadline": "2026-03-16",
+      "gold_deadline": [
+       "2026-03-16"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     },
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": true,
+      "gold_task": "Hire two QA contractors once the budget is approved",
+      "pred_task": "Hire two contractors for QA",
+      "owner": "Ben",
+      "gold_owner": "Ben",
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "needs_review",
+      "expected_decision": "new",
+      "outcome": "friction",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true,
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.5,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 5.604,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-018",
+    "split": "dev",
+    "tags": [
+     "long",
+     "existing",
+     "mixed"
+    ],
+    "tp": 6,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Finish the rate limiter refactor",
+      "pred_task": "Finish the rate limiter refactor",
+      "owner": "Arjun",
+      "gold_owner": "Arjun",
+      "owner_ok": true,
+      "deadline": "2026-03-12",
+      "gold_deadline": [
+       "2026-03-12"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     },
+     {
+      "gold": 1,
+      "pred": 1,
+      "optional": false,
+      "gold_task": "Update the API rate limit docs",
+      "pred_task": "Update the API rate limit docs",
+      "owner": "Grace",
+      "gold_owner": "Grace",
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "duplicate",
+      "expected_decision": "duplicate",
+      "outcome": "correct",
+      "existing_match_ok": true
+     },
+     {
+      "gold": 2,
+      "pred": 2,
+      "optional": false,
+      "gold_task": "Prototype the new dashboard filters",
+      "pred_task": "Prototype the new dashboard filters",
+      "owner": "Maya",
+      "gold_owner": "Maya",
+      "owner_ok": true,
+      "deadline": "2026-03-16",
+      "gold_deadline": [
+       "2026-03-16"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     },
+     {
+      "gold": 4,
+      "pred": 4,
+      "optional": false,
+      "gold_task": "Update the status page template",
+      "pred_task": "Update the status page template",
+      "owner": "Tom",
+      "gold_owner": "Tom",
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     },
+     {
+      "gold": 5,
+      "pred": 5,
+      "optional": false,
+      "gold_task": "Book the offsite venue",
+      "pred_task": "Book the offsite venue",
+      "owner": "Nina",
+      "gold_owner": "Nina",
+      "owner_ok": true,
+      "deadline": "2026-03-13",
+      "gold_deadline": [
+       "2026-03-13",
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "duplicate",
+      "expected_decision": "duplicate",
+      "outcome": "correct",
+      "existing_match_ok": true
+     },
+     {
+      "gold": 3,
+      "pred": 3,
+      "optional": false,
+      "gold_task": "Send a summary of the churn survey",
+      "pred_task": "Send a summary of the churn survey responses",
+      "owner": "Sam",
+      "gold_owner": "Sam",
+      "owner_ok": true,
+      "deadline": "2026-03-16",
+      "gold_deadline": [
+       "2026-03-16"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 26.38,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-019",
+    "split": "dev",
+    "tags": [
+     "vague",
+     "we_owner"
+    ],
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Refresh the competitor analysis before the pricing review",
+      "pred_task": "Refresh the competitor analysis",
+      "owner": null,
+      "gold_owner": null,
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "needs_review",
+      "expected_decision": "needs_review",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.5,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 2.18,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-020",
+    "split": "dev",
+    "tags": [
+     "unicode",
+     "direct_request",
+     "deadline"
+    ],
+    "tp": 2,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Translate the help center articles into Spanish",
+      "pred_task": "Translate the help center articles into Spanish",
+      "owner": "Zoë",
+      "gold_owner": "Zoë",
+      "owner_ok": true,
+      "deadline": "2026-03-24",
+      "gold_deadline": [
+       "2026-03-24"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "duplicate",
+      "expected_decision": "duplicate",
+      "outcome": "correct",
+      "existing_match_ok": true
+     },
+     {
+      "gold": 1,
+      "pred": 1,
+      "optional": false,
+      "gold_task": "Review the Polish localization strings",
+      "pred_task": "Review the Polish localization strings",
+      "owner": "Łukasz",
+      "gold_owner": "Łukasz",
+      "owner_ok": true,
+      "deadline": "2026-03-12",
+      "gold_deadline": [
+       "2026-03-12"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true,
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 5.451,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-021",
+    "split": "dev",
+    "tags": [
+     "reassignment",
+     "existing"
+    ],
+    "tp": 2,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Prepare the March investor update",
+      "pred_task": "Prepare the investor update for March",
+      "owner": "Ben",
+      "gold_owner": "Ben",
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "duplicate",
+      "expected_decision": "duplicate",
+      "outcome": "correct",
+      "existing_match_ok": true
+     },
+     {
+      "gold": 1,
+      "pred": 1,
+      "optional": false,
+      "gold_task": "Review the investor update before it goes out",
+      "pred_task": "Review the March investor update",
+      "owner": "Chloe",
+      "gold_owner": "Chloe",
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "needs_review",
+      "expected_decision": "new",
+      "outcome": "friction",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true,
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": false,
+    "seconds": 43.224,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-022",
+    "split": "dev",
+    "tags": [
+     "owner_negotiation",
+     "deadline",
+     "meeting_date_friday"
+    ],
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Send the meeting notes",
+      "pred_task": "Send the meeting notes",
+      "owner": "Tom",
+      "gold_owner": "Tom",
+      "owner_ok": true,
+      "deadline": "2026-03-13",
+      "gold_deadline": [
+       "2026-03-13"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 1.677,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-023",
+    "split": "dev",
+    "tags": [
+     "negative",
+     "brainstorm"
+    ],
+    "tp": 0,
+    "fp": 0,
+    "fn": 0,
+    "items": [],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [],
+    "confidences": [],
+    "zero_touch": true,
+    "seconds": 0.003,
+    "live_calls": 0,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-024",
+    "split": "dev",
+    "tags": [
+     "buried_commitment",
+     "deadline"
+    ],
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Backfill the events table",
+      "pred_task": "Backfill the events table",
+      "owner": "Jordan",
+      "gold_owner": "Jordan",
+      "owner_ok": true,
+      "deadline": "2026-03-13",
+      "gold_deadline": [
+       null,
+       "2026-03-13"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "new",
+      "expected_decision": "new",
+      "outcome": "correct",
+      "existing_match_ok": null
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 78.113,
+    "live_calls": 0,
+    "warnings": [
+     "The duplicate double-check was unavailable, so similarity scores alone were used. (Gemini API error 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.)"
+    ],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   },
+   {
+    "id": "ext-025",
+    "split": "dev",
+    "tags": [
+     "minutes_format",
+     "existing",
+     "vague",
+     "deadline"
+    ],
+    "tp": 3,
+    "fp": 0,
+    "fn": 0,
+    "items": [
+     {
+      "gold": 0,
+      "pred": 0,
+      "optional": false,
+      "gold_task": "Set up SSO for enterprise customers",
+      "pred_task": "Set up SSO for enterprise customers",
+      "owner": "Ravi",
+      "gold_owner": "Ravi",
+      "owner_ok": true,
+      "deadline": "2026-03-27",
+      "gold_deadline": [
+       "2026-03-27"
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": true,
+      "decision": "duplicate",
+      "expected_decision": "duplicate",
+      "outcome": "correct",
+      "existing_match_ok": true
+     },
+     {
+      "gold": 1,
+      "pred": 1,
+      "optional": false,
+      "gold_task": "Draft the pricing page copy",
+      "pred_task": "Draft the pricing page copy",
+      "owner": "Sofia",
+      "gold_owner": "Sofia",
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": false,
+      "decision": "duplicate",
+      "expected_decision": "duplicate",
+      "outcome": "correct",
+      "existing_match_ok": true
+     },
+     {
+      "gold": 2,
+      "pred": 2,
+      "optional": false,
+      "gold_task": "Audit unused feature flags",
+      "pred_task": "Audit unused feature flags",
+      "owner": null,
+      "gold_owner": null,
+      "owner_ok": true,
+      "deadline": null,
+      "gold_deadline": [
+       null
+      ],
+      "deadline_ok": true,
+      "keywords": 1.0,
+      "clean": false,
+      "decision": "duplicate",
+      "expected_decision": "duplicate",
+      "outcome": "correct",
+      "existing_match_ok": true
+     }
+    ],
+    "false_positives": [],
+    "missed": [],
+    "forbidden_hits": [],
+    "grounded": [
+     true,
+     true,
+     true
+    ],
+    "confidences": [
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.95,
+      "correct": true
+     },
+     {
+      "confidence": 0.5,
+      "correct": true
+     }
+    ],
+    "zero_touch": true,
+    "seconds": 6.183,
+    "live_calls": 1,
+    "warnings": [],
+    "engine": {
+     "extraction": "gemini",
+     "model": "gemini-3.5-flash-lite",
+     "prompt_version": "v2",
+     "tracker": "demo",
+     "semantic_search": true,
+     "dedup_judge": true
+    }
+   }
+  ],
+  "errors": []
+ },
+ "dedup": {
+  "summary": {
+   "all": {
+    "n": 55,
+    "accuracy": 0.9636363636363636,
+    "macro_f1": 0.9611006879299562,
+    "duplicate_precision": 0.9523809523809523,
+    "duplicate_recall": 1.0,
+    "duplicate_f1": 0.975609756097561,
+    "flag_recall": 1.0,
+    "double_file_rate": 0.0,
+    "silent_drop_rate": 0.0,
+    "harmful_rate": 0.01818181818181818,
+    "retrieval_recall_at_1": 1.0,
+    "retrieval_recall_at_5": 1.0,
+    "confusion": {
+     "duplicate": {
+      "duplicate": 20
+     },
+     "related": {
+      "needs_review": 14,
+      "duplicate": 1,
+      "new": 1
+     },
+     "new": {
+      "new": 19
+     }
+    },
+    "outcomes": {
+     "correct": 53,
+     "dropped": 1,
+     "missed_context": 1
+    }
+   }
+  },
+  "cases": [
+   {
+    "id": "dd-001",
+    "split": "dev",
+    "query": "Write the onboarding copy for signup",
+    "label": "duplicate",
+    "match": "T1",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Finish onboarding copy for the signup flow': Task T1 matches the exact same work for writing signup onboarding copy.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T1",
+     "reason": "Task T1 matches the exact same work for writing signup onboarding copy.",
+     "item_subject": "signup onboarding copy"
+    },
+    "top_id": "T1",
+    "top_title": "Finish onboarding copy for the signup flow",
+    "ranked_ids": [
+     "T1",
+     "T7",
+     "T23",
+     "T20",
+     "T10"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.6321,
+      0.8992
+     ],
+     [
+      "T2",
+      0.2562,
+      0.5324
+     ],
+     [
+      "T3",
+      0.2615,
+      0.5699
+     ],
+     [
+      "T4",
+      0.2329,
+      0.5406
+     ],
+     [
+      "T5",
+      0.2217,
+      0.6155
+     ],
+     [
+      "T6",
+      0.2698,
+      0.5071
+     ],
+     [
+      "T7",
+      0.2881,
+      0.6745
+     ],
+     [
+      "T8",
+      0.2634,
+      0.5793
+     ],
+     [
+      "T9",
+      0.2656,
+      0.5143
+     ],
+     [
+      "T10",
+      0.3216,
+      0.5815
+     ],
+     [
+      "T11",
+      0.1915,
+      0.5534
+     ],
+     [
+      "T12",
+      0.2367,
+      0.5993
+     ],
+     [
+      "T13",
+      0.3045,
+      0.5622
+     ],
+     [
+      "T14",
+      0.287,
+      0.4899
+     ],
+     [
+      "T15",
+      0.2634,
+      0.5783
+     ],
+     [
+      "T16",
+      0.2318,
+      0.4924
+     ],
+     [
+      "T17",
+      0.3643,
+      0.5806
+     ],
+     [
+      "T18",
+      0.2391,
+      0.5118
+     ],
+     [
+      "T19",
+      0.2519,
+      0.5682
+     ],
+     [
+      "T20",
+      0.3449,
+      0.5928
+     ],
+     [
+      "T21",
+      0.25,
+      0.4976
+     ],
+     [
+      "T22",
+      0.2833,
+      0.5102
+     ],
+     [
+      "T23",
+      0.3542,
+      0.6295
+     ],
+     [
+      "T24",
+      0.3568,
+      0.4837
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-002",
+    "split": "dev",
+    "query": "Finalize signup flow onboarding text",
+    "label": "duplicate",
+    "match": "T1",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Finish onboarding copy for the signup flow': Task T1 covers finalizing the same signup onboarding copy.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T1",
+     "reason": "Task T1 covers finalizing the same signup onboarding copy.",
+     "item_subject": "signup flow onboarding text"
+    },
+    "top_id": "T1",
+    "top_title": "Finish onboarding copy for the signup flow",
+    "ranked_ids": [
+     "T1",
+     "T23",
+     "T20",
+     "T8",
+     "T6"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.4286,
+      0.8822
+     ],
+     [
+      "T2",
+      0.2562,
+      0.5576
+     ],
+     [
+      "T3",
+      0.1831,
+      0.5604
+     ],
+     [
+      "T4",
+      0.2096,
+      0.5343
+     ],
+     [
+      "T5",
+      0.1971,
+      0.5894
+     ],
+     [
+      "T6",
+      0.2968,
+      0.5468
+     ],
+     [
+      "T7",
+      0.2017,
+      0.609
+     ],
+     [
+      "T8",
+      0.2873,
+      0.5685
+     ],
+     [
+      "T9",
+      0.1594,
+      0.533
+     ],
+     [
+      "T10",
+      0.2757,
+      0.5684
+     ],
+     [
+      "T11",
+      0.1915,
+      0.5598
+     ],
+     [
+      "T12",
+      0.2152,
+      0.5345
+     ],
+     [
+      "T13",
+      0.1776,
+      0.571
+     ],
+     [
+      "T14",
+      0.2208,
+      0.4965
+     ],
+     [
+      "T15",
+      0.2394,
+      0.5583
+     ],
+     [
+      "T16",
+      0.2061,
+      0.5096
+     ],
+     [
+      "T17",
+      0.1214,
+      0.5785
+     ],
+     [
+      "T18",
+      0.2391,
+      0.5413
+     ],
+     [
+      "T19",
+      0.2728,
+      0.5357
+     ],
+     [
+      "T20",
+      0.2957,
+      0.5725
+     ],
+     [
+      "T21",
+      0.225,
+      0.5111
+     ],
+     [
+      "T22",
+      0.109,
+      0.51
+     ],
+     [
+      "T23",
+      0.3069,
+      0.6044
+     ],
+     [
+      "T24",
+      0.084,
+      0.5091
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-004",
+    "split": "dev",
+    "query": "Reserve a location for the Q2 team offsite",
+    "label": "duplicate",
+    "match": "T3",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Book venue for the Q2 offsite': Task T3 is booking the venue for the exact same offsite event.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T3",
+     "reason": "Task T3 is booking the venue for the exact same offsite event.",
+     "item_subject": "Q2 team offsite location"
+    },
+    "top_id": "T3",
+    "top_title": "Book venue for the Q2 offsite",
+    "ranked_ids": [
+     "T3",
+     "T20",
+     "T15",
+     "T5",
+     "T19"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.3036,
+      0.5636
+     ],
+     [
+      "T2",
+      0.3443,
+      0.4861
+     ],
+     [
+      "T3",
+      0.5268,
+      0.9299
+     ],
+     [
+      "T4",
+      0.2152,
+      0.5156
+     ],
+     [
+      "T5",
+      0.3173,
+      0.6101
+     ],
+     [
+      "T6",
+      0.271,
+      0.4662
+     ],
+     [
+      "T7",
+      0.1308,
+      0.5707
+     ],
+     [
+      "T8",
+      0.3532,
+      0.5589
+     ],
+     [
+      "T9",
+      0.3886,
+      0.5889
+     ],
+     [
+      "T10",
+      0.425,
+      0.5639
+     ],
+     [
+      "T11",
+      0.2649,
+      0.5034
+     ],
+     [
+      "T12",
+      0.28,
+      0.5857
+     ],
+     [
+      "T13",
+      0.2562,
+      0.5463
+     ],
+     [
+      "T14",
+      0.4301,
+      0.5168
+     ],
+     [
+      "T15",
+      0.3091,
+      0.6243
+     ],
+     [
+      "T16",
+      0.2125,
+      0.4924
+     ],
+     [
+      "T17",
+      0.1789,
+      0.5107
+     ],
+     [
+      "T18",
+      0.1457,
+      0.5265
+     ],
+     [
+      "T19",
+      0.4494,
+      0.6012
+     ],
+     [
+      "T20",
+      0.2947,
+      0.6702
+     ],
+     [
+      "T21",
+      0.1378,
+      0.4971
+     ],
+     [
+      "T22",
+      0.1012,
+      0.5595
+     ],
+     [
+      "T23",
+      0.0872,
+      0.5692
+     ],
+     [
+      "T24",
+      0.1759,
+      0.5078
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-005",
+    "split": "dev",
+    "query": "Move our CI from Jenkins to GitHub Actions",
+    "label": "duplicate",
+    "match": "T4",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Migrate CI pipeline to GitHub Actions': Task T4 represents the exact same CI migration work.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T4",
+     "reason": "Task T4 represents the exact same CI migration work.",
+     "item_subject": "CI migration from Jenkins to GitHub Actions"
+    },
+    "top_id": "T4",
+    "top_title": "Migrate CI pipeline to GitHub Actions",
+    "ranked_ids": [
+     "T4",
+     "T15",
+     "T16",
+     "T11",
+     "T20"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.1417,
+      0.557
+     ],
+     [
+      "T2",
+      0.2367,
+      0.5027
+     ],
+     [
+      "T3",
+      0.2155,
+      0.5493
+     ],
+     [
+      "T4",
+      0.581,
+      0.8369
+     ],
+     [
+      "T5",
+      0.2267,
+      0.5353
+     ],
+     [
+      "T6",
+      0.1478,
+      0.4976
+     ],
+     [
+      "T7",
+      0.0785,
+      0.5081
+     ],
+     [
+      "T8",
+      0.1766,
+      0.5587
+     ],
+     [
+      "T9",
+      0.1943,
+      0.5389
+     ],
+     [
+      "T10",
+      0.1487,
+      0.5554
+     ],
+     [
+      "T11",
+      0.3312,
+      0.5399
+     ],
+     [
+      "T12",
+      0.22,
+      0.5127
+     ],
+     [
+      "T13",
+      0.2795,
+      0.5678
+     ],
+     [
+      "T14",
+      0.1639,
+      0.5463
+     ],
+     [
+      "T15",
+      0.287,
+      0.5638
+     ],
+     [
+      "T16",
+      0.3069,
+      0.5469
+     ],
+     [
+      "T17",
+      0.2461,
+      0.526
+     ],
+     [
+      "T18",
+      0.17,
+      0.6014
+     ],
+     [
+      "T19",
+      0.2345,
+      0.5575
+     ],
+     [
+      "T20",
+      0.2947,
+      0.5374
+     ],
+     [
+      "T21",
+      0.2297,
+      0.5365
+     ],
+     [
+      "T22",
+      0.3036,
+      0.5295
+     ],
+     [
+      "T23",
+      0.2179,
+      0.5422
+     ],
+     [
+      "T24",
+      0.1954,
+      0.519
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-007",
+    "split": "dev",
+    "query": "Safari users get logged out too early, fix it",
+    "label": "duplicate",
+    "match": "T6",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Fix login timeout on Safari': Task T6 is fixing the same Safari timeout bug.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T6",
+     "reason": "Task T6 is fixing the same Safari timeout bug.",
+     "item_subject": "Safari user early logout issue"
+    },
+    "top_id": "T6",
+    "top_title": "Fix login timeout on Safari",
+    "ranked_ids": [
+     "T6",
+     "T10",
+     "T14"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.1759,
+      0.531
+     ],
+     [
+      "T2",
+      0.1866,
+      0.5509
+     ],
+     [
+      "T3",
+      0.2297,
+      0.481
+     ],
+     [
+      "T4",
+      0.228,
+      0.5015
+     ],
+     [
+      "T5",
+      0.2179,
+      0.512
+     ],
+     [
+      "T6",
+      0.1417,
+      0.8573
+     ],
+     [
+      "T7",
+      0.25,
+      0.4744
+     ],
+     [
+      "T8",
+      0.2125,
+      0.6014
+     ],
+     [
+      "T9",
+      0.2562,
+      0.5288
+     ],
+     [
+      "T10",
+      0.3072,
+      0.5842
+     ],
+     [
+      "T11",
+      0.2338,
+      0.5598
+     ],
+     [
+      "T12",
+      0.1545,
+      0.4741
+     ],
+     [
+      "T13",
+      0.2461,
+      0.5732
+     ],
+     [
+      "T14",
+      0.3163,
+      0.5356
+     ],
+     [
+      "T15",
+      0.1487,
+      0.5278
+     ],
+     [
+      "T16",
+      0.1587,
+      0.4858
+     ],
+     [
+      "T17",
+      0.2367,
+      0.4994
+     ],
+     [
+      "T18",
+      0.2562,
+      0.5763
+     ],
+     [
+      "T19",
+      0.2456,
+      0.5267
+     ],
+     [
+      "T20",
+      0.1526,
+      0.5031
+     ],
+     [
+      "T21",
+      0.1325,
+      0.5924
+     ],
+     [
+      "T22",
+      0.0977,
+      0.5207
+     ],
+     [
+      "T23",
+      0.2519,
+      0.5207
+     ],
+     [
+      "T24",
+      0.2078,
+      0.5909
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-008",
+    "split": "dev",
+    "query": "Resolve Safari session timeout bug",
+    "label": "duplicate",
+    "match": "T6",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Fix login timeout on Safari': Task T6 targets resolving the same Safari timeout bug.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T6",
+     "reason": "Task T6 targets resolving the same Safari timeout bug.",
+     "item_subject": "Safari session timeout bug"
+    },
+    "top_id": "T6",
+    "top_title": "Fix login timeout on Safari",
+    "ranked_ids": [
+     "T6",
+     "T10",
+     "T2",
+     "T15",
+     "T16"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.1566,
+      0.5126
+     ],
+     [
+      "T2",
+      0.3113,
+      0.5576
+     ],
+     [
+      "T3",
+      0.3238,
+      0.4888
+     ],
+     [
+      "T4",
+      0.2155,
+      0.5203
+     ],
+     [
+      "T5",
+      0.2284,
+      0.5013
+     ],
+     [
+      "T6",
+      0.3344,
+      0.8757
+     ],
+     [
+      "T7",
+      0.1193,
+      0.4815
+     ],
+     [
+      "T8",
+      0.2217,
+      0.5774
+     ],
+     [
+      "T9",
+      0.2468,
+      0.5528
+     ],
+     [
+      "T10",
+      0.3069,
+      0.5859
+     ],
+     [
+      "T11",
+      0.2217,
+      0.5482
+     ],
+     [
+      "T12",
+      0.2208,
+      0.4704
+     ],
+     [
+      "T13",
+      0.2615,
+      0.5531
+     ],
+     [
+      "T14",
+      0.272,
+      0.5416
+     ],
+     [
+      "T15",
+      0.2957,
+      0.5102
+     ],
+     [
+      "T16",
+      0.3187,
+      0.4912
+     ],
+     [
+      "T17",
+      0.25,
+      0.5033
+     ],
+     [
+      "T18",
+      0.0823,
+      0.5699
+     ],
+     [
+      "T19",
+      0.1937,
+      0.5069
+     ],
+     [
+      "T20",
+      0.3045,
+      0.47
+     ],
+     [
+      "T21",
+      0.0773,
+      0.5955
+     ],
+     [
+      "T22",
+      0.2237,
+      0.5353
+     ],
+     [
+      "T23",
+      0.2429,
+      0.5048
+     ],
+     [
+      "T24",
+      0.1291,
+      0.5643
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-010",
+    "split": "dev",
+    "query": "Enable single sign-on for enterprise accounts",
+    "label": "duplicate",
+    "match": "T8",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Set up SSO for enterprise customers': Task T8 sets up the same SSO feature for enterprise accounts.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T8",
+     "reason": "Task T8 sets up the same SSO feature for enterprise accounts.",
+     "item_subject": "enterprise single sign-on"
+    },
+    "top_id": "T8",
+    "top_title": "Set up SSO for enterprise customers",
+    "ranked_ids": [
+     "T8",
+     "T19",
+     "T4",
+     "T10",
+     "T11"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2736,
+      0.6032
+     ],
+     [
+      "T2",
+      0.2073,
+      0.537
+     ],
+     [
+      "T3",
+      0.2527,
+      0.5299
+     ],
+     [
+      "T4",
+      0.311,
+      0.5443
+     ],
+     [
+      "T5",
+      0.3269,
+      0.5162
+     ],
+     [
+      "T6",
+      0.2597,
+      0.5856
+     ],
+     [
+      "T7",
+      0.225,
+      0.5177
+     ],
+     [
+      "T8",
+      0.51,
+      0.842
+     ],
+     [
+      "T9",
+      0.2795,
+      0.5436
+     ],
+     [
+      "T10",
+      0.3072,
+      0.5306
+     ],
+     [
+      "T11",
+      0.2975,
+      0.5296
+     ],
+     [
+      "T12",
+      0.2705,
+      0.4843
+     ],
+     [
+      "T13",
+      0.1342,
+      0.5753
+     ],
+     [
+      "T14",
+      0.2767,
+      0.5164
+     ],
+     [
+      "T15",
+      0.2338,
+      0.5757
+     ],
+     [
+      "T16",
+      0.1813,
+      0.5209
+     ],
+     [
+      "T17",
+      0.3013,
+      0.526
+     ],
+     [
+      "T18",
+      0.2096,
+      0.5628
+     ],
+     [
+      "T19",
+      0.3022,
+      0.5686
+     ],
+     [
+      "T20",
+      0.2833,
+      0.5262
+     ],
+     [
+      "T21",
+      0.2429,
+      0.5359
+     ],
+     [
+      "T22",
+      0.2736,
+      0.4983
+     ],
+     [
+      "T23",
+      0.2519,
+      0.5463
+     ],
+     [
+      "T24",
+      0.2456,
+      0.5435
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-011",
+    "split": "dev",
+    "query": "Renew Figma subscription",
+    "label": "duplicate",
+    "match": "T9",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Renew the Figma team license': Task T9 is renewing the exact same Figma subscription license.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T9",
+     "reason": "Task T9 is renewing the exact same Figma subscription license.",
+     "item_subject": "Figma subscription"
+    },
+    "top_id": "T9",
+    "top_title": "Renew the Figma team license",
+    "ranked_ids": [
+     "T9",
+     "T15",
+     "T4",
+     "T20",
+     "T2"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2061,
+      0.5311
+     ],
+     [
+      "T2",
+      0.3623,
+      0.4896
+     ],
+     [
+      "T3",
+      0.2245,
+      0.544
+     ],
+     [
+      "T4",
+      0.3623,
+      0.5269
+     ],
+     [
+      "T5",
+      0.2684,
+      0.509
+     ],
+     [
+      "T6",
+      0.2667,
+      0.541
+     ],
+     [
+      "T7",
+      0.217,
+      0.534
+     ],
+     [
+      "T8",
+      0.2305,
+      0.5139
+     ],
+     [
+      "T9",
+      0.425,
+      0.9103
+     ],
+     [
+      "T10",
+      0.1645,
+      0.5108
+     ],
+     [
+      "T11",
+      0.2305,
+      0.5213
+     ],
+     [
+      "T12",
+      0.2537,
+      0.5398
+     ],
+     [
+      "T13",
+      0.2164,
+      0.4967
+     ],
+     [
+      "T14",
+      0.2354,
+      0.4689
+     ],
+     [
+      "T15",
+      0.2881,
+      0.5365
+     ],
+     [
+      "T16",
+      0.2204,
+      0.5443
+     ],
+     [
+      "T17",
+      0.2638,
+      0.5065
+     ],
+     [
+      "T18",
+      0.1962,
+      0.5643
+     ],
+     [
+      "T19",
+      0.1478,
+      0.5135
+     ],
+     [
+      "T20",
+      0.3281,
+      0.4983
+     ],
+     [
+      "T21",
+      0.0911,
+      0.5124
+     ],
+     [
+      "T22",
+      0.2576,
+      0.6288
+     ],
+     [
+      "T23",
+      0.1983,
+      0.5115
+     ],
+     [
+      "T24",
+      0.1725,
+      0.4849
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-013",
+    "split": "dev",
+    "query": "Document the new API rate limits",
+    "label": "duplicate",
+    "match": "T11",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Update API rate limit documentation': Task T11 updates the same API rate limit documentation.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T11",
+     "reason": "Task T11 updates the same API rate limit documentation.",
+     "item_subject": "new API rate limits documentation"
+    },
+    "top_id": "T11",
+    "top_title": "Update API rate limit documentation",
+    "ranked_ids": [
+     "T11",
+     "T10",
+     "T2",
+     "T14",
+     "T13"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2068,
+      0.6109
+     ],
+     [
+      "T2",
+      0.2957,
+      0.6231
+     ],
+     [
+      "T3",
+      0.3344,
+      0.5305
+     ],
+     [
+      "T4",
+      0.2957,
+      0.5327
+     ],
+     [
+      "T5",
+      0.3138,
+      0.5666
+     ],
+     [
+      "T6",
+      0.2305,
+      0.5382
+     ],
+     [
+      "T7",
+      0.1855,
+      0.57
+     ],
+     [
+      "T8",
+      0.2284,
+      0.5549
+     ],
+     [
+      "T9",
+      0.3967,
+      0.5515
+     ],
+     [
+      "T10",
+      0.2914,
+      0.6295
+     ],
+     [
+      "T11",
+      0.4313,
+      0.8799
+     ],
+     [
+      "T12",
+      0.272,
+      0.5361
+     ],
+     [
+      "T13",
+      0.3508,
+      0.5729
+     ],
+     [
+      "T14",
+      0.3027,
+      0.623
+     ],
+     [
+      "T15",
+      0.203,
+      0.5495
+     ],
+     [
+      "T16",
+      0.1919,
+      0.5
+     ],
+     [
+      "T17",
+      0.2318,
+      0.5644
+     ],
+     [
+      "T18",
+      0.34,
+      0.562
+     ],
+     [
+      "T19",
+      0.287,
+      0.5675
+     ],
+     [
+      "T20",
+      0.1831,
+      0.5486
+     ],
+     [
+      "T21",
+      0.2922,
+      0.5483
+     ],
+     [
+      "T22",
+      0.2527,
+      0.5281
+     ],
+     [
+      "T23",
+      0.175,
+      0.6382
+     ],
+     [
+      "T24",
+      0.2649,
+      0.5169
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-014",
+    "split": "dev",
+    "query": "Find a freelance illustrator for launch artwork",
+    "label": "duplicate",
+    "match": "T12",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Hire contract illustrator for launch assets': Task T12 hires the contract illustrator for the same launch artwork.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T12",
+     "reason": "Task T12 hires the contract illustrator for the same launch artwork.",
+     "item_subject": "launch artwork freelance illustrator"
+    },
+    "top_id": "T12",
+    "top_title": "Hire contract illustrator for launch assets",
+    "ranked_ids": [
+     "T12",
+     "T5",
+     "T20",
+     "T19"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2674,
+      0.5598
+     ],
+     [
+      "T2",
+      0.2024,
+      0.4821
+     ],
+     [
+      "T3",
+      0.2237,
+      0.5675
+     ],
+     [
+      "T4",
+      0.2226,
+      0.4961
+     ],
+     [
+      "T5",
+      0.3825,
+      0.5664
+     ],
+     [
+      "T6",
+      0.1608,
+      0.4449
+     ],
+     [
+      "T7",
+      0.1943,
+      0.5542
+     ],
+     [
+      "T8",
+      0.228,
+      0.4947
+     ],
+     [
+      "T9",
+      0.204,
+      0.5188
+     ],
+     [
+      "T10",
+      0.26,
+      0.5135
+     ],
+     [
+      "T11",
+      0.228,
+      0.4894
+     ],
+     [
+      "T12",
+      0.5856,
+      0.8999
+     ],
+     [
+      "T13",
+      0.2179,
+      0.5094
+     ],
+     [
+      "T14",
+      0.2511,
+      0.5001
+     ],
+     [
+      "T15",
+      0.2488,
+      0.5371
+     ],
+     [
+      "T16",
+      0.1987,
+      0.4715
+     ],
+     [
+      "T17",
+      0.1889,
+      0.4906
+     ],
+     [
+      "T18",
+      0.2267,
+      0.5131
+     ],
+     [
+      "T19",
+      0.3326,
+      0.515
+     ],
+     [
+      "T20",
+      0.34,
+      0.5306
+     ],
+     [
+      "T21",
+      0.2152,
+      0.4523
+     ],
+     [
+      "T22",
+      0.2483,
+      0.5245
+     ],
+     [
+      "T23",
+      0.2048,
+      0.5851
+     ],
+     [
+      "T24",
+      0.2587,
+      0.4673
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-016",
+    "split": "dev",
+    "query": "Speed up search API response times",
+    "label": "duplicate",
+    "match": "T14",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Reduce p95 latency on the search endpoint': Task T14 is the exact same work of improving search API performance.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T14",
+     "reason": "Task T14 is the exact same work of improving search API performance.",
+     "item_subject": "search API response times"
+    },
+    "top_id": "T14",
+    "top_title": "Reduce p95 latency on the search endpoint",
+    "ranked_ids": [
+     "T14",
+     "T11",
+     "T2",
+     "T18",
+     "T8"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.1789,
+      0.5148
+     ],
+     [
+      "T2",
+      0.3352,
+      0.5638
+     ],
+     [
+      "T3",
+      0.1889,
+      0.5222
+     ],
+     [
+      "T4",
+      0.2634,
+      0.5232
+     ],
+     [
+      "T5",
+      0.2284,
+      0.5307
+     ],
+     [
+      "T6",
+      0.2508,
+      0.582
+     ],
+     [
+      "T7",
+      0.1789,
+      0.5075
+     ],
+     [
+      "T8",
+      0.4435,
+      0.5424
+     ],
+     [
+      "T9",
+      0.3016,
+      0.4655
+     ],
+     [
+      "T10",
+      0.2125,
+      0.5428
+     ],
+     [
+      "T11",
+      0.2957,
+      0.6238
+     ],
+     [
+      "T12",
+      0.2649,
+      0.4799
+     ],
+     [
+      "T13",
+      0.2354,
+      0.5479
+     ],
+     [
+      "T14",
+      0.3853,
+      0.7733
+     ],
+     [
+      "T15",
+      0.271,
+      0.5192
+     ],
+     [
+      "T16",
+      0.2656,
+      0.5101
+     ],
+     [
+      "T17",
+      0.1,
+      0.5114
+     ],
+     [
+      "T18",
+      0.3016,
+      0.5604
+     ],
+     [
+      "T19",
+      0.1937,
+      0.4841
+     ],
+     [
+      "T20",
+      0.1522,
+      0.477
+     ],
+     [
+      "T21",
+      0.2576,
+      0.5514
+     ],
+     [
+      "T22",
+      0.2013,
+      0.4781
+     ],
+     [
+      "T23",
+      0.17,
+      0.5325
+     ],
+     [
+      "T24",
+      0.2367,
+      0.5248
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-017",
+    "split": "dev",
+    "query": "Send out the Q1 CSAT survey",
+    "label": "duplicate",
+    "match": "T15",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Run Q1 customer satisfaction survey': Task T15 covers running the Q1 CSAT survey.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T15",
+     "reason": "Task T15 covers running the Q1 CSAT survey.",
+     "item_subject": "Q1 CSAT survey"
+    },
+    "top_id": "T15",
+    "top_title": "Run Q1 customer satisfaction survey",
+    "ranked_ids": [
+     "T15",
+     "T20",
+     "T3",
+     "T19",
+     "T10"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2217,
+      0.5754
+     ],
+     [
+      "T2",
+      0.2125,
+      0.5164
+     ],
+     [
+      "T3",
+      0.425,
+      0.6193
+     ],
+     [
+      "T4",
+      0.2125,
+      0.5333
+     ],
+     [
+      "T5",
+      0.2267,
+      0.6385
+     ],
+     [
+      "T6",
+      0.2833,
+      0.5085
+     ],
+     [
+      "T7",
+      0.238,
+      0.5207
+     ],
+     [
+      "T8",
+      0.3016,
+      0.5682
+     ],
+     [
+      "T9",
+      0.34,
+      0.5363
+     ],
+     [
+      "T10",
+      0.3138,
+      0.5729
+     ],
+     [
+      "T11",
+      0.1371,
+      0.539
+     ],
+     [
+      "T12",
+      0.0971,
+      0.5332
+     ],
+     [
+      "T13",
+      0.3224,
+      0.5483
+     ],
+     [
+      "T14",
+      0.275,
+      0.5375
+     ],
+     [
+      "T15",
+      0.4387,
+      0.8996
+     ],
+     [
+      "T16",
+      0.2088,
+      0.5125
+     ],
+     [
+      "T17",
+      0.1951,
+      0.5296
+     ],
+     [
+      "T18",
+      0.2782,
+      0.5621
+     ],
+     [
+      "T19",
+      0.3306,
+      0.61
+     ],
+     [
+      "T20",
+      0.3117,
+      0.661
+     ],
+     [
+      "T21",
+      0.2305,
+      0.5546
+     ],
+     [
+      "T22",
+      0.2217,
+      0.5263
+     ],
+     [
+      "T23",
+      0.1619,
+      0.5882
+     ],
+     [
+      "T24",
+      0.2361,
+      0.5278
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-019",
+    "split": "dev",
+    "query": "Localize help center articles in Spanish",
+    "label": "duplicate",
+    "match": "T17",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Translate help center into Spanish': Task T17 is the exact same work to translate the help center into Spanish.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T17",
+     "reason": "Task T17 is the exact same work to translate the help center into Spanish.",
+     "item_subject": "help center Spanish localization"
+    },
+    "top_id": "T17",
+    "top_title": "Translate help center into Spanish",
+    "ranked_ids": [
+     "T17",
+     "T23",
+     "T21",
+     "T15",
+     "T2"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.1037,
+      0.589
+     ],
+     [
+      "T2",
+      0.287,
+      0.5277
+     ],
+     [
+      "T3",
+      0.1971,
+      0.5149
+     ],
+     [
+      "T4",
+      0.2429,
+      0.5386
+     ],
+     [
+      "T5",
+      0.2795,
+      0.5537
+     ],
+     [
+      "T6",
+      0.203,
+      0.4922
+     ],
+     [
+      "T7",
+      0.1349,
+      0.5169
+     ],
+     [
+      "T8",
+      0.272,
+      0.535
+     ],
+     [
+      "T9",
+      0.175,
+      0.5097
+     ],
+     [
+      "T10",
+      0.1962,
+      0.5329
+     ],
+     [
+      "T11",
+      0.2267,
+      0.5542
+     ],
+     [
+      "T12",
+      0.2253,
+      0.523
+     ],
+     [
+      "T13",
+      0.2394,
+      0.5713
+     ],
+     [
+      "T14",
+      0.2309,
+      0.5185
+     ],
+     [
+      "T15",
+      0.34,
+      0.538
+     ],
+     [
+      "T16",
+      0.2914,
+      0.5115
+     ],
+     [
+      "T17",
+      0.5973,
+      0.918
+     ],
+     [
+      "T18",
+      0.2,
+      0.524
+     ],
+     [
+      "T19",
+      0.24,
+      0.5463
+     ],
+     [
+      "T20",
+      0.2795,
+      0.5357
+     ],
+     [
+      "T21",
+      0.2833,
+      0.549
+     ],
+     [
+      "T22",
+      0.228,
+      0.474
+     ],
+     [
+      "T23",
+      0.3132,
+      0.5762
+     ],
+     [
+      "T24",
+      0.3,
+      0.5117
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-020",
+    "split": "dev",
+    "query": "Remove old feature flags",
+    "label": "duplicate",
+    "match": "T18",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Clean up stale feature flags': Task T18 is the same work to clean up old feature flags.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T18",
+     "reason": "Task T18 is the same work to clean up old feature flags.",
+     "item_subject": "old feature flags"
+    },
+    "top_id": "T18",
+    "top_title": "Clean up stale feature flags",
+    "ranked_ids": [
+     "T18",
+     "T13",
+     "T10",
+     "T23",
+     "T9"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2061,
+      0.5705
+     ],
+     [
+      "T2",
+      0.2508,
+      0.5944
+     ],
+     [
+      "T3",
+      0.2566,
+      0.5336
+     ],
+     [
+      "T4",
+      0.223,
+      0.6113
+     ],
+     [
+      "T5",
+      0.2386,
+      0.5177
+     ],
+     [
+      "T6",
+      0.2667,
+      0.518
+     ],
+     [
+      "T7",
+      0.1447,
+      0.5449
+     ],
+     [
+      "T8",
+      0.2305,
+      0.5384
+     ],
+     [
+      "T9",
+      0.3269,
+      0.5556
+     ],
+     [
+      "T10",
+      0.3016,
+      0.5587
+     ],
+     [
+      "T11",
+      0.2593,
+      0.5719
+     ],
+     [
+      "T12",
+      0.1776,
+      0.5081
+     ],
+     [
+      "T13",
+      0.3709,
+      0.5754
+     ],
+     [
+      "T14",
+      0.2354,
+      0.5398
+     ],
+     [
+      "T15",
+      0.1441,
+      0.5564
+     ],
+     [
+      "T16",
+      0.1889,
+      0.5683
+     ],
+     [
+      "T17",
+      0.2052,
+      0.5241
+     ],
+     [
+      "T18",
+      0.5231,
+      0.9271
+     ],
+     [
+      "T19",
+      0.1971,
+      0.5142
+     ],
+     [
+      "T20",
+      0.2684,
+      0.4846
+     ],
+     [
+      "T21",
+      0.1518,
+      0.5719
+     ],
+     [
+      "T22",
+      0.1545,
+      0.5208
+     ],
+     [
+      "T23",
+      0.2833,
+      0.5561
+     ],
+     [
+      "T24",
+      0.1232,
+      0.5787
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-022",
+    "split": "dev",
+    "query": "Draft marketing OKRs for Q2",
+    "label": "duplicate",
+    "match": "T20",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Create Q2 OKR draft for marketing': Task T20 covers drafting the Q2 marketing OKRs.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T20",
+     "reason": "Task T20 covers drafting the Q2 marketing OKRs.",
+     "item_subject": "marketing OKRs for Q2"
+    },
+    "top_id": "T20",
+    "top_title": "Create Q2 OKR draft for marketing",
+    "ranked_ids": [
+     "T20",
+     "T5",
+     "T7",
+     "T1",
+     "T10"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.3449,
+      0.6133
+     ],
+     [
+      "T2",
+      0.2922,
+      0.5017
+     ],
+     [
+      "T3",
+      0.2732,
+      0.646
+     ],
+     [
+      "T4",
+      0.2391,
+      0.5226
+     ],
+     [
+      "T5",
+      0.34,
+      0.659
+     ],
+     [
+      "T6",
+      0.1574,
+      0.4668
+     ],
+     [
+      "T7",
+      0.408,
+      0.6235
+     ],
+     [
+      "T8",
+      0.2468,
+      0.5504
+     ],
+     [
+      "T9",
+      0.2473,
+      0.4727
+     ],
+     [
+      "T10",
+      0.3138,
+      0.5902
+     ],
+     [
+      "T11",
+      0.2742,
+      0.5619
+     ],
+     [
+      "T12",
+      0.2671,
+      0.569
+     ],
+     [
+      "T13",
+      0.2638,
+      0.5353
+     ],
+     [
+      "T14",
+      0.225,
+      0.5388
+     ],
+     [
+      "T15",
+      0.1919,
+      0.6334
+     ],
+     [
+      "T16",
+      0.2386,
+      0.4815
+     ],
+     [
+      "T17",
+      0.2508,
+      0.52
+     ],
+     [
+      "T18",
+      0.2473,
+      0.5085
+     ],
+     [
+      "T19",
+      0.2833,
+      0.5548
+     ],
+     [
+      "T20",
+      0.5,
+      0.9403
+     ],
+     [
+      "T21",
+      0.2593,
+      0.5091
+     ],
+     [
+      "T22",
+      0.1725,
+      0.4966
+     ],
+     [
+      "T23",
+      0.2429,
+      0.6121
+     ],
+     [
+      "T24",
+      0.3542,
+      0.5101
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-023",
+    "split": "dev",
+    "query": "CSV export from reports is broken",
+    "label": "duplicate",
+    "match": "T21",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Fix broken CSV export in reports': Task T21 is the matching fix for the broken reports CSV export.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T21",
+     "reason": "Task T21 is the matching fix for the broken reports CSV export.",
+     "item_subject": "reports CSV export"
+    },
+    "top_id": "T21",
+    "top_title": "Fix broken CSV export in reports",
+    "ranked_ids": [
+     "T21",
+     "T10",
+     "T15",
+     "T20"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.1813,
+      0.5132
+     ],
+     [
+      "T2",
+      0.17,
+      0.5308
+     ],
+     [
+      "T3",
+      0.2194,
+      0.51
+     ],
+     [
+      "T4",
+      0.0486,
+      0.5219
+     ],
+     [
+      "T5",
+      0.2576,
+      0.5403
+     ],
+     [
+      "T6",
+      0.2267,
+      0.5435
+     ],
+     [
+      "T7",
+      0.1821,
+      0.5089
+     ],
+     [
+      "T8",
+      0.25,
+      0.515
+     ],
+     [
+      "T9",
+      0.2508,
+      0.4853
+     ],
+     [
+      "T10",
+      0.3113,
+      0.5716
+     ],
+     [
+      "T11",
+      0.2,
+      0.5408
+     ],
+     [
+      "T12",
+      0.2237,
+      0.4623
+     ],
+     [
+      "T13",
+      0.1062,
+      0.5458
+     ],
+     [
+      "T14",
+      0.1608,
+      0.5553
+     ],
+     [
+      "T15",
+      0.3,
+      0.5574
+     ],
+     [
+      "T16",
+      0.2698,
+      0.5198
+     ],
+     [
+      "T17",
+      0.1776,
+      0.525
+     ],
+     [
+      "T18",
+      0.223,
+      0.5503
+     ],
+     [
+      "T19",
+      0.2397,
+      0.4781
+     ],
+     [
+      "T20",
+      0.3606,
+      0.5089
+     ],
+     [
+      "T21",
+      1.0,
+      0.8972
+     ],
+     [
+      "T22",
+      0.2493,
+      0.4842
+     ],
+     [
+      "T23",
+      0.2217,
+      0.5035
+     ],
+     [
+      "T24",
+      0.2179,
+      0.5408
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-025",
+    "split": "dev",
+    "query": "Announce the v2 launch on the blog",
+    "label": "duplicate",
+    "match": "T23",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Write blog post announcing v2 launch': Task T23 is the same work to write the v2 launch blog post.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T23",
+     "reason": "Task T23 is the same work to write the v2 launch blog post.",
+     "item_subject": "v2 launch blog post"
+    },
+    "top_id": "T23",
+    "top_title": "Write blog post announcing v2 launch",
+    "ranked_ids": [
+     "T23",
+     "T10",
+     "T3",
+     "T15",
+     "T12"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2461,
+      0.6074
+     ],
+     [
+      "T2",
+      0.3113,
+      0.545
+     ],
+     [
+      "T3",
+      0.3238,
+      0.5995
+     ],
+     [
+      "T4",
+      0.2634,
+      0.5353
+     ],
+     [
+      "T5",
+      0.2537,
+      0.6166
+     ],
+     [
+      "T6",
+      0.223,
+      0.5053
+     ],
+     [
+      "T7",
+      0.1789,
+      0.6036
+     ],
+     [
+      "T8",
+      0.1232,
+      0.5524
+     ],
+     [
+      "T9",
+      0.3016,
+      0.5115
+     ],
+     [
+      "T10",
+      0.2833,
+      0.617
+     ],
+     [
+      "T11",
+      0.2464,
+      0.5891
+     ],
+     [
+      "T12",
+      0.287,
+      0.5877
+     ],
+     [
+      "T13",
+      0.2877,
+      0.5666
+     ],
+     [
+      "T14",
+      0.408,
+      0.554
+     ],
+     [
+      "T15",
+      0.2957,
+      0.5879
+     ],
+     [
+      "T16",
+      0.2656,
+      0.5424
+     ],
+     [
+      "T17",
+      0.175,
+      0.5566
+     ],
+     [
+      "T18",
+      0.3016,
+      0.5373
+     ],
+     [
+      "T19",
+      0.3013,
+      0.5412
+     ],
+     [
+      "T20",
+      0.203,
+      0.5818
+     ],
+     [
+      "T21",
+      0.1803,
+      0.5006
+     ],
+     [
+      "T22",
+      0.1342,
+      0.509
+     ],
+     [
+      "T23",
+      0.4129,
+      0.9455
+     ],
+     [
+      "T24",
+      0.1076,
+      0.4833
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-026",
+    "split": "dev",
+    "query": "GDPR review of third-party cookies",
+    "label": "duplicate",
+    "match": "T24",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Audit third-party cookies for GDPR compliance': Task T24 matches the GDPR review for third-party cookies.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T24",
+     "reason": "Task T24 matches the GDPR review for third-party cookies.",
+     "item_subject": "third-party cookies GDPR"
+    },
+    "top_id": "T24",
+    "top_title": "Audit third-party cookies for GDPR compliance",
+    "ranked_ids": [
+     "T24",
+     "T2",
+     "T13",
+     "T22",
+     "T9"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2461,
+      0.4966
+     ],
+     [
+      "T2",
+      0.3352,
+      0.5961
+     ],
+     [
+      "T3",
+      0.2159,
+      0.5078
+     ],
+     [
+      "T4",
+      0.2634,
+      0.5383
+     ],
+     [
+      "T5",
+      0.2537,
+      0.5068
+     ],
+     [
+      "T6",
+      0.2508,
+      0.5238
+     ],
+     [
+      "T7",
+      0.2684,
+      0.5045
+     ],
+     [
+      "T8",
+      0.1971,
+      0.532
+     ],
+     [
+      "T9",
+      0.329,
+      0.5045
+     ],
+     [
+      "T10",
+      0.2125,
+      0.5097
+     ],
+     [
+      "T11",
+      0.1971,
+      0.5191
+     ],
+     [
+      "T12",
+      0.1987,
+      0.4767
+     ],
+     [
+      "T13",
+      0.2877,
+      0.5228
+     ],
+     [
+      "T14",
+      0.2493,
+      0.5176
+     ],
+     [
+      "T15",
+      0.1232,
+      0.5435
+     ],
+     [
+      "T16",
+      0.2391,
+      0.4991
+     ],
+     [
+      "T17",
+      0.225,
+      0.4887
+     ],
+     [
+      "T18",
+      0.2194,
+      0.5678
+     ],
+     [
+      "T19",
+      0.2367,
+      0.4627
+     ],
+     [
+      "T20",
+      0.2537,
+      0.5042
+     ],
+     [
+      "T21",
+      0.2318,
+      0.5243
+     ],
+     [
+      "T22",
+      0.3132,
+      0.5107
+     ],
+     [
+      "T23",
+      0.1457,
+      0.4881
+     ],
+     [
+      "T24",
+      0.6667,
+      0.886
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-028",
+    "split": "dev",
+    "query": "Book the Q2 offsite venue",
+    "label": "duplicate",
+    "match": "T3",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Book venue for the Q2 offsite': Task T3 is the task to book the Q2 offsite venue.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T3",
+     "reason": "Task T3 is the task to book the Q2 offsite venue.",
+     "item_subject": "Q2 offsite venue"
+    },
+    "top_id": "T3",
+    "top_title": "Book venue for the Q2 offsite",
+    "ranked_ids": [
+     "T3",
+     "T20",
+     "T10",
+     "T1",
+     "T9"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.3045,
+      0.5304
+     ],
+     [
+      "T2",
+      0.1919,
+      0.4952
+     ],
+     [
+      "T3",
+      1.0,
+      0.9267
+     ],
+     [
+      "T4",
+      0.1919,
+      0.5099
+     ],
+     [
+      "T5",
+      0.1759,
+      0.5607
+     ],
+     [
+      "T6",
+      0.2615,
+      0.4626
+     ],
+     [
+      "T7",
+      0.1417,
+      0.5692
+     ],
+     [
+      "T8",
+      0.2267,
+      0.5316
+     ],
+     [
+      "T9",
+      0.3849,
+      0.5234
+     ],
+     [
+      "T10",
+      0.3238,
+      0.5399
+     ],
+     [
+      "T11",
+      0.1417,
+      0.4805
+     ],
+     [
+      "T12",
+      0.2,
+      0.5635
+     ],
+     [
+      "T13",
+      0.3339,
+      0.5223
+     ],
+     [
+      "T14",
+      0.2318,
+      0.5226
+     ],
+     [
+      "T15",
+      0.2267,
+      0.5645
+     ],
+     [
+      "T16",
+      0.2473,
+      0.5011
+     ],
+     [
+      "T17",
+      0.2305,
+      0.5037
+     ],
+     [
+      "T18",
+      0.2566,
+      0.5025
+     ],
+     [
+      "T19",
+      0.2429,
+      0.538
+     ],
+     [
+      "T20",
+      0.3224,
+      0.593
+     ],
+     [
+      "T21",
+      0.1789,
+      0.488
+     ],
+     [
+      "T22",
+      0.2537,
+      0.5432
+     ],
+     [
+      "T23",
+      0.1672,
+      0.5746
+     ],
+     [
+      "T24",
+      0.1214,
+      0.4916
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-029",
+    "split": "dev",
+    "query": "Investor update, March edition",
+    "label": "duplicate",
+    "match": "T5",
+    "decision": "duplicate",
+    "reasoning": "Already tracked as 'Prepare investor update for March': Task T5 covers preparing the March investor update.",
+    "judge": {
+     "verdict": "same",
+     "task_id": "T5",
+     "reason": "Task T5 covers preparing the March investor update.",
+     "item_subject": "March investor update"
+    },
+    "top_id": "T5",
+    "top_title": "Prepare investor update for March",
+    "ranked_ids": [
+     "T5",
+     "T15",
+     "T20",
+     "T11",
+     "T12"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2361,
+      0.5777
+     ],
+     [
+      "T2",
+      0.3552,
+      0.5287
+     ],
+     [
+      "T3",
+      0.2017,
+      0.5232
+     ],
+     [
+      "T4",
+      0.3045,
+      0.4972
+     ],
+     [
+      "T5",
+      0.5667,
+      0.8426
+     ],
+     [
+      "T6",
+      0.2386,
+      0.493
+     ],
+     [
+      "T7",
+      0.1604,
+      0.5543
+     ],
+     [
+      "T8",
+      0.1569,
+      0.5092
+     ],
+     [
+      "T9",
+      0.2345,
+      0.4647
+     ],
+     [
+      "T10",
+      0.25,
+      0.5969
+     ],
+     [
+      "T11",
+      0.34,
+      0.5354
+     ],
+     [
+      "T12",
+      0.3027,
+      0.5296
+     ],
+     [
+      "T13",
+      0.2508,
+      0.5291
+     ],
+     [
+      "T14",
+      0.3831,
+      0.5027
+     ],
+     [
+      "T15",
+      0.3662,
+      0.5814
+     ],
+     [
+      "T16",
+      0.17,
+      0.4699
+     ],
+     [
+      "T17",
+      0.2125,
+      0.5146
+     ],
+     [
+      "T18",
+      0.2638,
+      0.4902
+     ],
+     [
+      "T19",
+      0.272,
+      0.4692
+     ],
+     [
+      "T20",
+      0.3238,
+      0.5527
+     ],
+     [
+      "T21",
+      0.1645,
+      0.523
+     ],
+     [
+      "T22",
+      0.1889,
+      0.492
+     ],
+     [
+      "T23",
+      0.1803,
+      0.5562
+     ],
+     [
+      "T24",
+      0.204,
+      0.4849
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-031",
+    "split": "dev",
+    "query": "Write onboarding emails for new signups",
+    "label": "related",
+    "match": "T1",
+    "decision": "needs_review",
+    "reasoning": "Closest open task is 'Finish onboarding copy for the signup flow' (wording overlap 0.55, meaning match 0.79); related but may not be the same work — verify before creating.",
+    "judge": null,
+    "top_id": "T1",
+    "top_title": "Finish onboarding copy for the signup flow",
+    "ranked_ids": [
+     "T1",
+     "T23",
+     "T20",
+     "T19",
+     "T8"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.5457,
+      0.7896
+     ],
+     [
+      "T2",
+      0.2237,
+      0.5291
+     ],
+     [
+      "T3",
+      0.325,
+      0.5395
+     ],
+     [
+      "T4",
+      0.1566,
+      0.5408
+     ],
+     [
+      "T5",
+      0.2125,
+      0.6018
+     ],
+     [
+      "T6",
+      0.2318,
+      0.5035
+     ],
+     [
+      "T7",
+      0.2742,
+      0.5884
+     ],
+     [
+      "T8",
+      0.2986,
+      0.5729
+     ],
+     [
+      "T9",
+      0.2537,
+      0.5061
+     ],
+     [
+      "T10",
+      0.4195,
+      0.5575
+     ],
+     [
+      "T11",
+      0.1149,
+      0.5376
+     ],
+     [
+      "T12",
+      0.3732,
+      0.568
+     ],
+     [
+      "T13",
+      0.2186,
+      0.5412
+     ],
+     [
+      "T14",
+      0.2338,
+      0.4782
+     ],
+     [
+      "T15",
+      0.1838,
+      0.5988
+     ],
+     [
+      "T16",
+      0.1478,
+      0.4879
+     ],
+     [
+      "T17",
+      0.3027,
+      0.5535
+     ],
+     [
+      "T18",
+      0.2284,
+      0.5441
+     ],
+     [
+      "T19",
+      0.3238,
+      0.5813
+     ],
+     [
+      "T20",
+      0.3069,
+      0.5898
+     ],
+     [
+      "T21",
+      0.2394,
+      0.5101
+     ],
+     [
+      "T22",
+      0.2519,
+      0.5167
+     ],
+     [
+      "T23",
+      0.34,
+      0.6363
+     ],
+     [
+      "T24",
+      0.3036,
+      0.5197
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-032",
+    "split": "dev",
+    "query": "Add examples to the duplicate detection test suite",
+    "label": "related",
+    "match": "T2",
+    "decision": "needs_review",
+    "reasoning": "Closest open task is 'Review duplicate detection thresholds' (wording overlap 0.53, meaning match 0.73); related but may not be the same work — verify before creating.",
+    "judge": null,
+    "top_id": "T2",
+    "top_title": "Review duplicate detection thresholds",
+    "ranked_ids": [
+     "T2",
+     "T13",
+     "T4",
+     "T5",
+     "T17"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2772,
+      0.6033
+     ],
+     [
+      "T2",
+      0.5276,
+      0.731
+     ],
+     [
+      "T3",
+      0.3443,
+      0.523
+     ],
+     [
+      "T4",
+      0.3713,
+      0.5673
+     ],
+     [
+      "T5",
+      0.2867,
+      0.5639
+     ],
+     [
+      "T6",
+      0.2429,
+      0.4786
+     ],
+     [
+      "T7",
+      0.1397,
+      0.565
+     ],
+     [
+      "T8",
+      0.18,
+      0.536
+     ],
+     [
+      "T9",
+      0.2615,
+      0.4824
+     ],
+     [
+      "T10",
+      0.2511,
+      0.5686
+     ],
+     [
+      "T11",
+      0.26,
+      0.583
+     ],
+     [
+      "T12",
+      0.2194,
+      0.5358
+     ],
+     [
+      "T13",
+      0.3358,
+      0.5702
+     ],
+     [
+      "T14",
+      0.2242,
+      0.5505
+     ],
+     [
+      "T15",
+      0.32,
+      0.5181
+     ],
+     [
+      "T16",
+      0.3187,
+      0.4868
+     ],
+     [
+      "T17",
+      0.2833,
+      0.5259
+     ],
+     [
+      "T18",
+      0.2397,
+      0.5762
+     ],
+     [
+      "T19",
+      0.3221,
+      0.5043
+     ],
+     [
+      "T20",
+      0.2048,
+      0.5136
+     ],
+     [
+      "T21",
+      0.2073,
+      0.5408
+     ],
+     [
+      "T22",
+      0.2772,
+      0.485
+     ],
+     [
+      "T23",
+      0.2174,
+      0.5693
+     ],
+     [
+      "T24",
+      0.1611,
+      0.5355
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-034",
+    "split": "dev",
+    "query": "Speed up GitHub Actions build times",
+    "label": "related",
+    "match": "T4",
+    "decision": "needs_review",
+    "reasoning": "Closest open task is 'Migrate CI pipeline to GitHub Actions' (wording overlap 0.45, meaning match 0.73); related but may not be the same work — verify before creating.",
+    "judge": null,
+    "top_id": "T4",
+    "top_title": "Migrate CI pipeline to GitHub Actions",
+    "ranked_ids": [
+     "T4",
+     "T8",
+     "T2",
+     "T22",
+     "T19"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.1766,
+      0.5018
+     ],
+     [
+      "T2",
+      0.3778,
+      0.5281
+     ],
+     [
+      "T3",
+      0.1062,
+      0.5029
+     ],
+     [
+      "T4",
+      0.4486,
+      0.729
+     ],
+     [
+      "T5",
+      0.15,
+      0.5141
+     ],
+     [
+      "T6",
+      0.2742,
+      0.5602
+     ],
+     [
+      "T7",
+      0.1172,
+      0.4983
+     ],
+     [
+      "T8",
+      0.2914,
+      0.5326
+     ],
+     [
+      "T9",
+      0.2968,
+      0.4747
+     ],
+     [
+      "T10",
+      0.163,
+      0.5324
+     ],
+     [
+      "T11",
+      0.2671,
+      0.5375
+     ],
+     [
+      "T12",
+      0.2615,
+      0.4856
+     ],
+     [
+      "T13",
+      0.2061,
+      0.5169
+     ],
+     [
+      "T14",
+      0.2461,
+      0.6421
+     ],
+     [
+      "T15",
+      0.3157,
+      0.5012
+     ],
+     [
+      "T16",
+      0.2615,
+      0.5368
+     ],
+     [
+      "T17",
+      0.0986,
+      0.4741
+     ],
+     [
+      "T18",
+      0.1889,
+      0.5686
+     ],
+     [
+      "T19",
+      0.3612,
+      0.5136
+     ],
+     [
+      "T20",
+      0.225,
+      0.4911
+     ],
+     [
+      "T21",
+      0.1776,
+      0.5103
+     ],
+     [
+      "T22",
+      0.287,
+      0.5141
+     ],
+     [
+      "T23",
+      0.2394,
+      0.523
+     ],
+     [
+      "T24",
+      0.17,
+      0.4868
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-035",
+    "split": "dev",
+    "query": "Prepare the board deck for the March meeting",
+    "label": "related",
+    "match": "T5",
+    "decision": "needs_review",
+    "reasoning": "Closest open task is 'Prepare investor update for March' (wording overlap 0.44, meaning match 0.82); related but may not be the same work — verify before creating.",
+    "judge": null,
+    "top_id": "T5",
+    "top_title": "Prepare investor update for March",
+    "ranked_ids": [
+     "T5",
+     "T20",
+     "T10",
+     "T3",
+     "T1"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.3558,
+      0.6115
+     ],
+     [
+      "T2",
+      0.2309,
+      0.5321
+     ],
+     [
+      "T3",
+      0.3493,
+      0.6117
+     ],
+     [
+      "T4",
+      0.2938,
+      0.5511
+     ],
+     [
+      "T5",
+      0.4416,
+      0.8166
+     ],
+     [
+      "T6",
+      0.0958,
+      0.4637
+     ],
+     [
+      "T7",
+      0.1522,
+      0.5813
+     ],
+     [
+      "T8",
+      0.3013,
+      0.564
+     ],
+     [
+      "T9",
+      0.3778,
+      0.5373
+     ],
+     [
+      "T10",
+      0.3317,
+      0.6384
+     ],
+     [
+      "T11",
+      0.3228,
+      0.534
+     ],
+     [
+      "T12",
+      0.3517,
+      0.5922
+     ],
+     [
+      "T13",
+      0.2947,
+      0.5756
+     ],
+     [
+      "T14",
+      0.38,
+      0.5395
+     ],
+     [
+      "T15",
+      0.1722,
+      0.6301
+     ],
+     [
+      "T16",
+      0.1608,
+      0.5225
+     ],
+     [
+      "T17",
+      0.109,
+      0.5424
+     ],
+     [
+      "T18",
+      0.1889,
+      0.5413
+     ],
+     [
+      "T19",
+      0.3247,
+      0.5905
+     ],
+     [
+      "T20",
+      0.5078,
+      0.6906
+     ],
+     [
+      "T21",
+      0.1566,
+      0.5381
+     ],
+     [
+      "T22",
+      0.257,
+      0.5475
+     ],
+     [
+      "T23",
+      0.2338,
+      0.5964
+     ],
+     [
+      "T24",
+      0.2101,
+      0.5299
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-037",
+    "split": "dev",
+    "query": "A/B test the pricing page headline",
+    "label": "related",
+    "match": "T7",
+    "decision": "needs_review",
+    "reasoning": "Closest open task is 'Draft pricing page copy' (wording overlap 0.48, meaning match 0.70); related but may not be the same work — verify before creating.",
+    "judge": null,
+    "top_id": "T7",
+    "top_title": "Draft pricing page copy",
+    "ranked_ids": [
+     "T7",
+     "T23",
+     "T5",
+     "T13",
+     "T10"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2237,
+      0.628
+     ],
+     [
+      "T2",
+      0.2394,
+      0.5534
+     ],
+     [
+      "T3",
+      0.2698,
+      0.5284
+     ],
+     [
+      "T4",
+      0.3113,
+      0.5356
+     ],
+     [
+      "T5",
+      0.3045,
+      0.5503
+     ],
+     [
+      "T6",
+      0.223,
+      0.471
+     ],
+     [
+      "T7",
+      0.4772,
+      0.6967
+     ],
+     [
+      "T8",
+      0.2217,
+      0.5318
+     ],
+     [
+      "T9",
+      0.2742,
+      0.5117
+     ],
+     [
+      "T10",
+      0.3069,
+      0.5361
+     ],
+     [
+      "T11",
+      0.1971,
+      0.5511
+     ],
+     [
+      "T12",
+      0.1325,
+      0.5442
+     ],
+     [
+      "T13",
+      0.3138,
+      0.5425
+     ],
+     [
+      "T14",
+      0.2493,
+      0.5544
+     ],
+     [
+      "T15",
+      0.1478,
+      0.5722
+     ],
+     [
+      "T16",
+      0.2125,
+      0.4905
+     ],
+     [
+      "T17",
+      0.225,
+      0.5401
+     ],
+     [
+      "T18",
+      0.2742,
+      0.5466
+     ],
+     [
+      "T19",
+      0.3013,
+      0.5189
+     ],
+     [
+      "T20",
+      0.2284,
+      0.5595
+     ],
+     [
+      "T21",
+      0.2318,
+      0.5163
+     ],
+     [
+      "T22",
+      0.2237,
+      0.546
+     ],
+     [
+      "T23",
+      0.2914,
+      0.5907
+     ],
+     [
+      "T24",
+      0.3228,
+      0.5339
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-038",
+    "split": "dev",
+    "query": "Write an SSO setup guide for customers",
+    "label": "related",
+    "match": "T8",
+    "decision": "needs_review",
+    "reasoning": "Closest open task is 'Set up SSO for enterprise customers' (wording overlap 0.47, meaning match 0.81); related but may not be the same work — verify before creating.",
+    "judge": null,
+    "top_id": "T8",
+    "top_title": "Set up SSO for enterprise customers",
+    "ranked_ids": [
+     "T8",
+     "T19",
+     "T15",
+     "T10",
+     "T17"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.255,
+      0.6105
+     ],
+     [
+      "T2",
+      0.204,
+      0.5188
+     ],
+     [
+      "T3",
+      0.3045,
+      0.5391
+     ],
+     [
+      "T4",
+      0.204,
+      0.5225
+     ],
+     [
+      "T5",
+      0.3592,
+      0.5661
+     ],
+     [
+      "T6",
+      0.2092,
+      0.5819
+     ],
+     [
+      "T7",
+      0.1672,
+      0.5405
+     ],
+     [
+      "T8",
+      0.4658,
+      0.8057
+     ],
+     [
+      "T9",
+      0.2318,
+      0.5117
+     ],
+     [
+      "T10",
+      0.3803,
+      0.5799
+     ],
+     [
+      "T11",
+      0.3027,
+      0.5512
+     ],
+     [
+      "T12",
+      0.3358,
+      0.5158
+     ],
+     [
+      "T13",
+      0.1478,
+      0.5514
+     ],
+     [
+      "T14",
+      0.2152,
+      0.5126
+     ],
+     [
+      "T15",
+      0.3027,
+      0.5846
+     ],
+     [
+      "T16",
+      0.325,
+      0.4903
+     ],
+     [
+      "T17",
+      0.2833,
+      0.5677
+     ],
+     [
+      "T18",
+      0.3348,
+      0.4948
+     ],
+     [
+      "T19",
+      0.3277,
+      0.5847
+     ],
+     [
+      "T20",
+      0.2873,
+      0.5629
+     ],
+     [
+      "T21",
+      0.2914,
+      0.5131
+     ],
+     [
+      "T22",
+      0.1913,
+      0.5007
+     ],
+     [
+      "T23",
+      0.2757,
+      0.6086
+     ],
+     [
+      "T24",
+      0.2663,
+      0.5254
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-040",
+    "split": "dev",
+    "query": "Share learnings from the Feb 28 outage at all-hands",
+    "label": "related",
+    "match": "T10",
+    "decision": "duplicate",
+    "reasoning": "Closest open task is 'Write postmortem for the Feb 28 outage' (wording overlap 0.48, meaning match 0.87), likely the same work.",
+    "judge": null,
+    "top_id": "T10",
+    "top_title": "Write postmortem for the Feb 28 outage",
+    "ranked_ids": [
+     "T10",
+     "T5",
+     "T19",
+     "T1",
+     "T14"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.3108,
+      0.5878
+     ],
+     [
+      "T2",
+      0.2705,
+      0.5403
+     ],
+     [
+      "T3",
+      0.2762,
+      0.5979
+     ],
+     [
+      "T4",
+      0.2705,
+      0.5346
+     ],
+     [
+      "T5",
+      0.3036,
+      0.6536
+     ],
+     [
+      "T6",
+      0.2615,
+      0.5527
+     ],
+     [
+      "T7",
+      0.2297,
+      0.5204
+     ],
+     [
+      "T8",
+      0.1779,
+      0.5692
+     ],
+     [
+      "T9",
+      0.3013,
+      0.5256
+     ],
+     [
+      "T10",
+      0.4775,
+      0.8672
+     ],
+     [
+      "T11",
+      0.2174,
+      0.609
+     ],
+     [
+      "T12",
+      0.2894,
+      0.5403
+     ],
+     [
+      "T13",
+      0.2902,
+      0.5657
+     ],
+     [
+      "T14",
+      0.3141,
+      0.5869
+     ],
+     [
+      "T15",
+      0.1581,
+      0.6233
+     ],
+     [
+      "T16",
+      0.1679,
+      0.5268
+     ],
+     [
+      "T17",
+      0.04,
+      0.518
+     ],
+     [
+      "T18",
+      0.3013,
+      0.5676
+     ],
+     [
+      "T19",
+      0.301,
+      0.6222
+     ],
+     [
+      "T20",
+      0.1214,
+      0.5845
+     ],
+     [
+      "T21",
+      0.1024,
+      0.5561
+     ],
+     [
+      "T22",
+      0.2376,
+      0.562
+     ],
+     [
+      "T23",
+      0.2345,
+      0.6072
+     ],
+     [
+      "T24",
+      0.2302,
+      0.5084
+     ]
+    ],
+    "outcome": "dropped"
+   },
+   {
+    "id": "dd-041",
+    "split": "dev",
+    "query": "Raise API rate limits for the enterprise plan",
+    "label": "related",
+    "match": "T11",
+    "decision": "needs_review",
+    "reasoning": "Closest open task is 'Update API rate limit documentation' (wording overlap 0.51, meaning match 0.76); related but may not be the same work — verify before creating.",
+    "judge": null,
+    "top_id": "T11",
+    "top_title": "Update API rate limit documentation",
+    "ranked_ids": [
+     "T11",
+     "T8",
+     "T14",
+     "T2",
+     "T13"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.3517,
+      0.5403
+     ],
+     [
+      "T2",
+      0.3732,
+      0.5833
+     ],
+     [
+      "T3",
+      0.2986,
+      0.5299
+     ],
+     [
+      "T4",
+      0.228,
+      0.5806
+     ],
+     [
+      "T5",
+      0.3051,
+      0.5162
+     ],
+     [
+      "T6",
+      0.2361,
+      0.5239
+     ],
+     [
+      "T7",
+      0.225,
+      0.5386
+     ],
+     [
+      "T8",
+      0.4675,
+      0.6457
+     ],
+     [
+      "T9",
+      0.2795,
+      0.5707
+     ],
+     [
+      "T10",
+      0.3892,
+      0.5615
+     ],
+     [
+      "T11",
+      0.51,
+      0.7567
+     ],
+     [
+      "T12",
+      0.3091,
+      0.5025
+     ],
+     [
+      "T13",
+      0.3132,
+      0.5781
+     ],
+     [
+      "T14",
+      0.3558,
+      0.6188
+     ],
+     [
+      "T15",
+      0.1062,
+      0.5453
+     ],
+     [
+      "T16",
+      0.136,
+      0.5559
+     ],
+     [
+      "T17",
+      0.3873,
+      0.5179
+     ],
+     [
+      "T18",
+      0.2562,
+      0.5765
+     ],
+     [
+      "T19",
+      0.3967,
+      0.5741
+     ],
+     [
+      "T20",
+      0.3051,
+      0.5306
+     ],
+     [
+      "T21",
+      0.1545,
+      0.554
+     ],
+     [
+      "T22",
+      0.2931,
+      0.5435
+     ],
+     [
+      "T23",
+      0.2519,
+      0.5452
+     ],
+     [
+      "T24",
+      0.3022,
+      0.5009
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-043",
+    "split": "dev",
+    "query": "Add dark mode to the web dashboard",
+    "label": "related",
+    "match": "T13",
+    "decision": "needs_review",
+    "reasoning": "Closest open task is 'Add dark mode to the mobile app' (wording overlap 0.63, meaning match 0.81); related but may not be the same work — verify before creating.",
+    "judge": null,
+    "top_id": "T13",
+    "top_title": "Add dark mode to the mobile app",
+    "ranked_ids": [
+     "T13",
+     "T10",
+     "T1",
+     "T14",
+     "T4"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2908,
+      0.5755
+     ],
+     [
+      "T2",
+      0.3831,
+      0.5317
+     ],
+     [
+      "T3",
+      0.2968,
+      0.5517
+     ],
+     [
+      "T4",
+      0.3352,
+      0.5623
+     ],
+     [
+      "T5",
+      0.2284,
+      0.582
+     ],
+     [
+      "T6",
+      0.0836,
+      0.5359
+     ],
+     [
+      "T7",
+      0.1789,
+      0.5286
+     ],
+     [
+      "T8",
+      0.2217,
+      0.5576
+     ],
+     [
+      "T9",
+      0.2742,
+      0.5097
+     ],
+     [
+      "T10",
+      0.3542,
+      0.5831
+     ],
+     [
+      "T11",
+      0.1232,
+      0.5912
+     ],
+     [
+      "T12",
+      0.2208,
+      0.531
+     ],
+     [
+      "T13",
+      0.6277,
+      0.8128
+     ],
+     [
+      "T14",
+      0.3173,
+      0.5647
+     ],
+     [
+      "T15",
+      0.1725,
+      0.5582
+     ],
+     [
+      "T16",
+      0.2922,
+      0.5313
+     ],
+     [
+      "T17",
+      0.25,
+      0.5691
+     ],
+     [
+      "T18",
+      0.2742,
+      0.5669
+     ],
+     [
+      "T19",
+      0.2367,
+      0.567
+     ],
+     [
+      "T20",
+      0.203,
+      0.5489
+     ],
+     [
+      "T21",
+      0.2061,
+      0.568
+     ],
+     [
+      "T22",
+      0.1566,
+      0.487
+     ],
+     [
+      "T23",
+      0.17,
+      0.5753
+     ],
+     [
+      "T24",
+      0.2152,
+      0.5456
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-044",
+    "split": "dev",
+    "query": "Add caching to the search endpoint",
+    "label": "related",
+    "match": "T14",
+    "decision": "needs_review",
+    "reasoning": "Closest open task is 'Reduce p95 latency on the search endpoint' (wording overlap 0.52, meaning match 0.81); related but may not be the same work — verify before creating.",
+    "judge": null,
+    "top_id": "T14",
+    "top_title": "Reduce p95 latency on the search endpoint",
+    "ranked_ids": [
+     "T14",
+     "T13",
+     "T2",
+     "T6",
+     "T4"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.3355,
+      0.5327
+     ],
+     [
+      "T2",
+      0.3113,
+      0.5652
+     ],
+     [
+      "T3",
+      0.2968,
+      0.5264
+     ],
+     [
+      "T4",
+      0.3113,
+      0.5372
+     ],
+     [
+      "T5",
+      0.3552,
+      0.5328
+     ],
+     [
+      "T6",
+      0.3344,
+      0.5539
+     ],
+     [
+      "T7",
+      0.3281,
+      0.5223
+     ],
+     [
+      "T8",
+      0.2464,
+      0.5568
+     ],
+     [
+      "T9",
+      0.2194,
+      0.4656
+     ],
+     [
+      "T10",
+      0.2597,
+      0.5544
+     ],
+     [
+      "T11",
+      0.2464,
+      0.6244
+     ],
+     [
+      "T12",
+      0.3312,
+      0.495
+     ],
+     [
+      "T13",
+      0.4185,
+      0.5806
+     ],
+     [
+      "T14",
+      0.5213,
+      0.8074
+     ],
+     [
+      "T15",
+      0.2217,
+      0.5123
+     ],
+     [
+      "T16",
+      0.2656,
+      0.521
+     ],
+     [
+      "T17",
+      0.225,
+      0.524
+     ],
+     [
+      "T18",
+      0.2468,
+      0.5565
+     ],
+     [
+      "T19",
+      0.3013,
+      0.5247
+     ],
+     [
+      "T20",
+      0.1776,
+      0.5102
+     ],
+     [
+      "T21",
+      0.2318,
+      0.5593
+     ],
+     [
+      "T22",
+      0.1566,
+      0.4581
+     ],
+     [
+      "T23",
+      0.2429,
+      0.5458
+     ],
+     [
+      "T24",
+      0.3443,
+      0.5126
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-046",
+    "split": "dev",
+    "query": "Translate help center into French",
+    "label": "related",
+    "match": "T17",
+    "decision": "needs_review",
+    "reasoning": "Related to 'Translate help center into Spanish' but may be different work: Translating into French is a different task and language than the Spanish translation or other docs.",
+    "judge": {
+     "verdict": "related",
+     "task_id": "T17",
+     "reason": "Translating into French is a different task and language than the Spanish translation or other docs.",
+     "item_subject": "help center"
+    },
+    "top_id": "T17",
+    "top_title": "Translate help center into Spanish",
+    "ranked_ids": [
+     "T17",
+     "T23",
+     "T11",
+     "T15",
+     "T5"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.136,
+      0.5906
+     ],
+     [
+      "T2",
+      0.34,
+      0.5138
+     ],
+     [
+      "T3",
+      0.1097,
+      0.5126
+     ],
+     [
+      "T4",
+      0.3157,
+      0.5306
+     ],
+     [
+      "T5",
+      0.2833,
+      0.5329
+     ],
+     [
+      "T6",
+      0.2267,
+      0.496
+     ],
+     [
+      "T7",
+      0.2125,
+      0.5298
+     ],
+     [
+      "T8",
+      0.325,
+      0.5283
+     ],
+     [
+      "T9",
+      0.2787,
+      0.5167
+     ],
+     [
+      "T10",
+      0.2155,
+      0.5219
+     ],
+     [
+      "T11",
+      0.325,
+      0.5578
+     ],
+     [
+      "T12",
+      0.2013,
+      0.4949
+     ],
+     [
+      "T13",
+      0.1859,
+      0.5615
+     ],
+     [
+      "T14",
+      0.3446,
+      0.5
+     ],
+     [
+      "T15",
+      0.35,
+      0.5374
+     ],
+     [
+      "T16",
+      0.2968,
+      0.5071
+     ],
+     [
+      "T17",
+      0.7358,
+      0.8914
+     ],
+     [
+      "T18",
+      0.1393,
+      0.5215
+     ],
+     [
+      "T19",
+      0.2179,
+      0.5422
+     ],
+     [
+      "T20",
+      0.2576,
+      0.5282
+     ],
+     [
+      "T21",
+      0.3138,
+      0.5296
+     ],
+     [
+      "T22",
+      0.204,
+      0.4864
+     ],
+     [
+      "T23",
+      0.3449,
+      0.5692
+     ],
+     [
+      "T24",
+      0.1308,
+      0.5105
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-047",
+    "split": "dev",
+    "query": "Write an on-call runbook for the platform team",
+    "label": "related",
+    "match": "T19",
+    "decision": "needs_review",
+    "reasoning": "Related to 'Set up on-call rotation for the platform team' but may be different work: Writing a runbook is related to the on-call rotation setup but is a distinct deliverable.",
+    "judge": {
+     "verdict": "related",
+     "task_id": "T19",
+     "reason": "Writing a runbook is related to the on-call rotation setup but is a distinct deliverable.",
+     "item_subject": "platform team on-call runbook"
+    },
+    "top_id": "T19",
+    "top_title": "Set up on-call rotation for the platform team",
+    "ranked_ids": [
+     "T19",
+     "T10",
+     "T1",
+     "T23",
+     "T3"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.3864,
+      0.6171
+     ],
+     [
+      "T2",
+      0.2458,
+      0.4949
+     ],
+     [
+      "T3",
+      0.3627,
+      0.5746
+     ],
+     [
+      "T4",
+      0.1434,
+      0.5445
+     ],
+     [
+      "T5",
+      0.2152,
+      0.5944
+     ],
+     [
+      "T6",
+      0.1863,
+      0.5006
+     ],
+     [
+      "T7",
+      0.1478,
+      0.5475
+     ],
+     [
+      "T8",
+      0.3148,
+      0.5595
+     ],
+     [
+      "T9",
+      0.2757,
+      0.5187
+     ],
+     [
+      "T10",
+      0.3845,
+      0.7043
+     ],
+     [
+      "T11",
+      0.1469,
+      0.5903
+     ],
+     [
+      "T12",
+      0.3438,
+      0.5629
+     ],
+     [
+      "T13",
+      0.2208,
+      0.5392
+     ],
+     [
+      "T14",
+      0.2736,
+      0.5665
+     ],
+     [
+      "T15",
+      0.2519,
+      0.5786
+     ],
+     [
+      "T16",
+      0.2237,
+      0.5049
+     ],
+     [
+      "T17",
+      0.1487,
+      0.5462
+     ],
+     [
+      "T18",
+      0.2986,
+      0.5391
+     ],
+     [
+      "T19",
+      0.6538,
+      0.7837
+     ],
+     [
+      "T20",
+      0.2797,
+      0.6114
+     ],
+     [
+      "T21",
+      0.2397,
+      0.5305
+     ],
+     [
+      "T22",
+      0.1545,
+      0.5408
+     ],
+     [
+      "T23",
+      0.311,
+      0.6069
+     ],
+     [
+      "T24",
+      0.3549,
+      0.5008
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-049",
+    "split": "dev",
+    "query": "Add PDF export to reports",
+    "label": "related",
+    "match": "T21",
+    "decision": "needs_review",
+    "reasoning": "Related to 'Fix broken CSV export in reports' but may be different work: Adding PDF export is a different feature work than fixing the CSV export.",
+    "judge": {
+     "verdict": "related",
+     "task_id": "T21",
+     "reason": "Adding PDF export is a different feature work than fixing the CSV export.",
+     "item_subject": "reports PDF export"
+    },
+    "top_id": "T21",
+    "top_title": "Fix broken CSV export in reports",
+    "ranked_ids": [
+     "T21",
+     "T13",
+     "T8",
+     "T16",
+     "T17"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2537,
+      0.558
+     ],
+     [
+      "T2",
+      0.2742,
+      0.5365
+     ],
+     [
+      "T3",
+      0.2519,
+      0.5418
+     ],
+     [
+      "T4",
+      0.2742,
+      0.5546
+     ],
+     [
+      "T5",
+      0.2052,
+      0.5726
+     ],
+     [
+      "T6",
+      0.2942,
+      0.5196
+     ],
+     [
+      "T7",
+      0.2125,
+      0.5628
+     ],
+     [
+      "T8",
+      0.34,
+      0.5594
+     ],
+     [
+      "T9",
+      0.1925,
+      0.5132
+     ],
+     [
+      "T10",
+      0.2429,
+      0.5477
+     ],
+     [
+      "T11",
+      0.2267,
+      0.5692
+     ],
+     [
+      "T12",
+      0.225,
+      0.5152
+     ],
+     [
+      "T13",
+      0.3946,
+      0.6144
+     ],
+     [
+      "T14",
+      0.2061,
+      0.5559
+     ],
+     [
+      "T15",
+      0.1983,
+      0.5671
+     ],
+     [
+      "T16",
+      0.34,
+      0.5539
+     ],
+     [
+      "T17",
+      0.3458,
+      0.5527
+     ],
+     [
+      "T18",
+      0.2887,
+      0.5405
+     ],
+     [
+      "T19",
+      0.2186,
+      0.5363
+     ],
+     [
+      "T20",
+      0.2052,
+      0.5557
+     ],
+     [
+      "T21",
+      0.507,
+      0.7301
+     ],
+     [
+      "T22",
+      0.1776,
+      0.4915
+     ],
+     [
+      "T23",
+      0.1951,
+      0.5646
+     ],
+     [
+      "T24",
+      0.2186,
+      0.5353
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-050",
+    "split": "dev",
+    "query": "Design the hero image for the v2 launch blog post",
+    "label": "related",
+    "match": "T23",
+    "decision": "needs_review",
+    "reasoning": "Related to 'Write blog post announcing v2 launch' but may be different work: Designing the hero image supports the blog post and launch assets but is a separate design task.",
+    "judge": {
+     "verdict": "related",
+     "task_id": "T23",
+     "reason": "Designing the hero image supports the blog post and launch assets but is a separate design task.",
+     "item_subject": "v2 launch blog post hero image"
+    },
+    "top_id": "T23",
+    "top_title": "Write blog post announcing v2 launch",
+    "ranked_ids": [
+     "T23",
+     "T12",
+     "T3",
+     "T20",
+     "T1"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.3176,
+      0.5862
+     ],
+     [
+      "T2",
+      0.2372,
+      0.5
+     ],
+     [
+      "T3",
+      0.3705,
+      0.6093
+     ],
+     [
+      "T4",
+      0.2767,
+      0.5165
+     ],
+     [
+      "T5",
+      0.2695,
+      0.5912
+     ],
+     [
+      "T6",
+      0.2237,
+      0.4714
+     ],
+     [
+      "T7",
+      0.2361,
+      0.5919
+     ],
+     [
+      "T8",
+      0.2833,
+      0.537
+     ],
+     [
+      "T9",
+      0.3753,
+      0.5208
+     ],
+     [
+      "T10",
+      0.3713,
+      0.5827
+     ],
+     [
+      "T11",
+      0.2226,
+      0.553
+     ],
+     [
+      "T12",
+      0.388,
+      0.6803
+     ],
+     [
+      "T13",
+      0.2762,
+      0.5668
+     ],
+     [
+      "T14",
+      0.3022,
+      0.5314
+     ],
+     [
+      "T15",
+      0.1619,
+      0.5578
+     ],
+     [
+      "T16",
+      0.1506,
+      0.5144
+     ],
+     [
+      "T17",
+      0.2253,
+      0.5321
+     ],
+     [
+      "T18",
+      0.3312,
+      0.526
+     ],
+     [
+      "T19",
+      0.3436,
+      0.5423
+     ],
+     [
+      "T20",
+      0.311,
+      0.5989
+     ],
+     [
+      "T21",
+      0.2309,
+      0.4788
+     ],
+     [
+      "T22",
+      0.2615,
+      0.5044
+     ],
+     [
+      "T23",
+      0.375,
+      0.8172
+     ],
+     [
+      "T24",
+      0.2894,
+      0.4651
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-052",
+    "split": "dev",
+    "query": "Draft the pricing FAQ for sales",
+    "label": "related",
+    "match": "T7",
+    "decision": "needs_review",
+    "reasoning": "Related to 'Draft pricing page copy' but may be different work: Drafting the pricing FAQ is related to pricing page copy but is a distinct deliverable.",
+    "judge": {
+     "verdict": "related",
+     "task_id": "T7",
+     "reason": "Drafting the pricing FAQ is related to pricing page copy but is a distinct deliverable.",
+     "item_subject": "sales pricing FAQ"
+    },
+    "top_id": "T7",
+    "top_title": "Draft pricing page copy",
+    "ranked_ids": [
+     "T7",
+     "T20",
+     "T5",
+     "T12",
+     "T17"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2562,
+      0.6195
+     ],
+     [
+      "T2",
+      0.225,
+      0.5512
+     ],
+     [
+      "T3",
+      0.2267,
+      0.5582
+     ],
+     [
+      "T4",
+      0.25,
+      0.4962
+     ],
+     [
+      "T5",
+      0.3719,
+      0.609
+     ],
+     [
+      "T6",
+      0.2052,
+      0.4669
+     ],
+     [
+      "T7",
+      0.5352,
+      0.7877
+     ],
+     [
+      "T8",
+      0.2833,
+      0.5523
+     ],
+     [
+      "T9",
+      0.3169,
+      0.5147
+     ],
+     [
+      "T10",
+      0.2217,
+      0.5658
+     ],
+     [
+      "T11",
+      0.2061,
+      0.5857
+     ],
+     [
+      "T12",
+      0.3446,
+      0.5738
+     ],
+     [
+      "T13",
+      0.3016,
+      0.5092
+     ],
+     [
+      "T14",
+      0.2597,
+      0.5421
+     ],
+     [
+      "T15",
+      0.2061,
+      0.5722
+     ],
+     [
+      "T16",
+      0.223,
+      0.4817
+     ],
+     [
+      "T17",
+      0.3923,
+      0.5589
+     ],
+     [
+      "T18",
+      0.2593,
+      0.513
+     ],
+     [
+      "T19",
+      0.3355,
+      0.5408
+     ],
+     [
+      "T20",
+      0.3187,
+      0.6181
+     ],
+     [
+      "T21",
+      0.2429,
+      0.5123
+     ],
+     [
+      "T22",
+      0.1397,
+      0.5814
+     ],
+     [
+      "T23",
+      0.2284,
+      0.6084
+     ],
+     [
+      "T24",
+      0.2908,
+      0.4958
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-053",
+    "split": "dev",
+    "query": "Write a postmortem template",
+    "label": "related",
+    "match": "T10",
+    "decision": "new",
+    "reasoning": "No open task covers this work. Creating a template is a general process document not tracked by any specific incident postmortem.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "Creating a template is a general process document not tracked by any specific incident postmortem.",
+     "item_subject": "postmortem template"
+    },
+    "top_id": "T10",
+    "top_title": "Write postmortem for the Feb 28 outage",
+    "ranked_ids": [
+     "T10",
+     "T23",
+     "T19",
+     "T15",
+     "T21"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.1725,
+      0.5941
+     ],
+     [
+      "T2",
+      0.2922,
+      0.5135
+     ],
+     [
+      "T3",
+      0.1214,
+      0.5619
+     ],
+     [
+      "T4",
+      0.2922,
+      0.537
+     ],
+     [
+      "T5",
+      0.255,
+      0.6002
+     ],
+     [
+      "T6",
+      0.063,
+      0.4916
+     ],
+     [
+      "T7",
+      0.17,
+      0.5618
+     ],
+     [
+      "T8",
+      0.2194,
+      0.5206
+     ],
+     [
+      "T9",
+      0.34,
+      0.4967
+     ],
+     [
+      "T10",
+      0.5492,
+      0.7283
+     ],
+     [
+      "T11",
+      0.2468,
+      0.5368
+     ],
+     [
+      "T12",
+      0.3157,
+      0.5183
+     ],
+     [
+      "T13",
+      0.2052,
+      0.5414
+     ],
+     [
+      "T14",
+      0.2,
+      0.5066
+     ],
+     [
+      "T15",
+      0.3016,
+      0.5631
+     ],
+     [
+      "T16",
+      0.3579,
+      0.4981
+     ],
+     [
+      "T17",
+      0.1951,
+      0.5266
+     ],
+     [
+      "T18",
+      0.2164,
+      0.5387
+     ],
+     [
+      "T19",
+      0.3306,
+      0.5838
+     ],
+     [
+      "T20",
+      0.255,
+      0.6033
+     ],
+     [
+      "T21",
+      0.2881,
+      0.5371
+     ],
+     [
+      "T22",
+      0.2464,
+      0.5084
+     ],
+     [
+      "T23",
+      0.4048,
+      0.6035
+     ],
+     [
+      "T24",
+      0.2833,
+      0.5102
+     ]
+    ],
+    "outcome": "missed_context"
+   },
+   {
+    "id": "dd-055",
+    "split": "dev",
+    "query": "Order new office chairs",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. Ordering office chairs is a completely unrelated facilities purchase with no matching tasks.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "Ordering office chairs is a completely unrelated facilities purchase with no matching tasks.",
+     "item_subject": "office chairs"
+    },
+    "top_id": "T3",
+    "top_title": "Book venue for the Q2 offsite",
+    "ranked_ids": [
+     "T3",
+     "T9",
+     "T8",
+     "T2"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.1569,
+      0.5486
+     ],
+     [
+      "T2",
+      0.3683,
+      0.5111
+     ],
+     [
+      "T3",
+      0.3269,
+      0.6087
+     ],
+     [
+      "T4",
+      0.2267,
+      0.5242
+     ],
+     [
+      "T5",
+      0.2429,
+      0.5703
+     ],
+     [
+      "T6",
+      0.204,
+      0.493
+     ],
+     [
+      "T7",
+      0.2587,
+      0.5538
+     ],
+     [
+      "T8",
+      0.2931,
+      0.5485
+     ],
+     [
+      "T9",
+      0.3667,
+      0.5848
+     ],
+     [
+      "T10",
+      0.2508,
+      0.5298
+     ],
+     [
+      "T11",
+      0.1759,
+      0.5087
+     ],
+     [
+      "T12",
+      0.1803,
+      0.561
+     ],
+     [
+      "T13",
+      0.2519,
+      0.5255
+     ],
+     [
+      "T14",
+      0.2125,
+      0.5137
+     ],
+     [
+      "T15",
+      0.1759,
+      0.5856
+     ],
+     [
+      "T16",
+      0.2566,
+      0.5332
+     ],
+     [
+      "T17",
+      0.2386,
+      0.5222
+     ],
+     [
+      "T18",
+      0.2667,
+      0.5091
+     ],
+     [
+      "T19",
+      0.175,
+      0.5886
+     ],
+     [
+      "T20",
+      0.1214,
+      0.559
+     ],
+     [
+      "T21",
+      0.1545,
+      0.5206
+     ],
+     [
+      "T22",
+      0.2615,
+      0.5508
+     ],
+     [
+      "T23",
+      0.1729,
+      0.5566
+     ],
+     [
+      "T24",
+      0.2,
+      0.4945
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-056",
+    "split": "dev",
+    "query": "Fix the leaky faucet in the kitchen",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. Fixing a physical plumbing fixture has no corresponding software tasks.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "Fixing a physical plumbing fixture has no corresponding software tasks.",
+     "item_subject": "kitchen leaky faucet"
+    },
+    "top_id": "T21",
+    "top_title": "Fix broken CSV export in reports",
+    "ranked_ids": [
+     "T21",
+     "T6",
+     "T9",
+     "T17",
+     "T3"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.1987,
+      0.5425
+     ],
+     [
+      "T2",
+      0.3306,
+      0.46
+     ],
+     [
+      "T3",
+      0.2922,
+      0.5099
+     ],
+     [
+      "T4",
+      0.2361,
+      0.5141
+     ],
+     [
+      "T5",
+      0.275,
+      0.5401
+     ],
+     [
+      "T6",
+      0.329,
+      0.5346
+     ],
+     [
+      "T7",
+      0.1759,
+      0.5278
+     ],
+     [
+      "T8",
+      0.1943,
+      0.5041
+     ],
+     [
+      "T9",
+      0.3238,
+      0.521
+     ],
+     [
+      "T10",
+      0.2096,
+      0.5305
+     ],
+     [
+      "T11",
+      0.2671,
+      0.5291
+     ],
+     [
+      "T12",
+      0.2615,
+      0.509
+     ],
+     [
+      "T13",
+      0.2061,
+      0.5244
+     ],
+     [
+      "T14",
+      0.3579,
+      0.5079
+     ],
+     [
+      "T15",
+      0.2186,
+      0.5552
+     ],
+     [
+      "T16",
+      0.1569,
+      0.5265
+     ],
+     [
+      "T17",
+      0.2957,
+      0.52
+     ],
+     [
+      "T18",
+      0.2429,
+      0.5191
+     ],
+     [
+      "T19",
+      0.1913,
+      0.5396
+     ],
+     [
+      "T20",
+      0.275,
+      0.5452
+     ],
+     [
+      "T21",
+      0.3299,
+      0.5861
+     ],
+     [
+      "T22",
+      0.287,
+      0.4973
+     ],
+     [
+      "T23",
+      0.2873,
+      0.5001
+     ],
+     [
+      "T24",
+      0.2338,
+      0.4871
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-058",
+    "split": "dev",
+    "query": "Update the employee handbook PTO section",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. Updating the handbook PTO policy is a distinct HR documentation task not found in the open list.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "Updating the handbook PTO policy is a distinct HR documentation task not found in the open list.",
+     "item_subject": "employee handbook PTO section"
+    },
+    "top_id": "T11",
+    "top_title": "Update API rate limit documentation",
+    "ranked_ids": [
+     "T11",
+     "T20",
+     "T13",
+     "T9",
+     "T17"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.1866,
+      0.5817
+     ],
+     [
+      "T2",
+      0.287,
+      0.5244
+     ],
+     [
+      "T3",
+      0.1971,
+      0.5626
+     ],
+     [
+      "T4",
+      0.3091,
+      0.5206
+     ],
+     [
+      "T5",
+      0.1863,
+      0.5865
+     ],
+     [
+      "T6",
+      0.2284,
+      0.5097
+     ],
+     [
+      "T7",
+      0.1619,
+      0.5546
+     ],
+     [
+      "T8",
+      0.204,
+      0.521
+     ],
+     [
+      "T9",
+      0.325,
+      0.5494
+     ],
+     [
+      "T10",
+      0.2179,
+      0.5631
+     ],
+     [
+      "T11",
+      0.3627,
+      0.6282
+     ],
+     [
+      "T12",
+      0.2048,
+      0.5218
+     ],
+     [
+      "T13",
+      0.3352,
+      0.5544
+     ],
+     [
+      "T14",
+      0.3358,
+      0.5231
+     ],
+     [
+      "T15",
+      0.204,
+      0.5392
+     ],
+     [
+      "T16",
+      0.3643,
+      0.5012
+     ],
+     [
+      "T17",
+      0.3676,
+      0.5472
+     ],
+     [
+      "T18",
+      0.225,
+      0.53
+     ],
+     [
+      "T19",
+      0.28,
+      0.5721
+     ],
+     [
+      "T20",
+      0.3493,
+      0.6113
+     ],
+     [
+      "T21",
+      0.2361,
+      0.5248
+     ],
+     [
+      "T22",
+      0.228,
+      0.529
+     ],
+     [
+      "T23",
+      0.2684,
+      0.5594
+     ],
+     [
+      "T24",
+      0.28,
+      0.4923
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-059",
+    "split": "dev",
+    "query": "Create a referral program landing page",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. Building a referral program landing page is a unique web project not tracked in the candidates.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "Building a referral program landing page is a unique web project not tracked in the candidates.",
+     "item_subject": "referral program landing page"
+    },
+    "top_id": "T23",
+    "top_title": "Write blog post announcing v2 launch",
+    "ranked_ids": [
+     "T23",
+     "T20",
+     "T7",
+     "T17",
+     "T10"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.17,
+      0.5814
+     ],
+     [
+      "T2",
+      0.2493,
+      0.4992
+     ],
+     [
+      "T3",
+      0.1015,
+      0.5408
+     ],
+     [
+      "T4",
+      0.2947,
+      0.4849
+     ],
+     [
+      "T5",
+      0.1915,
+      0.5626
+     ],
+     [
+      "T6",
+      0.2092,
+      0.4825
+     ],
+     [
+      "T7",
+      0.3623,
+      0.5551
+     ],
+     [
+      "T8",
+      0.163,
+      0.5847
+     ],
+     [
+      "T9",
+      0.2833,
+      0.491
+     ],
+     [
+      "T10",
+      0.3132,
+      0.5111
+     ],
+     [
+      "T11",
+      0.2795,
+      0.5165
+     ],
+     [
+      "T12",
+      0.2728,
+      0.5805
+     ],
+     [
+      "T13",
+      0.1971,
+      0.5412
+     ],
+     [
+      "T14",
+      0.2797,
+      0.5295
+     ],
+     [
+      "T15",
+      0.1164,
+      0.5845
+     ],
+     [
+      "T16",
+      0.225,
+      0.4812
+     ],
+     [
+      "T17",
+      0.3306,
+      0.5411
+     ],
+     [
+      "T18",
+      0.2576,
+      0.507
+     ],
+     [
+      "T19",
+      0.1024,
+      0.5695
+     ],
+     [
+      "T20",
+      0.407,
+      0.5683
+     ],
+     [
+      "T21",
+      0.1943,
+      0.5065
+     ],
+     [
+      "T22",
+      0.3825,
+      0.4942
+     ],
+     [
+      "T23",
+      0.3676,
+      0.5687
+     ],
+     [
+      "T24",
+      0.2253,
+      0.481
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-061",
+    "split": "dev",
+    "query": "Set up Slack integration for alerts",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the candidate tasks relate to Slack alerts.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the candidate tasks relate to Slack alerts.",
+     "item_subject": "Slack integration for alerts"
+    },
+    "top_id": "T19",
+    "top_title": "Set up on-call rotation for the platform team",
+    "ranked_ids": [
+     "T19",
+     "T8",
+     "T15",
+     "T5",
+     "T17"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2429,
+      0.5602
+     ],
+     [
+      "T2",
+      0.2597,
+      0.5352
+     ],
+     [
+      "T3",
+      0.2922,
+      0.5174
+     ],
+     [
+      "T4",
+      0.2125,
+      0.5384
+     ],
+     [
+      "T5",
+      0.375,
+      0.5332
+     ],
+     [
+      "T6",
+      0.2194,
+      0.5058
+     ],
+     [
+      "T7",
+      0.2345,
+      0.5145
+     ],
+     [
+      "T8",
+      0.4371,
+      0.5745
+     ],
+     [
+      "T9",
+      0.054,
+      0.4697
+     ],
+     [
+      "T10",
+      0.2795,
+      0.5327
+     ],
+     [
+      "T11",
+      0.2671,
+      0.5173
+     ],
+     [
+      "T12",
+      0.4141,
+      0.4944
+     ],
+     [
+      "T13",
+      0.2061,
+      0.535
+     ],
+     [
+      "T14",
+      0.1566,
+      0.4957
+     ],
+     [
+      "T15",
+      0.3157,
+      0.5572
+     ],
+     [
+      "T16",
+      0.2615,
+      0.5059
+     ],
+     [
+      "T17",
+      0.2957,
+      0.5323
+     ],
+     [
+      "T18",
+      0.3238,
+      0.5277
+     ],
+     [
+      "T19",
+      0.4675,
+      0.6069
+     ],
+     [
+      "T20",
+      0.375,
+      0.5245
+     ],
+     [
+      "T21",
+      0.2791,
+      0.5102
+     ],
+     [
+      "T22",
+      0.1766,
+      0.4685
+     ],
+     [
+      "T23",
+      0.1915,
+      0.5106
+     ],
+     [
+      "T24",
+      0.255,
+      0.509
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-062",
+    "split": "dev",
+    "query": "Draft the holiday party invitation",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the candidate tasks refer to the holiday party.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the candidate tasks refer to the holiday party.",
+     "item_subject": "the holiday party invitation"
+    },
+    "top_id": "T20",
+    "top_title": "Create Q2 OKR draft for marketing",
+    "ranked_ids": [
+     "T20",
+     "T7",
+     "T5",
+     "T13",
+     "T17"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.1789,
+      0.591
+     ],
+     [
+      "T2",
+      0.2634,
+      0.5011
+     ],
+     [
+      "T3",
+      0.2429,
+      0.6078
+     ],
+     [
+      "T4",
+      0.3113,
+      0.4941
+     ],
+     [
+      "T5",
+      0.3299,
+      0.6071
+     ],
+     [
+      "T6",
+      0.1393,
+      0.4433
+     ],
+     [
+      "T7",
+      0.3281,
+      0.6238
+     ],
+     [
+      "T8",
+      0.1725,
+      0.5133
+     ],
+     [
+      "T9",
+      0.2468,
+      0.4819
+     ],
+     [
+      "T10",
+      0.2361,
+      0.5286
+     ],
+     [
+      "T11",
+      0.3203,
+      0.5141
+     ],
+     [
+      "T12",
+      0.2208,
+      0.5483
+     ],
+     [
+      "T13",
+      0.3138,
+      0.5238
+     ],
+     [
+      "T14",
+      0.3173,
+      0.4792
+     ],
+     [
+      "T15",
+      0.1971,
+      0.586
+     ],
+     [
+      "T16",
+      0.2656,
+      0.4778
+     ],
+     [
+      "T17",
+      0.325,
+      0.5163
+     ],
+     [
+      "T18",
+      0.1645,
+      0.4876
+     ],
+     [
+      "T19",
+      0.2797,
+      0.5709
+     ],
+     [
+      "T20",
+      0.3045,
+      0.6355
+     ],
+     [
+      "T21",
+      0.2576,
+      0.494
+     ],
+     [
+      "T22",
+      0.1342,
+      0.4818
+     ],
+     [
+      "T23",
+      0.2186,
+      0.5931
+     ],
+     [
+      "T24",
+      0.3228,
+      0.5001
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-064",
+    "split": "dev",
+    "query": "Write unit tests for the billing service",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the candidate tasks cover the billing service unit tests.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the candidate tasks cover the billing service unit tests.",
+     "item_subject": "the billing service"
+    },
+    "top_id": "T4",
+    "top_title": "Migrate CI pipeline to GitHub Actions",
+    "ranked_ids": [
+     "T4",
+     "T10",
+     "T15",
+     "T1",
+     "T8"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.311,
+      0.5609
+     ],
+     [
+      "T2",
+      0.3312,
+      0.5423
+     ],
+     [
+      "T3",
+      0.3449,
+      0.5292
+     ],
+     [
+      "T4",
+      0.287,
+      0.5736
+     ],
+     [
+      "T5",
+      0.3027,
+      0.5503
+     ],
+     [
+      "T6",
+      0.0507,
+      0.4628
+     ],
+     [
+      "T7",
+      0.2159,
+      0.5636
+     ],
+     [
+      "T8",
+      0.3853,
+      0.5577
+     ],
+     [
+      "T9",
+      0.275,
+      0.5078
+     ],
+     [
+      "T10",
+      0.4577,
+      0.5716
+     ],
+     [
+      "T11",
+      0.2267,
+      0.5514
+     ],
+     [
+      "T12",
+      0.3482,
+      0.5267
+     ],
+     [
+      "T13",
+      0.3352,
+      0.5388
+     ],
+     [
+      "T14",
+      0.2519,
+      0.5532
+     ],
+     [
+      "T15",
+      0.408,
+      0.5615
+     ],
+     [
+      "T16",
+      0.2429,
+      0.5143
+     ],
+     [
+      "T17",
+      0.1838,
+      0.4888
+     ],
+     [
+      "T18",
+      0.25,
+      0.5632
+     ],
+     [
+      "T19",
+      0.34,
+      0.5516
+     ],
+     [
+      "T20",
+      0.326,
+      0.514
+     ],
+     [
+      "T21",
+      0.1889,
+      0.5357
+     ],
+     [
+      "T22",
+      0.2488,
+      0.5269
+     ],
+     [
+      "T23",
+      0.3132,
+      0.5447
+     ],
+     [
+      "T24",
+      0.36,
+      0.5179
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-065",
+    "split": "dev",
+    "query": "Book flights for the Berlin conference",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the candidate tasks involve travel or the Berlin conference.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the candidate tasks involve travel or the Berlin conference.",
+     "item_subject": "the Berlin conference"
+    },
+    "top_id": "T3",
+    "top_title": "Book venue for the Q2 offsite",
+    "ranked_ids": [
+     "T3",
+     "T1",
+     "T20",
+     "T4",
+     "T10"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2975,
+      0.5501
+     ],
+     [
+      "T2",
+      0.2493,
+      0.4671
+     ],
+     [
+      "T3",
+      0.3806,
+      0.6459
+     ],
+     [
+      "T4",
+      0.2947,
+      0.5224
+     ],
+     [
+      "T5",
+      0.2155,
+      0.5542
+     ],
+     [
+      "T6",
+      0.2354,
+      0.4578
+     ],
+     [
+      "T7",
+      0.1951,
+      0.5325
+     ],
+     [
+      "T8",
+      0.2562,
+      0.5277
+     ],
+     [
+      "T9",
+      0.3348,
+      0.4958
+     ],
+     [
+      "T10",
+      0.3355,
+      0.5138
+     ],
+     [
+      "T11",
+      0.2329,
+      0.4796
+     ],
+     [
+      "T12",
+      0.2309,
+      0.5215
+     ],
+     [
+      "T13",
+      0.2957,
+      0.5017
+     ],
+     [
+      "T14",
+      0.2152,
+      0.4991
+     ],
+     [
+      "T15",
+      0.1863,
+      0.5286
+     ],
+     [
+      "T16",
+      0.275,
+      0.5029
+     ],
+     [
+      "T17",
+      0.2125,
+      0.4877
+     ],
+     [
+      "T18",
+      0.1288,
+      0.5071
+     ],
+     [
+      "T19",
+      0.2663,
+      0.5448
+     ],
+     [
+      "T20",
+      0.3113,
+      0.524
+     ],
+     [
+      "T21",
+      0.34,
+      0.4612
+     ],
+     [
+      "T22",
+      0.2125,
+      0.5155
+     ],
+     [
+      "T23",
+      0.2527,
+      0.5239
+     ],
+     [
+      "T24",
+      0.3482,
+      0.4864
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-067",
+    "split": "dev",
+    "query": "Fix typos in the README",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the candidate tasks refer to fixing the README.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the candidate tasks refer to fixing the README.",
+     "item_subject": "the README"
+    },
+    "top_id": "T11",
+    "top_title": "Update API rate limit documentation",
+    "ranked_ids": [
+     "T11",
+     "T1",
+     "T10",
+     "T5",
+     "T21"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2877,
+      0.657
+     ],
+     [
+      "T2",
+      0.3117,
+      0.5947
+     ],
+     [
+      "T3",
+      0.2615,
+      0.5376
+     ],
+     [
+      "T4",
+      0.2833,
+      0.5569
+     ],
+     [
+      "T5",
+      0.3036,
+      0.6183
+     ],
+     [
+      "T6",
+      0.374,
+      0.5387
+     ],
+     [
+      "T7",
+      0.2587,
+      0.6031
+     ],
+     [
+      "T8",
+      0.2052,
+      0.5391
+     ],
+     [
+      "T9",
+      0.3333,
+      0.5132
+     ],
+     [
+      "T10",
+      0.3902,
+      0.6326
+     ],
+     [
+      "T11",
+      0.2345,
+      0.6597
+     ],
+     [
+      "T12",
+      0.2061,
+      0.5323
+     ],
+     [
+      "T13",
+      0.3148,
+      0.5814
+     ],
+     [
+      "T14",
+      0.3453,
+      0.5799
+     ],
+     [
+      "T15",
+      0.1466,
+      0.5532
+     ],
+     [
+      "T16",
+      0.2566,
+      0.5083
+     ],
+     [
+      "T17",
+      0.2088,
+      0.5712
+     ],
+     [
+      "T18",
+      0.2667,
+      0.5751
+     ],
+     [
+      "T19",
+      0.275,
+      0.5312
+     ],
+     [
+      "T20",
+      0.1821,
+      0.5487
+     ],
+     [
+      "T21",
+      0.3709,
+      0.6148
+     ],
+     [
+      "T22",
+      0.2354,
+      0.5123
+     ],
+     [
+      "T23",
+      0.2881,
+      0.5889
+     ],
+     [
+      "T24",
+      0.225,
+      0.5192
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-068",
+    "split": "dev",
+    "query": "Run security training for new hires",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the candidate tasks relate to security training.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the candidate tasks relate to security training.",
+     "item_subject": "security training for new hires"
+    },
+    "top_id": "T15",
+    "top_title": "Run Q1 customer satisfaction survey",
+    "ranked_ids": [
+     "T15",
+     "T19",
+     "T8",
+     "T3",
+     "T12"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2649,
+      0.6016
+     ],
+     [
+      "T2",
+      0.2361,
+      0.5243
+     ],
+     [
+      "T3",
+      0.2922,
+      0.5711
+     ],
+     [
+      "T4",
+      0.2361,
+      0.5426
+     ],
+     [
+      "T5",
+      0.25,
+      0.5759
+     ],
+     [
+      "T6",
+      0.1645,
+      0.5139
+     ],
+     [
+      "T7",
+      0.2638,
+      0.5175
+     ],
+     [
+      "T8",
+      0.3157,
+      0.6053
+     ],
+     [
+      "T9",
+      0.2698,
+      0.5318
+     ],
+     [
+      "T10",
+      0.326,
+      0.5333
+     ],
+     [
+      "T11",
+      0.1457,
+      0.5097
+     ],
+     [
+      "T12",
+      0.3051,
+      0.5661
+     ],
+     [
+      "T13",
+      0.1545,
+      0.5285
+     ],
+     [
+      "T14",
+      0.2237,
+      0.5169
+     ],
+     [
+      "T15",
+      0.2914,
+      0.6398
+     ],
+     [
+      "T16",
+      0.1831,
+      0.5053
+     ],
+     [
+      "T17",
+      0.1725,
+      0.537
+     ],
+     [
+      "T18",
+      0.2429,
+      0.5416
+     ],
+     [
+      "T19",
+      0.3187,
+      0.6173
+     ],
+     [
+      "T20",
+      0.3,
+      0.5621
+     ],
+     [
+      "T21",
+      0.3552,
+      0.5232
+     ],
+     [
+      "T22",
+      0.1766,
+      0.5278
+     ],
+     [
+      "T23",
+      0.3352,
+      0.5521
+     ],
+     [
+      "T24",
+      0.2762,
+      0.5493
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-070",
+    "split": "dev",
+    "query": "Clean up the shared Google Drive",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the candidate tasks involve cleaning the shared Google Drive.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the candidate tasks involve cleaning the shared Google Drive.",
+     "item_subject": "the shared Google Drive"
+    },
+    "top_id": "T18",
+    "top_title": "Clean up stale feature flags",
+    "ranked_ids": [
+     "T18",
+     "T20",
+     "T24",
+     "T5",
+     "T14"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2297,
+      0.5545
+     ],
+     [
+      "T2",
+      0.271,
+      0.5634
+     ],
+     [
+      "T3",
+      0.2787,
+      0.5346
+     ],
+     [
+      "T4",
+      0.1971,
+      0.5506
+     ],
+     [
+      "T5",
+      0.2877,
+      0.5532
+     ],
+     [
+      "T6",
+      0.2881,
+      0.5024
+     ],
+     [
+      "T7",
+      0.1545,
+      0.5091
+     ],
+     [
+      "T8",
+      0.2537,
+      0.5306
+     ],
+     [
+      "T9",
+      0.255,
+      0.5898
+     ],
+     [
+      "T10",
+      0.2429,
+      0.5416
+     ],
+     [
+      "T11",
+      0.2791,
+      0.5322
+     ],
+     [
+      "T12",
+      0.1587,
+      0.5305
+     ],
+     [
+      "T13",
+      0.2968,
+      0.5158
+     ],
+     [
+      "T14",
+      0.3959,
+      0.5197
+     ],
+     [
+      "T15",
+      0.2791,
+      0.5587
+     ],
+     [
+      "T16",
+      0.0823,
+      0.4896
+     ],
+     [
+      "T17",
+      0.2576,
+      0.512
+     ],
+     [
+      "T18",
+      0.4533,
+      0.6475
+     ],
+     [
+      "T19",
+      0.2649,
+      0.525
+     ],
+     [
+      "T20",
+      0.2877,
+      0.5602
+     ],
+     [
+      "T21",
+      0.2656,
+      0.5466
+     ],
+     [
+      "T22",
+      0.1149,
+      0.5253
+     ],
+     [
+      "T23",
+      0.15,
+      0.5134
+     ],
+     [
+      "T24",
+      0.287,
+      0.5594
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-071",
+    "split": "dev",
+    "query": "Upgrade laptops for the design team",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the candidate tasks are about upgrading design team laptops.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the candidate tasks are about upgrading design team laptops.",
+     "item_subject": "laptops for the design team"
+    },
+    "top_id": "T9",
+    "top_title": "Renew the Figma team license",
+    "ranked_ids": [
+     "T9",
+     "T19",
+     "T12",
+     "T14",
+     "T3"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.3974,
+      0.5412
+     ],
+     [
+      "T2",
+      0.3069,
+      0.5195
+     ],
+     [
+      "T3",
+      0.3984,
+      0.587
+     ],
+     [
+      "T4",
+      0.3069,
+      0.5462
+     ],
+     [
+      "T5",
+      0.25,
+      0.5834
+     ],
+     [
+      "T6",
+      0.2468,
+      0.5447
+     ],
+     [
+      "T7",
+      0.1759,
+      0.5283
+     ],
+     [
+      "T8",
+      0.34,
+      0.5478
+     ],
+     [
+      "T9",
+      0.3778,
+      0.6494
+     ],
+     [
+      "T10",
+      0.4192,
+      0.5588
+     ],
+     [
+      "T11",
+      0.3157,
+      0.5547
+     ],
+     [
+      "T12",
+      0.3051,
+      0.59
+     ],
+     [
+      "T13",
+      0.3606,
+      0.5652
+     ],
+     [
+      "T14",
+      0.3355,
+      0.5898
+     ],
+     [
+      "T15",
+      0.2914,
+      0.5711
+     ],
+     [
+      "T16",
+      0.4446,
+      0.5705
+     ],
+     [
+      "T17",
+      0.271,
+      0.5107
+     ],
+     [
+      "T18",
+      0.2159,
+      0.5618
+     ],
+     [
+      "T19",
+      0.425,
+      0.5939
+     ],
+     [
+      "T20",
+      0.275,
+      0.5631
+     ],
+     [
+      "T21",
+      0.203,
+      0.5556
+     ],
+     [
+      "T22",
+      0.2208,
+      0.5846
+     ],
+     [
+      "T23",
+      0.1437,
+      0.562
+     ],
+     [
+      "T24",
+      0.2338,
+      0.5319
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-073",
+    "split": "dev",
+    "query": "Interview candidates for the support lead role",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the candidate tasks match interviewing for the support lead role.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the candidate tasks match interviewing for the support lead role.",
+     "item_subject": "the support lead role"
+    },
+    "top_id": "T19",
+    "top_title": "Set up on-call rotation for the platform team",
+    "ranked_ids": [
+     "T19",
+     "T15",
+     "T3",
+     "T1",
+     "T5"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.367,
+      0.5855
+     ],
+     [
+      "T2",
+      0.3892,
+      0.5359
+     ],
+     [
+      "T3",
+      0.3173,
+      0.5971
+     ],
+     [
+      "T4",
+      0.2253,
+      0.5396
+     ],
+     [
+      "T5",
+      0.3228,
+      0.5695
+     ],
+     [
+      "T6",
+      0.1863,
+      0.4654
+     ],
+     [
+      "T7",
+      0.1725,
+      0.5364
+     ],
+     [
+      "T8",
+      0.2938,
+      0.5393
+     ],
+     [
+      "T9",
+      0.2986,
+      0.5278
+     ],
+     [
+      "T10",
+      0.3643,
+      0.5633
+     ],
+     [
+      "T11",
+      0.2938,
+      0.5294
+     ],
+     [
+      "T12",
+      0.2674,
+      0.5959
+     ],
+     [
+      "T13",
+      0.2649,
+      0.5383
+     ],
+     [
+      "T14",
+      0.3322,
+      0.5391
+     ],
+     [
+      "T15",
+      0.3148,
+      0.6022
+     ],
+     [
+      "T16",
+      0.1789,
+      0.5393
+     ],
+     [
+      "T17",
+      0.2338,
+      0.5672
+     ],
+     [
+      "T18",
+      0.1608,
+      0.5529
+     ],
+     [
+      "T19",
+      0.3736,
+      0.6412
+     ],
+     [
+      "T20",
+      0.2152,
+      0.5652
+     ],
+     [
+      "T21",
+      0.2833,
+      0.5315
+     ],
+     [
+      "T22",
+      0.2318,
+      0.551
+     ],
+     [
+      "T23",
+      0.1244,
+      0.5533
+     ],
+     [
+      "T24",
+      0.2615,
+      0.5198
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-074",
+    "split": "dev",
+    "query": "Negotiate the office lease extension",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the candidate tasks refer to the office lease extension.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the candidate tasks refer to the office lease extension.",
+     "item_subject": "the office lease extension"
+    },
+    "top_id": "T22",
+    "top_title": "Negotiate renewal with AWS account manager",
+    "ranked_ids": [
+     "T22",
+     "T9",
+     "T3",
+     "T19",
+     "T18"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2397,
+      0.4994
+     ],
+     [
+      "T2",
+      0.2795,
+      0.4995
+     ],
+     [
+      "T3",
+      0.3662,
+      0.6007
+     ],
+     [
+      "T4",
+      0.3027,
+      0.4989
+     ],
+     [
+      "T5",
+      0.1971,
+      0.5538
+     ],
+     [
+      "T6",
+      0.2159,
+      0.5354
+     ],
+     [
+      "T7",
+      0.1729,
+      0.5046
+     ],
+     [
+      "T8",
+      0.2155,
+      0.5121
+     ],
+     [
+      "T9",
+      0.3453,
+      0.6331
+     ],
+     [
+      "T10",
+      0.2297,
+      0.5033
+     ],
+     [
+      "T11",
+      0.3352,
+      0.5019
+     ],
+     [
+      "T12",
+      0.3013,
+      0.5131
+     ],
+     [
+      "T13",
+      0.3045,
+      0.4884
+     ],
+     [
+      "T14",
+      0.3091,
+      0.5027
+     ],
+     [
+      "T15",
+      0.2155,
+      0.5222
+     ],
+     [
+      "T16",
+      0.3348,
+      0.5081
+     ],
+     [
+      "T17",
+      0.3643,
+      0.4807
+     ],
+     [
+      "T18",
+      0.2922,
+      0.516
+     ],
+     [
+      "T19",
+      0.2938,
+      0.5223
+     ],
+     [
+      "T20",
+      0.271,
+      0.5291
+     ],
+     [
+      "T21",
+      0.25,
+      0.5058
+     ],
+     [
+      "T22",
+      0.2833,
+      0.7069
+     ],
+     [
+      "T23",
+      0.2833,
+      0.4922
+     ],
+     [
+      "T24",
+      0.2099,
+      0.5058
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-076",
+    "split": "dev",
+    "query": "Set up a weekly metrics review",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the tasks match the weekly metrics review.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the tasks match the weekly metrics review.",
+     "item_subject": "weekly metrics review"
+    },
+    "top_id": "T19",
+    "top_title": "Set up on-call rotation for the platform team",
+    "ranked_ids": [
+     "T19",
+     "T15",
+     "T18",
+     "T8"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.1653,
+      0.5678
+     ],
+     [
+      "T2",
+      0.1522,
+      0.6098
+     ],
+     [
+      "T3",
+      0.0576,
+      0.5907
+     ],
+     [
+      "T4",
+      0.2284,
+      0.5753
+     ],
+     [
+      "T5",
+      0.2698,
+      0.611
+     ],
+     [
+      "T6",
+      0.2088,
+      0.4978
+     ],
+     [
+      "T7",
+      0.2566,
+      0.5622
+     ],
+     [
+      "T8",
+      0.3923,
+      0.5901
+     ],
+     [
+      "T9",
+      0.0586,
+      0.5272
+     ],
+     [
+      "T10",
+      0.2,
+      0.5652
+     ],
+     [
+      "T11",
+      0.2092,
+      0.5561
+     ],
+     [
+      "T12",
+      0.0932,
+      0.5387
+     ],
+     [
+      "T13",
+      0.1393,
+      0.5688
+     ],
+     [
+      "T14",
+      0.0718,
+      0.5611
+     ],
+     [
+      "T15",
+      0.1831,
+      0.6502
+     ],
+     [
+      "T16",
+      0.2267,
+      0.5272
+     ],
+     [
+      "T17",
+      0.2125,
+      0.5205
+     ],
+     [
+      "T18",
+      0.3224,
+      0.595
+     ],
+     [
+      "T19",
+      0.2947,
+      0.6521
+     ],
+     [
+      "T20",
+      0.081,
+      0.6069
+     ],
+     [
+      "T21",
+      0.2194,
+      0.5694
+     ],
+     [
+      "T22",
+      0.2125,
+      0.5375
+     ],
+     [
+      "T23",
+      0.1803,
+      0.5541
+     ],
+     [
+      "T24",
+      0.2493,
+      0.5645
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-077",
+    "split": "dev",
+    "query": "Plan team lunch for Friday",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the tasks match planning the team lunch.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the tasks match planning the team lunch.",
+     "item_subject": "team lunch for Friday"
+    },
+    "top_id": "T3",
+    "top_title": "Book venue for the Q2 offsite",
+    "ranked_ids": [
+     "T3",
+     "T19",
+     "T20",
+     "T5",
+     "T9"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.175,
+      0.5426
+     ],
+     [
+      "T2",
+      0.2429,
+      0.4734
+     ],
+     [
+      "T3",
+      0.2782,
+      0.6732
+     ],
+     [
+      "T4",
+      0.1889,
+      0.4989
+     ],
+     [
+      "T5",
+      0.3458,
+      0.5938
+     ],
+     [
+      "T6",
+      0.2887,
+      0.4704
+     ],
+     [
+      "T7",
+      0.1735,
+      0.5527
+     ],
+     [
+      "T8",
+      0.2508,
+      0.545
+     ],
+     [
+      "T9",
+      0.2833,
+      0.5651
+     ],
+     [
+      "T10",
+      0.2656,
+      0.5542
+     ],
+     [
+      "T11",
+      0.2787,
+      0.5117
+     ],
+     [
+      "T12",
+      0.1971,
+      0.5526
+     ],
+     [
+      "T13",
+      0.1491,
+      0.5098
+     ],
+     [
+      "T14",
+      0.3299,
+      0.5132
+     ],
+     [
+      "T15",
+      0.2508,
+      0.6228
+     ],
+     [
+      "T16",
+      0.1214,
+      0.48
+     ],
+     [
+      "T17",
+      0.3117,
+      0.5193
+     ],
+     [
+      "T18",
+      0.3463,
+      0.5087
+     ],
+     [
+      "T19",
+      0.1915,
+      0.6609
+     ],
+     [
+      "T20",
+      0.3169,
+      0.6318
+     ],
+     [
+      "T21",
+      0.2052,
+      0.5102
+     ],
+     [
+      "T22",
+      0.125,
+      0.5352
+     ],
+     [
+      "T23",
+      0.1919,
+      0.5533
+     ],
+     [
+      "T24",
+      0.2873,
+      0.4884
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-079",
+    "split": "dev",
+    "query": "Migrate the docs site to Docusaurus",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the tasks match migrating the docs site to Docusaurus.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the tasks match migrating the docs site to Docusaurus.",
+     "item_subject": "the docs site migration to Docusaurus"
+    },
+    "top_id": "T4",
+    "top_title": "Migrate CI pipeline to GitHub Actions",
+    "ranked_ids": [
+     "T4",
+     "T11",
+     "T17",
+     "T13",
+     "T16"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.2649,
+      0.6037
+     ],
+     [
+      "T2",
+      0.2361,
+      0.5287
+     ],
+     [
+      "T3",
+      0.2922,
+      0.5509
+     ],
+     [
+      "T4",
+      0.4014,
+      0.6706
+     ],
+     [
+      "T5",
+      0.175,
+      0.5558
+     ],
+     [
+      "T6",
+      0.2742,
+      0.5054
+     ],
+     [
+      "T7",
+      0.1759,
+      0.5231
+     ],
+     [
+      "T8",
+      0.2429,
+      0.5899
+     ],
+     [
+      "T9",
+      0.3508,
+      0.5484
+     ],
+     [
+      "T10",
+      0.2562,
+      0.6059
+     ],
+     [
+      "T11",
+      0.34,
+      0.6349
+     ],
+     [
+      "T12",
+      0.1962,
+      0.5365
+     ],
+     [
+      "T13",
+      0.3091,
+      0.5876
+     ],
+     [
+      "T14",
+      0.2908,
+      0.5708
+     ],
+     [
+      "T15",
+      0.2186,
+      0.5406
+     ],
+     [
+      "T16",
+      0.34,
+      0.575
+     ],
+     [
+      "T17",
+      0.4435,
+      0.6218
+     ],
+     [
+      "T18",
+      0.1349,
+      0.5719
+     ],
+     [
+      "T19",
+      0.2762,
+      0.5539
+     ],
+     [
+      "T20",
+      0.25,
+      0.5408
+     ],
+     [
+      "T21",
+      0.203,
+      0.5578
+     ],
+     [
+      "T22",
+      0.287,
+      0.4914
+     ],
+     [
+      "T23",
+      0.2394,
+      0.6115
+     ],
+     [
+      "T24",
+      0.2125,
+      0.5511
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-080",
+    "split": "dev",
+    "query": "Upgrade Redis to version 7",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the tasks match upgrading Redis.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the tasks match upgrading Redis.",
+     "item_subject": "Redis upgrade to version 7"
+    },
+    "top_id": "T16",
+    "top_title": "Upgrade Postgres to version 16",
+    "ranked_ids": [
+     "T16",
+     "T4",
+     "T11",
+     "T9",
+     "T22"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.1,
+      0.4836
+     ],
+     [
+      "T2",
+      0.2968,
+      0.514
+     ],
+     [
+      "T3",
+      0.2164,
+      0.4965
+     ],
+     [
+      "T4",
+      0.3778,
+      0.6009
+     ],
+     [
+      "T5",
+      0.2305,
+      0.5123
+     ],
+     [
+      "T6",
+      0.2887,
+      0.513
+     ],
+     [
+      "T7",
+      0.1735,
+      0.4889
+     ],
+     [
+      "T8",
+      0.3066,
+      0.5262
+     ],
+     [
+      "T9",
+      0.2833,
+      0.5414
+     ],
+     [
+      "T10",
+      0.2391,
+      0.5339
+     ],
+     [
+      "T11",
+      0.3066,
+      0.5494
+     ],
+     [
+      "T12",
+      0.2217,
+      0.4646
+     ],
+     [
+      "T13",
+      0.2982,
+      0.5267
+     ],
+     [
+      "T14",
+      0.2284,
+      0.5941
+     ],
+     [
+      "T15",
+      0.2787,
+      0.523
+     ],
+     [
+      "T16",
+      0.6982,
+      0.7373
+     ],
+     [
+      "T17",
+      0.3117,
+      0.5116
+     ],
+     [
+      "T18",
+      0.2519,
+      0.5682
+     ],
+     [
+      "T19",
+      0.2394,
+      0.5122
+     ],
+     [
+      "T20",
+      0.1441,
+      0.4858
+     ],
+     [
+      "T21",
+      0.1759,
+      0.5492
+     ],
+     [
+      "T22",
+      0.325,
+      0.529
+     ],
+     [
+      "T23",
+      0.1919,
+      0.5644
+     ],
+     [
+      "T24",
+      0.1915,
+      0.5093
+     ]
+    ],
+    "outcome": "correct"
+   },
+   {
+    "id": "dd-082",
+    "split": "dev",
+    "query": "Review GCP pricing for the migration",
+    "label": "new",
+    "match": null,
+    "decision": "new",
+    "reasoning": "No open task covers this work. None of the tasks match reviewing GCP pricing.",
+    "judge": {
+     "verdict": "different",
+     "task_id": null,
+     "reason": "None of the tasks match reviewing GCP pricing.",
+     "item_subject": "GCP pricing for the migration"
+    },
+    "top_id": "T7",
+    "top_title": "Draft pricing page copy",
+    "ranked_ids": [
+     "T7",
+     "T2",
+     "T14",
+     "T3",
+     "T10"
+    ],
+    "scores": [
+     [
+      "T1",
+      0.3487,
+      0.5369
+     ],
+     [
+      "T2",
+      0.3959,
+      0.5773
+     ],
+     [
+      "T3",
+      0.34,
+      0.5639
+     ],
+     [
+      "T4",
+      0.2096,
+      0.6079
+     ],
+     [
+      "T5",
+      0.2957,
+      0.5445
+     ],
+     [
+      "T6",
+      0.1349,
+      0.4416
+     ],
+     [
+      "T7",
+      0.3746,
+      0.6155
+     ],
+     [
+      "T8",
+      0.3352,
+      0.5143
+     ],
+     [
+      "T9",
+      0.3984,
+      0.5474
+     ],
+     [
+      "T10",
+      0.3446,
+      0.5526
+     ],
+     [
+      "T11",
+      0.2634,
+      0.5637
+     ],
+     [
+      "T12",
+      0.2152,
+      0.5055
+     ],
+     [
+      "T13",
+      0.3045,
+      0.4869
+     ],
+     [
+      "T14",
+      0.3091,
+      0.5693
+     ],
+     [
+      "T15",
+      0.2634,
+      0.5385
+     ],
+     [
+      "T16",
+      0.2061,
+      0.5602
+     ],
+     [
+      "T17",
+      0.2429,
+      0.5093
+     ],
+     [
+      "T18",
+      0.1328,
+      0.5378
+     ],
+     [
+      "T19",
+      0.3988,
+      0.5153
+     ],
+     [
+      "T20",
+      0.3696,
+      0.5188
+     ],
+     [
+      "T21",
+      0.15,
+      0.5164
+     ],
+     [
+      "T22",
+      0.2615,
+      0.6031
+     ],
+     [
+      "T23",
+      0.3069,
+      0.5295
+     ],
+     [
+      "T24",
+      0.1889,
+      0.5593
+     ]
+    ],
+    "outcome": "correct"
+   }
+  ],
+  "sweep": {
+   "best": {
+    "lexical_duplicate": 0.75,
+    "lexical_review": 0.5,
+    "semantic_duplicate": 0.9,
+    "semantic_review": 0.68
+   },
+   "current": {
+    "lexical_duplicate": 0.78,
+    "lexical_review": 0.52,
+    "semantic_duplicate": 0.84,
+    "semantic_review": 0.68
+   },
+   "dev_best": {
+    "accuracy": 0.7454545454545455,
+    "harmful_rate": 0.0,
+    "macro_f1": 0.7371750632620199
+   },
+   "test_best": {
+    "accuracy": 0.0,
+    "macro_f1": 1.0,
+    "harmful_rate": 0.0
+   },
+   "test_current": {
+    "accuracy": 0.0,
+    "macro_f1": 1.0,
+    "harmful_rate": 0.0
+   }
+  }
+ },
+ "meta": {
+  "label": "v3-dev",
+  "engine": "gemini",
+  "model": "gemini-3.5-flash-lite",
+  "thinking_level": "low",
+  "dedup_judge": true,
+  "split": "dev",
+  "repeats": 1,
+  "run_at": "2026-11-17T10:06:04+00:00",
+  "wall_seconds": 313.1,
+  "git": "b4e56f0",
+  "llm": {
+   "live_calls": {
+    "generateContent": 26,
+    "batchEmbedContents": 1
+   },
+   "cache_hits": 47,
+   "tokens": {
+    "promptTokenCount": 15846,
+    "candidatesTokenCount": 17920,
+    "thoughtsTokenCount": 0
+   }
+  }
+ }
+}

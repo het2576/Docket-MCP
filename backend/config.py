@@ -39,9 +39,18 @@ def _csv(value: str | None, default: list[str]) -> list[str]:
 @dataclass(frozen=True)
 class Settings:
     gemini_api_key: str | None = os.getenv("GEMINI_API_KEY")
-    gemini_model: str = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
+    # gemini-3.5-flash-lite is the model the evals validated (~2 s per call); heavier models can
+    # take a minute per call, which is how /api/process used to time out.
+    gemini_model: str = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
+    # The duplicate judge is a short classification; it stays on the fast evaluated model even
+    # when extraction uses a heavier one.
+    gemini_judge_model: str = os.getenv("GEMINI_JUDGE_MODEL", "gemini-3.5-flash-lite")
+    # Whole-run time budget in seconds; must stay below the web server's 150 s request limit.
+    run_budget_s: float = float(os.getenv("DOCKET_RUN_BUDGET_S", "110"))
     # Gemini 3 models think at "high" by default, which can take minutes for a transcript.
     gemini_thinking_level: str = os.getenv("GEMINI_THINKING_LEVEL", "low")
+    # Second-pass LLM check that tells "same work" from "related work" for duplicate candidates.
+    dedup_judge: bool = os.getenv("DOCKET_DEDUP_JUDGE", "1").lower() not in ("0", "false", "off", "no")
     notion_api_key: str | None = os.getenv("NOTION_API_KEY")
     notion_database_id: str | None = os.getenv("NOTION_DATABASE_ID")
     notion_title_property: str = os.getenv("NOTION_TITLE_PROPERTY", "Name")

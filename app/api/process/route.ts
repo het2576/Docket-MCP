@@ -17,9 +17,13 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    const meetingDate =
+      typeof body.meeting_date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(body.meeting_date) ? body.meeting_date : undefined;
     const result = await runPython("process", {
       transcript,
-      source_meeting: typeof body.source_meeting === "string" ? body.source_meeting.trim() : undefined
+      source_meeting: typeof body.source_meeting === "string" ? body.source_meeting.trim() : undefined,
+      // Relative deadlines ("Friday", "end of month") resolve against the day the meeting happened.
+      meeting_date: meetingDate
     });
     return NextResponse.json(result);
   } catch (error) {
